@@ -1,0 +1,56 @@
+{
+    "COMMAND_GROUP_MODERATION": "модерация",
+    "COMMAND_GROUP_DESCRIPTION_MODERATION": "команды модерации",
+
+
+    "Default values": "Default values",
+
+    "SECONDS": "секунд",
+    "MINUTES": "минут",
+    "HOURS": "часов",
+    "DAYS": "дней",
+    "WEEKS": "недель",
+
+    "COMMAND_PARAM_NAME_DURATION": "длительность",
+    "COMMAND_PARAM_DESCRIPTION_DURATION": "выберите длительность",
+
+    "COMMAND_PARAM_NAME_UNIT": "еденица",
+    "COMMAND_PARAM_DESCRIPTION_UNIT": "выберите еденицу времени",
+
+    "COMMAND_PARAM_NAME_MEMBER": "участник",
+    "COMMAND_PARAM_DESCRIPTION_MEMBER": "участник для модерирования",
+
+    "COMMAND_PARAM_NAME_REASON": "причина",
+    "COMMAND_PARAM_DESCRIPTION_REASON": "причина модерирования",
+
+    "COMMAND_PARAM_NAME_ID": "идентификатор",
+    "COMMAND_PARAM_DESCRIPTION_ID": "идентификатор пользователя",
+
+    "COMMAND_PARAM_NAME_COUNT": "количество",
+    "COMMAND_PARAM_DESCRIPTION_COUNT": "количество сообщений",
+
+    "COMMAND_PARAM_NAME_CHANNEL": "канал",
+    "COMMAND_PARAM_DESCRIPTION_CHANNEL": "выберите канал",
+
+
+    "Commands values": "Commands values",
+
+
+    "COMMAND_NAME_BAN": "бан",
+    "COMMAND_DESCRIPTION_BAN": "забанить участника на сервере",
+
+    "COMMAND_NAME_UNBAN": "разбан",
+    "COMMAND_DESCRIPTION_UNBAN": "разбанить пользователя на сервере",
+
+    "COMMAND_NAME_MUTE": "заглушить",
+    "COMMAND_DESCRIPTION_MUTE": "заглушить участника сервера",
+
+    "COMMAND_NAME_UNMUTE": "размьют",
+    "COMMAND_DESCRIPTION_UNMUTE": "размьютить участника сервера",
+
+    "COMMAND_NAME_KICK": "кик",
+    "COMMAND_DESCRIPTION_KICK": "выгнать участника с сервера",
+
+    "COMMAND_NAME_CLEAR": "очистить",
+    "COMMAND_DESCRIPTION_CLEAR": "удалить сообщения в канале"
+}
