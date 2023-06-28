@@ -2,7 +2,6 @@ import disnake
 from disnake import AppCmdInter
 from disnake import Localized as __
 from disnake.ext import commands
-from typing import Literal
 
 from core.cog import BaseCog
 from core.i18n import LocalizationStorage
@@ -10,6 +9,7 @@ from core.checks import BaseChecks
 from tools.exeption import CustomError
 
 _ = LocalizationStorage("moderation")
+err = LocalizationStorage("errors#2")
 
 class Moderation(BaseCog):
 
@@ -19,7 +19,7 @@ class Moderation(BaseCog):
     async def moderation(self, inter:AppCmdInter):
         ...
 
-    @BaseChecks.is_higher(_)
+    @BaseChecks.is_higher(err)
     @commands.has_permissions(ban_members=True)
     @commands.bot_has_permissions(ban_members=True)
     @moderation.sub_command(
@@ -123,7 +123,7 @@ class Moderation(BaseCog):
         except:
             raise CustomError(locale['error'])
 
-    @BaseChecks.is_higher(_)
+    @BaseChecks.is_higher(err)
     @commands.has_permissions(kick_members=True)
     @commands.bot_has_permissions(kick_members=True)
     @moderation.sub_command(
@@ -168,7 +168,7 @@ class Moderation(BaseCog):
             )
         )
 
-    @BaseChecks.is_higher(_)
+    @BaseChecks.is_higher(err)
     @commands.has_permissions(moderate_members=True)
     @commands.bot_has_permissions(moderate_members=True)
     @moderation.sub_command(
@@ -238,7 +238,7 @@ class Moderation(BaseCog):
             )
         )
 
-    @BaseChecks.is_higher(_)
+    @BaseChecks.is_higher(err)
     @commands.has_permissions(moderate_members=True)
     @commands.bot_has_permissions(moderate_members=True)
     @moderation.sub_command(
