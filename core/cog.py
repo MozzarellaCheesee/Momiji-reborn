@@ -8,3 +8,5 @@ class BaseCog(commands.Cog):
         
     async def cog_load(self) -> None:
         print(f"Cog {self.__cog_name__} is loaded")
+
+    

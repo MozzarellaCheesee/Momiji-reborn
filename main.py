@@ -3,6 +3,8 @@ from pathlib import Path
 import disnake
 from disnake.ext import commands
 
+from core.settings import commands_, events
+
 from dotenv import load_dotenv
 from os import getenv, listdir
 
@@ -18,13 +20,17 @@ async def on_ready():
     await client.change_presence(activity=disnake.Streaming(name="Waiting for new members..", url="https://www.twitch.tv/astolfo_oxo"))
 
 def load_extensions():
-    for extension_type in listdir("./extensions"):
-        for extension in listdir(f"./extensions/{extension_type}"):
-            if extension.endswith(".py"):
-                try:
-                    client.load_extension(f"extensions.{extension_type}.{extension[:-3]}")
-                except Exception as e:
-                    print(e)
+    for command in commands_:
+        try:
+            client.load_extension(command)
+        except Exception as e:
+            print(f"[ERROR] Ошибка при загрузке команд: {e}")
+
+    for event in events:
+        try:
+            client.load_extension(event)
+        except Exception as e:
+            print(f"[ERROR] Ошибка при загрузке ивентов: {e}")
 
 def load_locale():
     for dir_ in localization_path.iterdir():

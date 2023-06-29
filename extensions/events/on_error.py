@@ -10,6 +10,7 @@ _ = LocalizationStorage('errors')
 
 
 class OnErrors(BaseCog):
+
     @commands.Cog.listener()
     async def on_slash_command_error(self, inter, error):
 
