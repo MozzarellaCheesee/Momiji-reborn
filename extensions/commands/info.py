@@ -43,9 +43,9 @@ class Info(BaseCog):
     async def _bot_info(self, inter: AppCmdInter):
         locale = _(inter.locale, "bot_info")
         BOT_INFO = [
-            "<@799139246928560139>", 
-            "<t:1651903200:f>", "3.10", 
-            "**[Disnake 2.9.0](https://docs.disnake.dev/en/stable/)**", 
+            "<@799139246928560139>",
+            "<t:1651903200:f>", "3.10",
+            "**[Disnake 2.9.0](https://docs.disnake.dev/en/stable/)**",
             f"{len(self.client.guilds)}", f"{self.client.latency * 1000:.0f} ms"
         ]
 
@@ -86,7 +86,7 @@ class Info(BaseCog):
             value=f"<:momiji_online_status:1051335123079012372>: **{len(list(filter(lambda x: x.status == disnake.Status.online, guild.members)))}**\n"
                   f"<:momiji_dnd_status:1051335115206316042>: **{len(list(filter(lambda x: x.status == disnake.Status.dnd, guild.members)))}**\n"
                   f"<:momiji_idle_status:1051335120390471701>: **{len(list(filter(lambda x: x.status == disnake.Status.idle, guild.members)))}**\n"
-                  f"<:momiji_offline_status:1051335125230686209>: **{len(list(filter(lambda x: x.status == disnake.Status.offline, guild.members)))}**" 
+                  f"<:momiji_offline_status:1051335125230686209>: **{len(list(filter(lambda x: x.status == disnake.Status.offline, guild.members)))}**"
         ).add_field(
             name=locale['field_name_3'],
             value=f'{locale["field_value_4"]} **{len(guild.channels)}**\n'
@@ -117,6 +117,7 @@ class Info(BaseCog):
             embed.set_image(url=guild.banner.url)
 
         await inter.send(embed=embed)
+
 
 def setup(client: commands.InteractionBot):
     client.add_cog(Info(client))

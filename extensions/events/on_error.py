@@ -8,7 +8,6 @@ from tools.exeption import CustomError
 _ = LocalizationStorage('errors')
 
 
-
 class OnErrors(BaseCog):
 
     @commands.Cog.listener()
@@ -55,6 +54,7 @@ class OnErrors(BaseCog):
         )
 
         await inter.send(embed=embed, ephemeral=True)
+
 
 def setup(client: commands.InteractionBot):
     client.add_cog(OnErrors(client))
