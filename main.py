@@ -6,7 +6,7 @@ from disnake.ext import commands
 from core.settings import commands_, events
 
 from dotenv import load_dotenv
-from os import getenv, listdir
+from os import getenv
 
 
 
@@ -32,6 +32,8 @@ def load_extensions():
         except Exception as e:
             print(f"[ERROR] Ошибка при загрузке ивентов: {e}")
 
+    
+
 def load_locale():
     for dir_ in localization_path.iterdir():
         if dir_.is_dir():
@@ -42,9 +44,10 @@ def main():
     load_locale()
     load_dotenv()
     client.run(getenv("TOKEN"))
+    del commands_, events, localization_path
 
     
 
 if __name__ == "__main__":
     client.loop.run_until_complete(main())
-
+    del client
