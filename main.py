@@ -44,10 +44,9 @@ def main():
     load_locale()
     load_dotenv()
     client.run(getenv("TOKEN"))
-    del commands_, events, localization_path
 
     
 
 if __name__ == "__main__":
     client.loop.run_until_complete(main())
-    del client
+    del client, commands_, events, localization_path
