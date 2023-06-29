@@ -1,11 +1,58 @@
 {
     "hello": {
-        "description_1": "поздаровался с",
+        "description_1": "поздаровался(-ась) с",
         "description_2": "Привет всем"
     },
 
     "hug": {
-        "description_1": "обнял",
-        "description_2": "обнял всех"
+        "description_1": "обнял(-а)",
+        "description_2": "обнял(-а) всех"
+    },
+
+    "kiss": {
+        "description_1": "поцеловал(-а)",
+        "description_2": "поцеловал(-а) всех"
+    },
+    
+    "punch": {
+        "description_1": "ударил(-а)",
+        "description_2": "побил(-а) всех"
+    },
+
+    "pat": {
+        "description_1": "погладил(-а)",
+        "description_2": "погладил(-а) всех"
+    },
+
+    "smoke": {
+        "description_1": "курит сигарету"
+    },
+
+    "sad": {
+        "description_1": "грустит"
+    },
+
+    "angry": {
+        "description_1": "злится на",
+        "description_2": "злится на всех"
+    },
+
+    "bite": {
+        "description_1": "укусил(-а)",
+        "description_2": "покусал(-а) всех"
+    },
+
+    "clap": {
+        "description_1": "похлопать",
+        "description_2": "похлопать всем"
+    },
+
+    "feed": {
+        "description_1": "покормил",
+        "description_2": "покормил всех"
+    },
+
+    "dance": {
+        "description_1": "танцует"
     }
 }

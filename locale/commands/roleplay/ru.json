@@ -2,6 +2,7 @@
     "COMMAND_GROUP_ROLEPLAY": "эмоции",
     "COMMAND_GROUP_DESCRIPTION_ROLEPLAY": "команды эмоций и действий",
 
+
     "Commands values": "Commands values",
 
 
@@ -9,5 +10,35 @@
     "COMMAND_DESCRIPTION_HELLO": "поприветствовать кого-то",
 
     "COMMAND_NAME_HUG": "обнять",
-    "COMMAND_DESCRIPTION_HUG": "обнять кого-то"
+    "COMMAND_DESCRIPTION_HUG": "обнять кого-то",
+
+    "COMMAND_NAME_KISS": "поцеловать",
+    "COMMAND_DESCRIPTION_KISS": "поцеловать кого-то",
+
+    "COMMAND_NAME_PUNCH": "ударить",
+    "COMMAND_DESCRIPTION_PUNCH": "ударить кого-то",
+
+    "COMMAND_NAME_PAT": "погладить",
+    "COMMAND_DESCRIPTION_PAT": "погладить кого-то",
+
+    "COMMAND_NAME_SMOKE": "курить",
+    "COMMAND_DESCRIPTION_SMOKE": "закурить сигарету",
+
+    "COMMAND_NAME_SAD": "грусть",
+    "COMMAND_DESCRIPTION_SAD": "грустить",
+
+    "COMMAND_NAME_ANGRY": "злиться",
+    "COMMAND_DESCRIPTION_ANGRY": "злиться на кого-то",
+
+    "COMMAND_NAME_BITE": "кусать",
+    "COMMAND_DESCRIPTION_BITE": "укусить кого-то",
+
+    "COMMAND_NAME_CLAP": "похлопать",
+    "COMMAND_DESCRIPTION_CLAP": "похлопать кому-то",
+
+    "COMMAND_NAME_FEED": "кормить",
+    "COMMAND_DESCRIPTION_FEED": "покормить кого-то",
+
+    "COMMAND_NAME_DANCE": "танцевать",
+    "COMMAND_DESCRIPTION_DANCE": "разорвать танцпол"
 }

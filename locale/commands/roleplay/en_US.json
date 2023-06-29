@@ -2,6 +2,7 @@
     "COMMAND_GROUP_ROLEPLAY": "roleplay",
     "COMMAND_GROUP_DESCRIPTION_ROLEPLAY": "roleplay commands",
 
+
     "Commands values": "Commands values",
 
 
@@ -9,5 +10,35 @@
     "COMMAND_DESCRIPTION_HELLO": "greet someone",
 
     "COMMAND_NAME_HUG": "hug",
-    "COMMAND_DESCRIPTION_HUG": "hug someone"
+    "COMMAND_DESCRIPTION_HUG": "hug someone",
+
+    "COMMAND_NAME_KISS": "kiss",
+    "COMMAND_DESCRIPTION_KISS": "kiss someone",
+
+    "COMMAND_NAME_PUNCH": "punch",
+    "COMMAND_DESCRIPTION_PUNCH": "punch someone",
+
+    "COMMAND_NAME_PAT": "pat",
+    "COMMAND_DESCRIPTION_PAT": "pat someone",
+
+    "COMMAND_NAME_SMOKE": "smoke",
+    "COMMAND_DESCRIPTION_SMOKE": "smoke a cigarette",
+
+    "COMMAND_NAME_SAD": "sad",
+    "COMMAND_DESCRIPTION_SAD": "mourn",
+
+    "COMMAND_NAME_ANGRY": "angry",
+    "COMMAND_DESCRIPTION_ANGRY": "get angry at someone",
+
+    "COMMAND_NAME_BITE": "bite",
+    "COMMAND_DESCRIPTION_BITE": "bite someone",
+
+    "COMMAND_NAME_CLAP": "clap",
+    "COMMAND_DESCRIPTION_CLAP": "clap someone",
+
+    "COMMAND_NAME_FEED": "feed",
+    "COMMAND_DESCRIPTION_FEED": "feed someone",
+
+    "COMMAND_NAME_DANCE": "dance",
+    "COMMAND_DESCRIPTION_DANCE": "tear up the dance floor"
 }
