@@ -1,0 +1,11 @@
+{
+    "hello": {
+        "description_1": "greeted",
+        "description_2": "Hello everyone"
+    },
+
+    "hug": {
+        "description_1": "hugged",
+        "description_2": "hugged everyone"
+    }
+}

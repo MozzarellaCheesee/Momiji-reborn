@@ -1,0 +1,13 @@
+{
+    "COMMAND_GROUP_ROLEPLAY": "roleplay",
+    "COMMAND_GROUP_DESCRIPTION_ROLEPLAY": "roleplay commands",
+
+    "Commands values": "Commands values",
+
+
+    "COMMAND_NAME_HELLO": "hello",
+    "COMMAND_DESCRIPTION_HELLO": "greet someone",
+
+    "COMMAND_NAME_HUG": "hug",
+    "COMMAND_DESCRIPTION_HUG": "hug someone"
+}

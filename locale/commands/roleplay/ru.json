@@ -1,0 +1,13 @@
+{
+    "COMMAND_GROUP_ROLEPLAY": "эмоции",
+    "COMMAND_GROUP_DESCRIPTION_ROLEPLAY": "команды эмоций и действий",
+
+    "Commands values": "Commands values",
+
+
+    "COMMAND_NAME_HELLO": "приветствие",
+    "COMMAND_DESCRIPTION_HELLO": "поприветствовать кого-то",
+
+    "COMMAND_NAME_HUG": "обнять",
+    "COMMAND_DESCRIPTION_HUG": "обнять кого-то"
+}

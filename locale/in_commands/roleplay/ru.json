@@ -1,0 +1,11 @@
+{
+    "hello": {
+        "description_1": "поздаровался с",
+        "description_2": "Привет всем"
+    },
+
+    "hug": {
+        "description_1": "обнял",
+        "description_2": "обнял всех"
+    }
+}
