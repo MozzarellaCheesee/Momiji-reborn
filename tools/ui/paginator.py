@@ -2,10 +2,6 @@ import disnake
 
 embeds = []
 
-async def sds(inter):    
-    await Paginator(embeds, inter, 180).start()
-
-
 class Paginator(disnake.ui.View):
 
     def __init__(self, *,
