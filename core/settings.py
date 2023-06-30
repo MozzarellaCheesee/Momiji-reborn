@@ -5,7 +5,8 @@ config = dotenv_values()
 commands_ = {
     "extensions.commands.info",
     "extensions.commands.moderation",
-    "extensions.commands.roleplay"
+    "extensions.commands.roleplay",
+    "extensions.commands.user"
 }
 
 events = {

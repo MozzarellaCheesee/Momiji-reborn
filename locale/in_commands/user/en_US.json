@@ -1,0 +1,16 @@
+{
+    "profile": {
+        "COMMANDS_EMBED_TITLE": "Information about",
+        "COMMANDS_EMBED_FIELD_MAIN_INFO": "Main info about user",
+        "COMMANDS_EMBED_FIELD_USER_REG": "Discord member since:",
+        "COMMANDS_EMBED_FIELD_USER_FULL_NICKNAME": "Full member nickname:",
+        "COMMANDS_EMBED_FIELD_SERVER_INFO": "Server info about user",
+        "COMMANDS_EMBED_FIELD_USER_JOIN": "User joined on server at:",
+        "COMMANDS_EMBED_FIELD_USER_ROLES_LEN": "User roles count:",
+        "COMMANDS_EMBED_FIELD_USER_STATUS": "User's status:",
+        "COMMANDS_EMBED_TITLE_SPOTY": "Info about spotify track",
+        "COMMANDS_EMBED_DESCRIPTION_SPOTY_TRACK": "Song name:",
+        "COMMANDS_EMBED_DESCRIPTION_SPOTY_ALBUM": "Album name:",
+        "COMMANDS_EMBED_DESCRIPTION_SPOTY_DURATION": "Song duration:"
+    }
+}

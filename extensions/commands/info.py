@@ -12,10 +12,8 @@ _ = LocalizationStorage("info")
 
 class Info(BaseCog):
 
-    @commands.slash_command(
-        name=__("info", key="COMMAND_GROUP_INFO"),
-        description=__("info commands", key="COMMAND_GROUP_DESCRIPTION_INFO")
-    )
+    @commands.slash_command(name=__("info", key="COMMAND_GROUP_INFO"),
+                            description=__("info commands", key="COMMAND_GROUP_DESCRIPTION_INFO"))
     async def info(self, inter: AppCmdInter):
         ...
 

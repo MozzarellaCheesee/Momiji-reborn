@@ -51,9 +51,8 @@ class Emoties(BaseCog):
 
     ########################################
 
-    @commands.slash_command(
-        name=__("roleplay", key="COMMAND_GROUP_ROLEPLAY")
-    )
+    @commands.slash_command(name=__("roleplay", key="COMMAND_GROUP_ROLEPLAY"),
+                            description=__("roleplay commands", key="COMMAND_GROUP_DESCRIPTION_ROLEPLAY"))
     async def emotion(self, inter: AppCmdInter):
         ...
 
