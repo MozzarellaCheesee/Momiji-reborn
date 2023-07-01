@@ -1,0 +1,12 @@
+{
+    "COMMAND_GROUP_USER": "user",
+    "COMMAND_GROUP_DESCRIPTION_USER": "user information commands",
+
+    "COMMAND_NAME_USER-INFO": "user-info",
+    "COMMAND_DESCRIPTION_USER-INFO": "information and status of the user or member",
+
+    "COMMAND_NAME_AVATAR": "avatar",
+    "COMMAND_DESCRIPTION_AVATAR": "get member's avatar",
+
+    "COMMAND_NAME_PROFILE_USER-COMMAND": "profile"
+}

@@ -1,7 +1,5 @@
 import disnake
 
-embeds = []
-
 class Paginator(disnake.ui.View):
 
     def __init__(self, *,

@@ -6,17 +6,16 @@
         "created_at": "Аккаунт зарегестрирован:",
         "roles_quantity": "Количество ролей:",
         "joined_at": "Присоеденился к серверу:",
-        "permissions": "Парава:",
+        "permissions": "Права:",
         "days": "дней",
         "spotify": "Информация про трек спотифай:",
         "song": "Песня:",
         "album": "Альбом:",
         "duration": "Длительность:",
-        "activites": "Активности:",
-        "COMMANDS_EMBED_TITLE_SPOTY": "Информация о прослушивании на площадке spotify",
-        "COMMANDS_EMBED_DESCRIPTION_SPOTY_TRACK": "Название песни:",
-        "COMMANDS_EMBED_DESCRIPTION_SPOTY_ALBUM": "Названия альбома:",
-        "COMMANDS_EMBED_DESCRIPTION_SPOTY_DURATION": "Длительность песни:",
-        "COMMANDS_EMBED_TITLE_ACTIVITES": "Активности"
+        "activites": "Активности:"
+    },
+
+    "avatar": {
+        "title": "Аватар"
     }
 }

@@ -1,0 +1,21 @@
+{
+    "profile": {
+        "title": "User Information",
+        "status": "User status:",
+        "full_nikname": "Full Nickname:",
+        "created_at": "Account registered:",
+        "roles_quantity": "Number of roles:",
+        "joined_at": "Joined to server:",
+        "permissions": "Permissions:",
+        "days": "days",
+        "spotify": "Spotify track info:",
+        "song": "Song:",
+        "album": "Album:",
+        "duration": "Duration:",
+        "activites": "Activities:"
+    },
+
+    "avatar": {
+        "title": "Avatar"
+    }
+}

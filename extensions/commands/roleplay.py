@@ -126,7 +126,7 @@ class Emoties(BaseCog):
     ########################################
 
     @emotion.sub_command(name=__("smoke", key="COMMAND_NAME_SMOKE"),
-                         escription=__('smoke a cigarette', key="COMMAND_DESCRIPTION_SMOKE"))
+                        description=__('smoke a cigarette', key="COMMAND_DESCRIPTION_SMOKE"))
     async def smoke(self, inter: AppCmdInter):
         await one_answer(inter, "smoke")
 
