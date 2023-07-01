@@ -1,9 +1,11 @@
 import disnake
 from disnake.ext import commands
+import traceback
 
 from core.cog import BaseCog
 from core.i18n import LocalizationStorage
 from tools.exeption import CustomError
+from tools.ui.buttons import SupportButton
 
 _ = LocalizationStorage('errors')
 
@@ -12,8 +14,10 @@ class OnErrors(BaseCog):
 
     @commands.Cog.listener()
     async def on_slash_command_error(self, inter, error):
-
+        # original = error.original
         locale = _(inter.locale, "error")
+        stackSummary = traceback.extract_tb(error.__traceback__, limit=20)
+        traceback_list = traceback.format_list(stackSummary)
 
         descriptions_for_err = {
             commands.MissingPermissions: locale['descriptions']['0'],
@@ -53,7 +57,13 @@ class OnErrors(BaseCog):
             f"\n```py\n{str(error)}```"
         )
 
-        await inter.send(embed=embed, ephemeral=True)
+        await inter.send(embed=embed, ephemeral=True, view=SupportButton())
+        await self.client.on_error_channel.send(
+            embed=disnake.Embed(
+                title="Ошибка комманды!",
+                description=f"{''.join(traceback_list)} \n\n ```{error.__class__.__name__}: {error}```\n\n Команда вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}>"
+            )
+        )
 
 
 def setup(client: commands.InteractionBot):

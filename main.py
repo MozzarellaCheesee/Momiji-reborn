@@ -14,11 +14,6 @@ localization_path = Path("./locale/commands")
 
 client = commands.InteractionBot(intents=disnake.Intents.all())
 
-@client.event
-async def on_ready():
-    print(f"{client.user} is worked stable.")
-    await client.change_presence(activity=disnake.Streaming(name="Waiting for new members..", url="https://www.twitch.tv/astolfo_oxo"))
-
 def load_extensions():
     for command in commands_:
         try:
