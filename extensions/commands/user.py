@@ -2,6 +2,8 @@ import disnake
 from disnake import AppCmdInter
 from disnake import Localized as __
 from disnake.ext import commands
+import datetime
+from humanize import naturaldelta
 
 from core.cog import BaseCog
 from core.i18n import LocalizationStorage
@@ -31,28 +33,47 @@ class User(BaseCog):
     @commands.user_command(name=__("profile", key="COMMAND_NAME_PROFILE_USER-COMMAND"),)
     async def info(self, inter, member: disnake.Member):
         locale = _(inter.locale, "profile")
-
-
-
+        bool_to_symbol = {True: '+', False: '-'}
+        embeds = []
+        spotify = list(filter(lambda x: isinstance(x, disnake.activity.Spotify), member.activities))
         member_info = [
             f"{locale['status']} {STATUSES[member.status]}",
             f"{locale['full_nikname']} **{str(member)}**",
             f"{locale['created_at']} **<t:{round(member.created_at.timestamp())}:R>**",
+            f"{locale['joined_at']} **<t:{round(member.joined_at.timestamp())}:R> | {(datetime.datetime.utcnow() - member.joined_at.replace(tzinfo=None)).days} {locale['days']}**",
             f"{locale['roles_quantity']} **{len(member.roles)-1}**"
         ]
 
-        if member.joined_at:
-            member_info.insert(3, f"{locale['joined_at']}: **<t:{round(member.joined_at.timestamp())}:R>**")
+        embed = disnake.Embed(title=f"{locale['title']} {member.name} {'📱' if member.is_on_mobile() else '🖥️'}",
+                              description="\n".join(member_info))
+        permissions_embed = disnake.Embed(
+            title=f'{locale["permissions"]} {member.name}',
+            description='```' + 'diff\n' + '\n'.join([f'{bool_to_symbol[i[-1]]} {i[0].replace("_", " ").capitalize()}' for i in member.guild_permissions]) + '```'
+        )
+        embeds.append(embed)
+        embeds.append(permissions_embed)
 
-        embed = disnake.Embed(title=f"{locale['title']} **{member.display_name}**",
-                                description="\n".join(member_info)
-        ).set_thumbnail(url=member.display_avatar.url).set_footer(text=f"ID: {member.id}")
+        if len(spotify):
+                data = spotify[0]
+                timestamps = (str(data._timestamps['end'])[:10], str(data._timestamps['start'])[:10])
 
-        if member.banner:
-            embed.set_image(url=member.banner.url)
-            view = None
-
-        await inter.send(embed=embed)
+                spotify_embed = disnake.Embed(
+                    title=f"{locale['spotify']}", 
+                    description=f"{locale['song']} [{data.title} | {', '.join(data.artists)}]({data.track_url})\n" \
+                                f"{locale['album']} [{data.album}]({data.album_cover_url})\n" \
+                                f"{locale['duration']} {naturaldelta(data.duration.total_seconds())} | <t:{timestamps[0]}:R> - <t:{timestamps[-1]}:R>"
+                )
+                embeds.append(spotify_embed)
+        
+        if len(member.activities) > 0:
+            if not member.bot:
+                activities_embed = disnake.Embed(
+                    title=f"{locale['activites']} {member}",
+                    description='\n'.join([f'{i.name} | <t:{round(i.created_at.timestamp())}:R>' for i in member.activities])
+                )
+                embeds.append(activities_embed)
+        
+        await Paginator(pages=embeds, inter=inter, ephemeral=True).start()
 
 def setup(client: commands.InteractionBot):
     client.add_cog(User(client))
