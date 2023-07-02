@@ -7,7 +7,8 @@ commands_ = {
     "extensions.commands.moderation",
     "extensions.commands.roleplay",
     "extensions.commands.user",
-    "extensions.commands.utilits"
+    "extensions.commands.utilits",
+    "extensions.commands.gaiety"
 }
 
 events = {
