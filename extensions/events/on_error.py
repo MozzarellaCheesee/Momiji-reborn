@@ -47,9 +47,13 @@ class OnErrors(BaseCog):
                 name=locale['field_name_1'],
                 value=", ".join([permissions.get(i, i) for i in error.missing_permissions])
             )
+            await inter.send(embed=embed, ephemeral=True)
+            return
 
         if isinstance(error, CustomError):
             embed.add_field(name=locale["field_name_2"], value=error)
+            await inter.send(embed=embed, ephemeral=True)
+            return
 
         embed.description = descriptions_for_err.get(
             50013 if '50013' in str(error) else type(error),

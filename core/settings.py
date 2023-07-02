@@ -6,10 +6,11 @@ commands_ = {
     "extensions.commands.info",
     "extensions.commands.moderation",
     "extensions.commands.roleplay",
-    "extensions.commands.user"
+    "extensions.commands.user",
+    "extensions.commands.utilits"
 }
 
 events = {
-    "extensions.events.bot_activity",
+    "extensions.events.on_ready",
     "extensions.events.on_error"
 }

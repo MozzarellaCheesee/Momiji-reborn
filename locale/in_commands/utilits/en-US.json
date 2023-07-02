@@ -1,0 +1,11 @@
+{
+    "report": {
+        "modal_title": "report",
+        "textinput_label_1": "error description",
+        "textinput_placeholder_1": "Describe in detail the error you found (maximum 4000 characters)",
+        "textinput_label_2": "image",
+        "textinput_placeholder_2": "insert image with error",
+        "embed_title": "Your report has been submitted",
+         "embed_descriprion": "Your report has been submitted. Thank you for making our bot better! Have a candy :candy:!"
+    }
+}
