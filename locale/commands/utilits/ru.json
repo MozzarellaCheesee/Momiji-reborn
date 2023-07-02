@@ -1,1 +1,10 @@
-{}
+{
+    "COMMAND_GROUP_UTILITS": "утилиты",
+    "COMMAND_GROUP_DESCRIPTION_UTILITS": "комманды-утилиты",
+
+    "COMMAND_NAME_REPORT": "репорт",
+    "COMMAND_DESCRIPTION_REPORT": "отправить отчет об ошибке",
+
+    "COMMAND_NAME_IDEA": "идеа",
+    "COMMAND_DESCRIPTION_IDEA": "отправить идею"
+}

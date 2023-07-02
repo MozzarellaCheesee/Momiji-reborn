@@ -3,7 +3,7 @@
     "COMMAND_GROUP_DESCRIPTION_USER": "информационные команды пользователя",
 
     "COMMAND_NAME_USER-INFO": "информация",
-    "COMMAND_DESCRIPTION_USER-INFO": "информация и статус пользователя или члена",
+    "COMMAND_DESCRIPTION_USER-INFO": "информация и статус пользователя или участника",
 
     "COMMAND_NAME_AVATAR": "аватар",
     "COMMAND_DESCRIPTION_AVATAR": "получить аватар участника",
