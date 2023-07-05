@@ -1,11 +1,4 @@
-import disnake
-from disnake.ext import commands
-import traceback
-
-from core.cog import BaseCog
-from core.i18n import LocalizationStorage
-from tools.exeption import CustomError
-from tools.ui.buttons import SupportButton
+from extensions.events.__init__ import *
 
 _ = LocalizationStorage('errors')
 

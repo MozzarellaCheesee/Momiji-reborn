@@ -9,7 +9,8 @@ commands_ = {
     "extensions.commands.roleplay",
     "extensions.commands.user",
     "extensions.commands.utilits",
-    "extensions.commands.gaiety"
+    "extensions.commands.gaiety",
+    "extensions.commands.developer",
 }
 events = {
     "extensions.events.on_ready",
