@@ -1,6 +1,7 @@
 from dotenv import dotenv_values
 
 config = dotenv_values()
+DB_URL="mysql://root@localhost:3306/momiji"
 
 commands_ = {
     "extensions.commands.info",
@@ -10,7 +11,6 @@ commands_ = {
     "extensions.commands.utilits",
     "extensions.commands.gaiety"
 }
-
 events = {
     "extensions.events.on_ready",
     "extensions.events.on_error"
