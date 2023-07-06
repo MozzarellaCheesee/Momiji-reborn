@@ -11,6 +11,7 @@ commands_ = {
     "extensions.commands.utilits",
     "extensions.commands.gaiety",
     "extensions.commands.developer",
+    "extensions.commands.economy",
 }
 events = {
     "extensions.events.on_ready",

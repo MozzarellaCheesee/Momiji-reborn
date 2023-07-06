@@ -1,5 +1,5 @@
 import disnake
-
+from tortoise.queryset import Prefetch
 
 def get_avatar_formats(member: disnake.User | disnake.Member) -> list[str]:
 
@@ -36,3 +36,21 @@ def split_guild_members(guild_members: list[disnake.Member]) -> tuple[list[disna
             users.append(m)
 
     return bots, users
+
+
+async def get_member_profile(member, client, to_prefetch: list[str | Prefetch] = None):
+
+    """
+    Возвращает профиль участника
+    :inter:
+    :client:
+    :return: profile
+    """
+
+    user_in_db = await client.db.Users.get(discord_id=member.id)
+    server_in_db = await client.db.Servers.get(discord_id=member.guild.id)
+    if to_prefetch is None:
+        profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db)
+    else:
+        profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db).select_related(to_prefetch)
+    return profile

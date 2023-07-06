@@ -15,13 +15,13 @@ def load_extensions():
         try:
             client.load_extension(command)
         except Exception as e:
-            print(f"[ERROR] Ошибка при загрузке команд: {e}")
+            print(f"[ERROR] | Ошибка при загрузке команд: {e}")
 
     for event in events:
         try:
             client.load_extension(event)
         except Exception as e:
-            print(f"[ERROR] Ошибка при загрузке ивентов: {e}")
+            print(f"[ERROR] | Ошибка при загрузке ивентов: {e}")
 
 def load_locale():
     for dir_ in localization_path.iterdir():

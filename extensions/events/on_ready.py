@@ -27,16 +27,18 @@ class BotActivity(BaseCog):
         guilds = self.client.guilds
 
         for user in users:
-            await self.client.db.Users.get_or_create(discord_id=user.id)
+            if not user.bot:
+                await self.client.db.Users.get_or_create(discord_id=user.id)
 
         for guild in guilds:
             await self.client.db.Servers.get_or_create(discord_id=guild.id)
             for user in guild.members:
-                user_in_db = await self.client.db.Users.get(discord_id=user.id)
-                server_in_db = await self.client.db.Servers.get(discord_id=guild.id)
-                if await self.client.db.Profiles.get_or_none(user=user_in_db, server=server_in_db) is None:
-                    bank = await self.client.db.Banks.create()
-                    await self.client.db.Profiles.create(user=user_in_db, server=server_in_db, bank=bank, family=None)
+                if not user.bot:
+                    user_in_db = await self.client.db.Users.get(discord_id=user.id)
+                    server_in_db = await self.client.db.Servers.get(discord_id=guild.id)
+                    if await self.client.db.Profiles.get_or_none(user=user_in_db, server=server_in_db) is None:
+                        bank = await self.client.db.Banks.create()
+                        await self.client.db.Profiles.create(user=user_in_db, server=server_in_db, bank=bank, family=None)
 
         await self.client.change_presence(
             activity=disnake.Streaming(name="Waiting for new members..", url="https://www.twitch.tv/astolfo_oxo"))

@@ -2,6 +2,8 @@ import disnake
 from disnake.ui import Modal, TextInput
 from disnake import TextInputStyle, ModalInteraction
 from tools.ui.buttons import SupportButton
+import validators
+from tools.ui.block_buttons import BlockButton
 
 class ReportModal(Modal):
     
@@ -48,14 +50,14 @@ class ReportModal(Modal):
             description=self.locale["embed_descriprion"]
         )
 
-        if inter.text_values["image"] and "https://" in inter.text_values["image"]:
+        if inter.text_values["image"] and validators.url(inter.text_values["image"]):
             dev_embed.add_field(
                 name="Скрин",
                 value=f"[Клик...]({inter.text_values['image']})"
             )
 
         await inter.response.send_message(embed=user_embed, ephemeral=True, view=SupportButton())
-        await self.bot.report_channel.send(embed=dev_embed)
+        await self.bot.report_channel.send(embed=dev_embed, view=BlockButton(self.interaction.author, self.bot, dev_embed))
 
 
 class IdeaModal(Modal):
@@ -103,11 +105,11 @@ class IdeaModal(Modal):
             description=self.locale["embed_descriprion"]
         )
 
-        if inter.text_values["image"] and "https://" in inter.text_values["image"]:
+        if inter.text_values["image"] and validators.url(inter.text_values["image"]):
             dev_embed.add_field(
                 name="Пример",
                 value=f"[Клик...]({inter.text_values['image']})"
             )
 
         await inter.response.send_message(embed=user_embed, ephemeral=True, view=SupportButton())
-        await self.bot.idea_channel.send(embed=dev_embed)
+        await self.bot.idea_channel.send(embed=dev_embed, view=BlockButton(self.interaction.author, self.bot, dev_embed))

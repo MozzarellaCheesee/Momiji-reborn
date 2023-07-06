@@ -7,6 +7,6 @@ class BaseCog(commands.Cog):
         self.client = client
         
     async def cog_load(self) -> None:
-        print(f"Cog {self.__cog_name__} is loaded")
+        print(f"[SUCCESS] | Cog {self.__cog_name__} is loaded.")
 
     

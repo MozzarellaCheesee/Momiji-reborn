@@ -6,7 +6,8 @@
         "textinput_label_2": "Image",
         "textinput_placeholder_2": "Insert image with error",
         "embed_title": "Your report has been submitted",
-         "embed_descriprion": "Your report has been submitted. Thank you for making our bot better! Have a candy :candy:!"
+        "embed_descriprion": "Your report has been submitted. Thank you for making our bot better! Have a candy :candy:!",
+        "error": "You are blocked in the system of ideas and reports, if you want to get unbanned, write to support on the [bot server](https://discord.gg/WgUU4zkDhY)!"
     },
 
     "idea": {
@@ -16,6 +17,7 @@
         "textinput_label_2": "Image",
         "textinput_placeholder_2": "Insert example image (if available)",
         "embed_title": "Your idea has been submitted",
-        "embed_descriprion": "Your idea has been submitted. Thank you for making our bot better! Have a sweetie :candy:!"
+        "embed_descriprion": "Your idea has been submitted. Thank you for making our bot better! Have a sweetie :candy:!",
+        "error": "You are blocked in the system of ideas and reports, if you want to get unbanned, write to support on the [bot server](https://discord.gg/WgUU4zkDhY)!"
     }
 }
