@@ -1,0 +1,15 @@
+{
+    "level": {
+        "title": "Member level management",
+        "description_set": "You have set the member level",
+        "description_give": "You have given a level to a member",
+        "description_take": "You took a level from a member",
+        "field_name_1": "Set Level:",
+        "field_name_2": "Levels given/withdrawn:",
+        "field_name_3": "Current member level:",
+        "give": "Give",
+        "take": "Take",
+        "set": "Set",
+        "error": "You cannot change bot level"
+    }
+}

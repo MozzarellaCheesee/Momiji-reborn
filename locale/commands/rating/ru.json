@@ -1,0 +1,13 @@
+{
+    "COMMAND_GROUP_RATING": "рейтинг",
+    "COMMAND_GROUP_DESCRIPTION_RATING": "команды рейтинга",
+    "COMMAND_NAME_LEVEL": "уровень",
+    "COMMAND_DESCRIPTION_LEVEL": "установить уровень участника",
+    "COMMAND_PARAM_NAME_LEVEL": "уровень",
+    "COMMAND_PARAM_DESCRIPTION_LEVEL": "установите уровень",
+    "COMMAND_PARAM_NAME_ACTION": "действие",
+    "COMMAND_PARAM_DESCRIPTION_ACTION": "выберите действие",
+    "COMMAND_PARAM_CHOISE_GIVE": "Выдать",
+    "COMMAND_PARAM_CHOISE_TAKE": "Забрать",
+    "COMMAND_PARAM_CHOISE_SET": "Установить"
+}

@@ -12,8 +12,10 @@ commands_ = {
     "extensions.commands.gaiety",
     "extensions.commands.developer",
     "extensions.commands.economy",
+    "extensions.commands.rating",
 }
 events = {
     "extensions.events.on_ready",
-    "extensions.events.on_error"
+    "extensions.events.on_error",
+    # "extensions.events.levels"
 }

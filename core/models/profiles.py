@@ -16,7 +16,7 @@ class Profiles(Model):
     server: fields.ForeignKeyRelation["models.Servers"] = fields.ForeignKeyField("models.Servers", related_name="Profile", on_delete=fields.CASCADE, null=False)
     bank: fields.OneToOneRelation["models.Banks"] = fields.OneToOneField("models.Banks", related_name="Profile", null=False, on_delete=fields.CASCADE)
     family: fields.OneToOneRelation["models.Families"] = fields.OneToOneField("models.Families", related_name="Profile", null=True, on_delete=fields.SET_NULL)
-    level = fields.IntField(default=0, null=False)
+    level = fields.IntField(default=1, null=False)
     messages = fields.IntField(default=0, null=False)
     experience = fields.IntField(default=0, null=False)
     warns: fields.ReverseRelation["models.Warns"]
