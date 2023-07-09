@@ -3,7 +3,6 @@ from extensions.events.__init__ import *
 @dataclasses.dataclass
 class Models:
     AuthorizedSessions: Model = AuthorizedSessions
-    Banks: Model = Banks
     Channels: Model = Channels
     Families: Model = Families
     Profiles: Model = Profiles
@@ -20,8 +19,14 @@ class BotActivity(BaseCog):
         self.client.on_error_channel = self.client.get_channel(985268089174233180)
         self.client.report_channel = self.client.get_channel(1125118943959453768)
         self.client.idea_channel = self.client.get_channel(1125118961978183790)
+
         self.client.db = Models
 
+        self.client.StandartEmbed = standard_emb
+        
+        self.client.messages_emoji = self.client.get_emoji(1127503836429438976)
+        self.client.money_emoji = self.client.get_emoji(1126456975337730078)
+        print(self.client.money_emoji)
 
         users = self.client.users
         guilds = self.client.guilds
@@ -37,8 +42,7 @@ class BotActivity(BaseCog):
                     user_in_db = await self.client.db.Users.get(discord_id=user.id)
                     server_in_db = await self.client.db.Servers.get(discord_id=guild.id)
                     if await self.client.db.Profiles.get_or_none(user=user_in_db, server=server_in_db) is None:
-                        bank = await self.client.db.Banks.create()
-                        await self.client.db.Profiles.create(user=user_in_db, server=server_in_db, bank=bank, family=None)
+                        await self.client.db.Profiles.create(user=user_in_db, server=server_in_db, family=None)
 
         await self.client.change_presence(
             activity=disnake.Streaming(name="Waiting for new members..", url="https://www.twitch.tv/astolfo_oxo"))

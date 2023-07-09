@@ -1,6 +1,11 @@
 import disnake
 from tortoise.queryset import Prefetch
 
+def divide_chunks(lst, n):
+
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
+
 def get_avatar_formats(member: disnake.User | disnake.Member) -> list[str]:
 
     """
@@ -54,3 +59,15 @@ async def get_member_profile(member, client, to_prefetch: list[str | Prefetch] =
     else:
         profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db).select_related(to_prefetch)
     return profile
+
+async def standard_emb(
+        member: disnake.Member = None,
+        description: str = None,
+        title: str = None) -> disnake.Embed:
+    emd = disnake.Embed(
+        color=0x2b2d31,
+        description=description,
+        title=title)
+    if member is not None:
+        emd.set_thumbnail(url=member.display_avatar)
+    return emd

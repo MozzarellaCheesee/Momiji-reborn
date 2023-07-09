@@ -9,7 +9,6 @@ async def init_database():
             "models": [
                 "core.models.users",
                 "core.models.families",
-                "core.models.banks",
                 "core.models.profiles",
                 "core.models.channels",
                 "core.models.tickets",

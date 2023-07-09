@@ -7,6 +7,7 @@ class Users(Model):
     discord_id = fields.BigIntField()
     status = fields.CharField(default=None, null=True, max_length=15)
     authorizedsessions: fields.ReverseRelation["models.AuthorizedSessions"]
+    profile: fields.ReverseRelation["models.Profiles"]
 
 
     class Meta:

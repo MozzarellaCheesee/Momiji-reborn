@@ -1,4 +1,17 @@
 {
+    "leaderboard": {
+        "title": "Rating of participants",
+        "description": "Select a category to display the rating\n**Click on the menu below the post and select a category**",
+        "title_select_money": "Balanced",
+        "title_select_messages": "By Number of Messages",
+        "profile_description": "Description",
+        "description_none": "None",
+        "top_balance": "By balance",
+        "top_message": "By Messages",
+        "top_activity": "By activity",
+        "placeholder": "Select Categories"
+    },
+
     "level": {
         "title": "Member level management",
         "description_set": "You have set the member level",
@@ -10,6 +23,31 @@
         "give": "Give",
         "take": "Take",
         "set": "Set",
-        "error": "You cannot change bot level"
+        "error": "Level cannot be less than one",
+        "error_bot": "You cannot change bot level"
+    },
+
+    "messages": {
+        "title": "Manage member posts",
+        "description_set": "You have set the member's post count",
+        "description_give": "You have increased the number of messages given to a member",
+        "description_take": "You have reduced the member's posts",
+        "field_name_1": "Set number of posts:",
+        "field_name_2": "Posts issued/removed:",
+        "field_name_3": "Number of user posts so far:",
+        "error": "The number of participant's messages cannot be less than 0",
+        "error_bot": "You cannot change bot messages count"
+    },
+
+    "experience": {
+        "title": "Manage member experience",
+        "description_set": "You have set the member experience",
+        "description_give": "You have increased the member experience",
+        "description_take": "You have reduced the member's XP",
+        "field_name_1": "Set XP:",
+        "field_name_2": "Experience granted/removed:",
+        "field_name_3": "Number of member experience so far:",
+        "error": "The amount of participant's experience cannot be less than 0",
+        "error_bot": "You can't change the bot experience"
     }
 }

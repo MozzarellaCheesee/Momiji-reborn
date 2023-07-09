@@ -30,8 +30,8 @@ class Economy(BaseCog):
         money = randint(50, 150)
         experience = randint(16, 45)
 
-        profile = await get_member_profile(inter.author, self.client, "bank")
-        profile.bank.money = profile.bank.money + money
+        profile = await get_member_profile(inter.author, self.client)
+        profile.money = profile.money + money
 
         embed = disnake.Embed(
             title=locale["title"],
@@ -50,7 +50,6 @@ class Economy(BaseCog):
                 value=f'> `{experience}` <a:momiji_experience:1126492132086136892>'
             )
 
-        await profile.bank.save()
         await profile.save()
         await inter.send(embed=embed)
  
@@ -73,17 +72,17 @@ class Economy(BaseCog):
         if member.bot:
             raise CustomError(locale["error_bot"])
 
-        author_profile = await get_member_profile(inter.author, self.client, "bank")
+        author_profile = await get_member_profile(inter.author, self.client)
 
-        if author_profile.bank.money < amount:
+        if author_profile.money < amount:
             raise CustomError(locale["error"])
         
-        member_profile = await get_member_profile(member, self.client, "bank")
+        member_profile = await get_member_profile(member, self.client)
 
-        member_profile.bank.money = member_profile.bank.money + amount
-        author_profile.bank.money = author_profile.bank.money - amount
-        await member_profile.bank.save()
-        await author_profile.bank.save()
+        member_profile.money = member_profile.money + amount
+        author_profile.money = author_profile.money - amount
+        await member_profile.save()
+        await author_profile.save()
 
         await inter.send(
             embed=disnake.Embed(

@@ -6,12 +6,12 @@ from disnake.ext import commands
 from core.i18n import LocalizationStorage
 from tools.exeption import CustomError
 from tools.ui.buttons import SupportButton
+from tools.utils import standard_emb
 
 from tortoise.models import Model
 
 from core.cog import BaseCog
 from core.models.authorized_sessions import AuthorizedSessions
-from core.models.banks import Banks
 from core.models.channels import Channels
 from core.models.families import Families
 from core.models.profiles import Profiles

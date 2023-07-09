@@ -17,5 +17,5 @@ commands_ = {
 events = {
     "extensions.events.on_ready",
     "extensions.events.on_error",
-    # "extensions.events.levels"
+    "extensions.events.levels"
 }
