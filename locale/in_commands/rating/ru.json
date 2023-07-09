@@ -4,11 +4,12 @@
         "description": "Выберите категорию для вывода рейтинга\n**Нажмите на меню под сообщением и выберите категорию**",
         "title_select_money": "По балансу",
         "title_select_messages": "По кол-ву сообщений",
+        "title_select_level": "По уровню",
         "profile_description": "Описание",
         "description_none": "Отсутствует",
         "top_balance": "По балансу",
         "top_message": "По сообщениям",
-        "top_activity": "По активности",
+        "top_level": "По уровню",
         "placeholder": "Выберите категории"
     },
 

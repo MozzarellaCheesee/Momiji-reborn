@@ -16,6 +16,8 @@ async def send_top(inter: disnake.MessageInteraction, client: commands.Interacti
 
     if top_type == "money":
         emoji = client.money_emoji
+    elif top_type == "level":
+        emoji = client.level_emoji
     else:
         emoji = client.messages_emoji
 
@@ -23,6 +25,8 @@ async def send_top(inter: disnake.MessageInteraction, client: commands.Interacti
         user_in_discord: disnake.Member = inter.guild.get_member(profiles.user.discord_id)
         if top_type == "money":
             top = profiles.money
+        elif top_type == "level":
+            top = profiles.level
         else:
             top = profiles.messages
         user_description = profiles.description
@@ -43,6 +47,8 @@ async def send_top(inter: disnake.MessageInteraction, client: commands.Interacti
             user_in_discord: disnake.Member = inter.guild.get_member(other_profiles.user.discord_id)
             if top_type == "money":
                 top = other_profiles.money
+            elif top_type == "level":
+                top = other_profiles.level
             else:
                 top = other_profiles.messages
             user_description = other_profiles.description
@@ -65,7 +71,7 @@ class LeaderBoardSelect(StandardSelect):
         components = [
             disnake.SelectOption(label=self.locale["top_balance"], emoji="<a:momiji_crystal:1126456975337730078>"),
             disnake.SelectOption(label=self.locale["top_message"], emoji="<:momiji_message:1127503836429438976>"),
-            disnake.SelectOption(label=self.locale["top_activity"], emoji="<:momiji_activity:1127504341482344489>"),
+            disnake.SelectOption(label=self.locale["top_level"], emoji="<:momiji_activity:1127504341482344489>"),
         ]
         super().__init__(options=components, placeholder=locale['placeholder'])
     
@@ -77,4 +83,4 @@ class LeaderBoardSelect(StandardSelect):
             await send_top(interaction, self.client, self.locale, "messages", self.server, self)
 
         else:
-            await interaction.response.send_message("Coming soon", ephemeral=True)
+            await send_top(interaction, self.client, self.locale, "level", self.server, self)

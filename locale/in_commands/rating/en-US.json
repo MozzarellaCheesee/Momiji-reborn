@@ -4,11 +4,12 @@
         "description": "Select a category to display the rating\n**Click on the menu below the post and select a category**",
         "title_select_money": "Balanced",
         "title_select_messages": "By Number of Messages",
+        "title_select_level": "By level",
         "profile_description": "Description",
         "description_none": "None",
         "top_balance": "By balance",
         "top_message": "By Messages",
-        "top_activity": "By activity",
+        "top_level": "By level",
         "placeholder": "Select Categories"
     },
 

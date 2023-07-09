@@ -26,6 +26,8 @@ class BotActivity(BaseCog):
         
         self.client.messages_emoji = self.client.get_emoji(1127503836429438976)
         self.client.money_emoji = self.client.get_emoji(1126456975337730078)
+        self.client.level_emoji = self.client.get_emoji(1127504341482344489)
+
         print(self.client.money_emoji)
 
         users = self.client.users
