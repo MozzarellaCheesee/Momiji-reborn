@@ -11,7 +11,7 @@ class Models:
     Users: Model = Users
     Warns: Model = Warns
 
-class BotActivity(BaseCog):
+class OnReady(BaseCog):
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -50,4 +50,4 @@ class BotActivity(BaseCog):
         print(f"{self.client.user} is worked stable.")
 
 def setup(client: commands.InteractionBot):
-    client.add_cog(BotActivity(client))
+    client.add_cog(OnReady(client))
