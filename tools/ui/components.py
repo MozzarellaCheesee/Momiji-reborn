@@ -17,6 +17,8 @@ class StandartView(disnake.ui.View):
             return await super().on_timeout()
         except disnake.errors.NotFound:
             return
+        except disnake.errors.HTTPException:
+            return
 
     async def interaction_check(self, interaction: disnake.MessageInteraction) -> bool:
         return interaction.user == self.inter.author

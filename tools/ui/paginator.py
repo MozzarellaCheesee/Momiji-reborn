@@ -38,6 +38,8 @@ class Paginator(disnake.ui.View):
                     return await super().on_timeout()
             except:
                 return
+        except disnake.errors.HTTPException:
+            return
         except disnake.errors.NotFound:
             return
 
