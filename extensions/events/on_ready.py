@@ -19,6 +19,8 @@ class OnReady(BaseCog):
         self.client.on_error_channel = self.client.get_channel(985268089174233180)
         self.client.report_channel = self.client.get_channel(1125118943959453768)
         self.client.idea_channel = self.client.get_channel(1125118961978183790)
+        self.client.log_join_channel = self.client.get_channel(978325826753953975)
+        self.client.log_remove_channel = self.client.get_channel(978620072014782515)
 
         self.client.db = Models
 

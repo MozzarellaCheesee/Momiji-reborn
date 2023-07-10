@@ -16,6 +16,10 @@ class GuildJoin(BaseCog):
                 if await self.client.db.Profiles.get_or_none(user=user_in_db[0], server=server_in_db[0]) is None:
                     await self.client.db.Profiles.create(user=user_in_db[0], server=server_in_db[0], family=None)
 
+        await self.client.log_join_channel.send(
+            f"Бот успешно присоединился к серверу `{guild.name}`! Owner: {guild.owner.mention} ({guild.owner.name}) | Members count: {guild.member_count}"
+        )
+
 
 
 def setup(client: commands.InteractionBot):
