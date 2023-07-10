@@ -36,8 +36,8 @@ class Paginator(disnake.ui.View):
                         button.disabled = True
                     await self.inter_resp.response.edit_message(view=self)
                     return await super().on_timeout()
-            except disnake.errors.InteractionResponded:
-                ...
+            except:
+                return
         except disnake.errors.NotFound:
             return
 

@@ -36,6 +36,16 @@
         "not_reason": "None"
     },
 
+    "warn": {
+        "title": "Warn",
+        "description": "The user was warned",
+        "field_name_1": "Participant:",
+        "field_name_2": "Reason:",
+        "field_name_3": "Member ID:",
+        "footer_text": "Case number",
+        "not_reason": "None"
+    },
+
     "kick": {
         "title": "User was kicked",
         "description": "User was kicked from the server",
@@ -50,5 +60,22 @@
         "description": "You have deleted messages in the channel",
         "field_name_1": "Channel:",
         "field_name_2": "Messages count:"
+    },
+
+    "server_warns": {
+        "title": "All warns on the server",
+        "description": "To remove a warn, use the command:\n`/moderation unwarn <case-number>`.\nYou can find the case number when viewing user alerts or server warnings (if you are viewing the second option, the case number is the number by account in embed)",
+        "reason": "Reason",
+        "moderator": "Moderator",
+        "not_reason": "None"
+    },
+
+    "user_warns": {
+        "title": "All member's warns",
+        "description": "To remove a warn, use the command:\n`/moderation unwarn <case-number>`.\nYou can find the case number when viewing user alerts or server warnings (if you are viewing the second option, the case number is the number by account in embed)",
+        "number": "Case number",
+        "reason": "Reason",
+        "moderator": "Moderator",
+        "not_reason": "None"
     }
 }

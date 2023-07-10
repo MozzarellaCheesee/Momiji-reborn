@@ -8,6 +8,7 @@ class Servers(Model):
     vip = fields.BooleanField(default=False)
     channels: fields.ReverseRelation["models.Channels"]
     tickets: fields.ReverseRelation["models.Tickets"]
+    warns: fields.ReverseRelation["models.Warns"]
 
     class Meta:
         table = 'servers'

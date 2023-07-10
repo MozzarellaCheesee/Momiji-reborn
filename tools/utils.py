@@ -57,7 +57,7 @@ async def get_member_profile(member, client, to_prefetch: list[str | Prefetch] =
     if to_prefetch is None:
         profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db)
     else:
-        profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db).select_related(to_prefetch)
+        profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db).prefetch_related(to_prefetch)
     return profile
 
 async def standard_emb(

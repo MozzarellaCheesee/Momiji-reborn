@@ -29,6 +29,9 @@
     "COMMAND_PARAM_NAME_COUNT": "количество",
     "COMMAND_PARAM_DESCRIPTION_COUNT": "количество сообщений",
 
+    "COMMAND_PARAM_NAME_CASE": "номер-случая",
+    "COMMAND_PARAM_DESCRIPTION_CASE": "введите номер случая",
+
     "COMMAND_PARAM_NAME_CHANNEL": "канал",
     "COMMAND_PARAM_DESCRIPTION_CHANNEL": "выберите канал",
 
@@ -50,6 +53,18 @@
 
     "COMMAND_NAME_KICK": "кик",
     "COMMAND_DESCRIPTION_KICK": "выгнать участника с сервера",
+
+    "COMMAND_NAME_WARN": "предупреждение",
+    "COMMAND_DESCRIPTION_WARN": "выдать предупреждение участнику",
+
+    "COMMAND_NAME_UNWARN": "снять-предупреждение",
+    "COMMAND_DESCRIPTION_UNWARN": "снять предупреждение с участника",
+
+    "COMMAND_NAME_SWARNS": "сервер-предупреждения",
+    "COMMAND_DESCRIPTION_SWARNS": "вывести все предупреждения на сервере",
+
+    "COMMAND_NAME_UWARNS": "участник-предупреждения",
+    "COMMAND_DESCRIPTION_UWARNS": "вывести все предупреждения участника",
 
     "COMMAND_NAME_CLEAR": "очистить",
     "COMMAND_DESCRIPTION_CLEAR": "удалить сообщения в канале"
