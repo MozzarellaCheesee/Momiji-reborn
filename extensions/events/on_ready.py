@@ -36,13 +36,15 @@ class OnReady(BaseCog):
                 await self.client.db.Users.get_or_create(discord_id=user.id)
 
         for guild in guilds:
-            await self.client.db.Servers.get_or_create(discord_id=guild.id)
-            for user in guild.members:
-                if not user.bot:
-                    user_in_db = await self.client.db.Users.get(discord_id=user.id)
-                    server_in_db = await self.client.db.Servers.get(discord_id=guild.id)
-                    if await self.client.db.Profiles.get_or_none(user=user_in_db, server=server_in_db) is None:
-                        await self.client.db.Profiles.create(user=user_in_db, server=server_in_db, family=None)
+            server_in_db = await self.client.db.Servers.get_or_create(discord_id=guild.id)
+            for member in guild.members:
+                defaults = {
+                    "discord_id": user.id
+                }
+                if not member.bot:
+                    user_in_db = await self.client.db.Users.get_or_create(defaults=defaults, discord_id=member.id)
+                    if await self.client.db.Profiles.get_or_none(server=server_in_db[0], user=user_in_db[0]) is None:
+                        await self.client.db.Profiles.create(user=user_in_db[0], server=server_in_db[0])
 
         await self.client.change_presence(
             activity=disnake.Streaming(name="Waiting for new members..", url="https://www.twitch.tv/astolfo_oxo"))

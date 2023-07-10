@@ -1,13 +1,6 @@
-from __future__ import annotations
-
 from tortoise import fields
-from tortoise.queryset import Prefetch
-from tortoise.exceptions import DoesNotExist
 from tortoise import models
 from tortoise.models import Model
-
-from .users import Users
-from .servers import Servers
 
 class Profiles(Model):
     id = fields.IntField(pk=True)

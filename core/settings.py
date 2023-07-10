@@ -20,4 +20,6 @@ events = {
     "extensions.events.levels",
     "extensions.events.on_member_join",
     "extensions.events.on_member_remove",
+    "extensions.events.on_guild_join",
+    "extensions.events.on_guild_remove",
 }
