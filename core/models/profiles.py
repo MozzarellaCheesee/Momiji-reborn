@@ -12,7 +12,6 @@ class Profiles(Model):
     messages = fields.IntField(default=0, null=False)
     experience = fields.IntField(default=0, null=False)
     money = fields.IntField(default=0, null=False)
-    user: fields.ReverseRelation["models.Users"]
     warns: fields.ReverseRelation["models.Warns"]
     tickets: fields.ReverseRelation["models.Tickets"]
 

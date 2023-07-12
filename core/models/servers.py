@@ -7,6 +7,8 @@ class Servers(Model):
     discord_id = fields.BigIntField(null=False)
     vip = fields.BooleanField(default=False)
     channels: fields.ReverseRelation["models.Channels"]
+    profiles: fields.ReverseRelation["models.Profiles"]
+    roles: fields.ReverseRelation["models.Roles"]
     tickets: fields.ReverseRelation["models.Tickets"]
     warns: fields.ReverseRelation["models.Warns"]
 

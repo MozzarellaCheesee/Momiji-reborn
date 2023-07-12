@@ -7,6 +7,7 @@ from core.i18n import LocalizationStorage
 from tools.exeption import CustomError
 from tools.ui.buttons import SupportButton
 from tools.utils import standard_emb
+from tools.ui.modals.server_settings_verefy import VerefyButton
 
 from tortoise.models import Model
 
@@ -19,3 +20,4 @@ from core.models.servers import Servers
 from core.models.tickets import Tickets
 from core.models.users import Users
 from core.models.warns import Warns
+from core.models.roles import Roles

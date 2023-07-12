@@ -1,0 +1,12 @@
+{
+    "COMMAND_GROUP_SERVER": "сервер",
+    "COMMAND_GROUP_DESCRIPTION_SERVER": "команды настройки сервера",
+    "COMMAND_NAME_VEREFY": "верефикация",
+    "COMMAND_DESCRIPTION_VEREFY": "установить верефикацию на вашем сервере",
+    "COMMAND_NAME_VEREFY-ROLE": "роль-верефикации",
+    "COMMAND_DESCRIPTION_VEREFY-ROLE": "установить роль для верефицированных пользователей",
+    "COMMAND_PARAM_NAME_ROLE": "роль",
+    "COMMAND_PARAM_DESCRIPTION_ROLE": "выберите роль",
+    "COMMAND_PARAM_NAME_CHANNEL": "канал",
+    "COMMAND_PARAM_DESCRIPTION_CHANNEL": "выберите канал"
+}

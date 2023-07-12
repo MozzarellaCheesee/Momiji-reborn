@@ -1,5 +1,7 @@
 from extensions.events.__init__ import *
 
+_ = LocalizationStorage("server_settings")
+
 @dataclasses.dataclass
 class Models:
     AuthorizedSessions: Model = AuthorizedSessions
@@ -7,9 +9,10 @@ class Models:
     Families: Model = Families
     Profiles: Model = Profiles
     Servers: Model = Servers
-    UseTicketsrs: Model = Tickets
+    Tickets: Model = Tickets
     Users: Model = Users
     Warns: Model = Warns
+    Roles: Model = Roles
 
 class OnReady(BaseCog):
 
@@ -50,6 +53,8 @@ class OnReady(BaseCog):
 
         await self.client.change_presence(
             activity=disnake.Streaming(name="Waiting for new members..", url="https://www.twitch.tv/astolfo_oxo"))
+
+        self.client.add_view(view=VerefyButton(self.client, _))
 
         print(f"{self.client.user} is worked stable.")
 

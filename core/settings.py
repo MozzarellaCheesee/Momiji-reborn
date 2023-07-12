@@ -13,6 +13,7 @@ commands_ = {
     "extensions.commands.developer",
     "extensions.commands.economy",
     "extensions.commands.rating",
+    "extensions.commands.server_settings",
 }
 events = {
     "extensions.events.on_ready",

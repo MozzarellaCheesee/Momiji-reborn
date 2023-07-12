@@ -5,7 +5,7 @@ from disnake.ext import commands
 from core.cog import BaseCog
 from core.i18n import LocalizationStorage
 
-from tools.ui.modals import ReportModal, IdeaModal
+from tools.ui.modals.utilits_modals import ReportModal, IdeaModal
 from tools.exeption import CustomError
 
 _ = LocalizationStorage("utilits")

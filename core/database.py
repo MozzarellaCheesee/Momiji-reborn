@@ -14,7 +14,9 @@ async def init_database():
                 "core.models.tickets",
                 "core.models.warns",
                 "core.models.servers",
-                "core.models.authorized_sessions"
+                "core.models.authorized_sessions",
+                "core.models.roles",
+
             ]
         }
     )
