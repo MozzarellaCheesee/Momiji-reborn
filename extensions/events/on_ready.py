@@ -43,20 +43,20 @@ class OnReady(BaseCog):
         for guild in guilds:
             server_in_db = await self.client.db.Servers.get_or_create(discord_id=guild.id)
             for member in guild.members:
-                defaults = {
-                    "discord_id": user.id
-                }
                 if not member.bot:
-                    user_in_db = await self.client.db.Users.get_or_create(defaults=defaults, discord_id=member.id)
-                    if await self.client.db.Profiles.get_or_none(server=server_in_db[0], user=user_in_db[0]) is None:
-                        await self.client.db.Profiles.create(user=user_in_db[0], server=server_in_db[0])
+                    user_in_db = await self.client.db.Users.get(discord_id=member.id)
+                    if await self.client.db.Profiles.get_or_none(server=server_in_db[0], user=user_in_db) is None:
+                        await self.client.db.Profiles.create(user=user_in_db, server=server_in_db[0])
 
         await self.client.change_presence(
             activity=disnake.Streaming(name="Waiting for new members..", url="https://www.twitch.tv/astolfo_oxo"))
 
         self.client.add_view(view=VerefyButton(self.client, _))
 
-        print(f"{self.client.user} is worked stable.")
+        print(
+            f"\033[38;5;38m[CLIENT] \033[38;5;67m⌗ \033[38;5;105m{self.client.user}\033[0;0m is worked stable.\n"
+            f"----------------------------------------------"
+        )
 
 def setup(client: commands.InteractionBot):
     client.add_cog(OnReady(client))

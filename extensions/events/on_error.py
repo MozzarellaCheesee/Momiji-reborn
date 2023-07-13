@@ -43,7 +43,7 @@ class OnErrors(BaseCog):
             await inter.send(embed=embed, ephemeral=True)
             return
 
-        if isinstance(error, CustomError):
+        if isinstance(error, (CustomError, commands.NotOwner)):
             embed.add_field(name=locale["field_name_2"], value=error)
             await inter.send(embed=embed, ephemeral=True)
             return
