@@ -1,5 +1,5 @@
 import disnake
-from disnake import AppCmdInter
+from disnake import AppCmdInter, UserCommandInteraction
 from disnake import Localized as __
 from disnake.ext import commands
 from datetime import datetime
@@ -10,7 +10,11 @@ from core.i18n import LocalizationStorage
 from tools.ui.paginator import Paginator
 from tools.utils import get_avatar_formats
 
+from tools.utils import _account as acc
+
 _ = LocalizationStorage("user")
+
+
 
 STATUSES = {
     disnake.Status.online: "<:momiji_online_status:1051335123079012372>",
@@ -95,6 +99,21 @@ class User(BaseCog):
             await Paginator(pages=embeds, inter=inter, ephemeral=True).start()
         else:
             await inter.send(embed=embeds[0])
+
+    @user.sub_command(name=__("account", key="COMMAND_NAME_ACCOUNT"),
+                      description=__("User account in the bot system", key="COMMAND_DESCRIPTION_ACCOUNT"))
+    async def account(self, inter: AppCmdInter,
+                      user: disnake.User = commands.Param(
+                          name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
+                          description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
+                          default=lambda inter: inter.author
+                      )
+    ):
+        locale = _(inter.locale, "account")
+
+        await acc(locale=locale, client=self.client, inter=inter, user=user)
+                
+            
         
     @user.sub_command(name=__("avatar", key="COMMAND_NAME_AVATAR"),
                        description=__("get member's avatar", key="COMMAND_DESCRIPTION_AVATAR"))
@@ -113,6 +132,12 @@ class User(BaseCog):
 
         await inter.send(embed=embed)
 
+
+    @commands.user_command(name=__("user", key="COMMAND_NAME_ACCOUNT_USER-COMMAND"))
+    async def _account(self, inter: UserCommandInteraction, user: disnake.User):
+        locale = _(inter.locale, "account")
+
+        await acc(locale=locale, client=self.client, inter=inter, user=user)
 
     @commands.user_command(name=__("profile", key="COMMAND_NAME_PROFILE_USER-COMMAND"),)
     async def info(self, inter, member: disnake.Member):

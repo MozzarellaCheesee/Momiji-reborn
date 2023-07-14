@@ -1,4 +1,9 @@
 {
+    "account": {
+        "error": "User not in database",
+        "not_description": "No description"
+    },
+
     "profile": {
         "title": "User Information",
         "status": "User status:",

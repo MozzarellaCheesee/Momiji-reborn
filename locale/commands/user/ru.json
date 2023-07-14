@@ -2,11 +2,16 @@
     "COMMAND_GROUP_USER": "пользователь",
     "COMMAND_GROUP_DESCRIPTION_USER": "информационные команды пользователя",
 
+    "COMMAND_NAME_ACCOUNT": "аккаунт",
+    "COMMAND_DESCRIPTION_ACCOUNT": "Аккаунт пользователя в системе бота",
+
     "COMMAND_NAME_USER-INFO": "информация",
     "COMMAND_DESCRIPTION_USER-INFO": "информация и статус пользователя или участника",
 
     "COMMAND_NAME_AVATAR": "аватар",
     "COMMAND_DESCRIPTION_AVATAR": "получить аватар участника",
 
-    "COMMAND_NAME_PROFILE_USER-COMMAND": "профиль"
+    "COMMAND_NAME_ACCOUNT_USER-COMMAND": "аккаунт",
+
+    "COMMAND_NAME_PROFILE_USER-COMMAND": "пользователь"
 }
