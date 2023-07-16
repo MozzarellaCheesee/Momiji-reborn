@@ -10,7 +10,7 @@ from core.i18n import LocalizationStorage
 from tools.ui.paginator import Paginator
 from tools.utils import get_avatar_formats
 
-from tools.utils import _account as acc
+from tools.utils import account as acc
 
 _ = LocalizationStorage("user")
 
@@ -98,30 +98,15 @@ class User(BaseCog):
         if len(embeds) > 1:
             await Paginator(pages=embeds, inter=inter, ephemeral=True).start()
         else:
-            await inter.send(embed=embeds[0])
-
-    @user.sub_command(name=__("account", key="COMMAND_NAME_ACCOUNT"),
-                      description=__("User account in the bot system", key="COMMAND_DESCRIPTION_ACCOUNT"))
-    async def account(self, inter: AppCmdInter,
-                      user: disnake.User = commands.Param(
-                          name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
-                          description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
-                          default=lambda inter: inter.author
-                      )
-    ):
-        locale = _(inter.locale, "account")
-
-        await acc(locale=locale, client=self.client, inter=inter, user=user)
-                
-            
+            await inter.send(embed=embeds[0])       
         
     @user.sub_command(name=__("avatar", key="COMMAND_NAME_AVATAR"),
                        description=__("get member's avatar", key="COMMAND_DESCRIPTION_AVATAR"))
     async def avatar(self, inter: AppCmdInter,
                      member: disnake.Member = commands.Param(
                          default=lambda inter: inter.author,
-                         name=__("member", key="COMMANDS_UTILS_PARAMS_MEMBER"),
-                         description=__("member to get avatar", key="COMMANDS_UTILS_PARAMS_MEMBER_DESCR"))
+                         name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
+                         description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"))
     ):
         locale = _(inter.locale, "avatar")
 
@@ -131,13 +116,6 @@ class User(BaseCog):
                               ).set_image(url=member.display_avatar.url)
 
         await inter.send(embed=embed)
-
-
-    @commands.user_command(name=__("user", key="COMMAND_NAME_ACCOUNT_USER-COMMAND"))
-    async def _account(self, inter: UserCommandInteraction, user: disnake.User):
-        locale = _(inter.locale, "account")
-
-        await acc(locale=locale, client=self.client, inter=inter, user=user)
 
     @commands.user_command(name=__("profile", key="COMMAND_NAME_PROFILE_USER-COMMAND"),)
     async def info(self, inter, member: disnake.Member):

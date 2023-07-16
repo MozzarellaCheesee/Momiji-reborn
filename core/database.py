@@ -1,5 +1,6 @@
 from core.settings import DB_URL
 from tortoise import Tortoise
+import logging
 
 
 async def init_database():
@@ -20,4 +21,8 @@ async def init_database():
             ]
         }
     )
-    # await Tortoise.generate_schemas(safe=True)
+    try:
+        # await Tortoise.generate_schemas(safe=True)   
+        logging.info("База данных подключена")
+    except:
+        logging.error("Модели уже были сгенерированы")

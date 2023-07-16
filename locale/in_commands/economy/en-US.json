@@ -4,5 +4,13 @@
         "description": "You worked hard at your job and got:",
         "field_name_1": "Currency:",
         "field_name_2": "Exp:"
+    },
+
+    "pay": {
+        "title": "Translation",
+        "description": "Transfer funds to another member",
+        "field_name_1": "Amount:",
+        "error_bot": "You cannot transfer money to the bot",
+        "error": "Your balance is less than the amount you want to transfer."
     }
 }

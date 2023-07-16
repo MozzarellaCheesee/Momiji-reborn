@@ -51,6 +51,7 @@
 
         "null": "Absent",
         "yes": "Yes",
-        "no": "No"
+        "no": "No",
+        "link": "Link here"
     }
 }

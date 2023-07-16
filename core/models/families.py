@@ -7,7 +7,7 @@ class Families(Model):
     wife: fields.ForeignKeyRelation["models.Users"] = fields.ForeignKeyField("models.Users", related_name="Families_w", null=False)
     husband: fields.ForeignKeyRelation["models.Users"] = fields.ForeignKeyField("models.Users", related_name="Families_h", null=False)
     money = fields.IntField(default=0, null=False)
-    channel_id = fields.BigIntField(null=False)
+    channel_id = fields.BigIntField(default=None, null=True)
     date_of_create = fields.DatetimeField()
     renewal_date = fields.DatetimeField()
 

@@ -8,5 +8,8 @@
     "COMMAND_PARAM_NAME_ROLE": "роль",
     "COMMAND_PARAM_DESCRIPTION_ROLE": "выберите роль",
     "COMMAND_PARAM_NAME_CHANNEL": "канал",
-    "COMMAND_PARAM_DESCRIPTION_CHANNEL": "выберите канал"
+    "COMMAND_PARAM_DESCRIPTION_CHANNEL": "выберите канал",
+    "COMMAND_NAME_MARRY-ROLE": "роль-супруг",
+    "COMMAND_DESCRIPTION_MARRY-ROLE": "установить роль для пользователей которые заключили брак"
+
 }

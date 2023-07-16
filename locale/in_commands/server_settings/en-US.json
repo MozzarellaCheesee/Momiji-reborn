@@ -38,5 +38,10 @@
     "set_verefy_role": {
         "title": "Verification Role",
         "description": "You have successfully installed the verification role, now the role for verified members is {role}"
+    },
+
+    "set_marry_role": {
+        "title": "Role for Spouses",
+        "description": "You have successfully set the spouse role, the member's spouse role is now {role}"
     }
 }

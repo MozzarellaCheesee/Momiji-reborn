@@ -1,0 +1,20 @@
+{
+    "marry": {
+        "title": "You made an offer",
+        "description": "{user}, would you accept a marriage proposal from {author}",
+        "buttons": {
+            "embeds": {
+                "no_title": "Rejection...",
+                "no_description": "{author}, alas... You were denied, don't despair, you will find your love!",
+                "yes_title": "Bitter!",
+                "yes_description": "{author} and {member} became a couple on the server! Congratulations! They are expecting gifts from guests <:momiji_bunny:1129449787754823750>"
+            }
+        },
+        "errors": {
+            "not_money": "You don't have enough money :(",
+            "member_married": "This person is already married. No need to lead him on the path of infidelity, I think?",
+            "author_married": "You're already married and I don't approve of cheating!",
+            "not_role": "Role for marriage has not been set."
+        }
+    }
+}

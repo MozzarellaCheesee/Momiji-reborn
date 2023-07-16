@@ -4,8 +4,10 @@ config = dotenv_values()
 DB_URL="mysql://root@localhost:3306/momiji"
 
 commands_ = {
+    "extensions.commands.accounts",
     "extensions.commands.developer",
     "extensions.commands.economy",
+    "extensions.commands.family",
     "extensions.commands.gaiety",
     "extensions.commands.info",
     "extensions.commands.moderation",

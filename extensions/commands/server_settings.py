@@ -7,14 +7,9 @@ from core.i18n import LocalizationStorage
 from disnake.i18n import Localised as __
 
 from tools.ui.modals.server_settings_verefy import VerefySetupModal
+from tools.utils import get_or_create_role
 
 _ = LocalizationStorage("server_settings")
-
-async def get_or_create_role(client: commands.InteractionBot, server: any, _type: str, defaults: dict):
-    _server = await client.db.Servers.get(discord_id=server.id)
-    defaults["server"] = _server
-    role = await client.db.Roles.get_or_create(defaults=defaults, role_type=_type, server_id=_server.id)
-    return role
 
 class ServerSettings(BaseCog):
 
@@ -25,7 +20,7 @@ class ServerSettings(BaseCog):
         ...
 
     @commands.bot_has_permissions(moderate_members=True, manage_roles=True)
-    @server.sub_command(name=__("verefy", key="COMMAND_NAME_VEREFY"),
+    @server.sub_command(name=__("verify", key="COMMAND_NAME_VEREFY"),
                          description=__("set verification on your server", key="COMMAND_DESCRIPTION_VEREFY"))
     async def set_verefy(
         self, inter: AppCmdInter, 
@@ -41,9 +36,9 @@ class ServerSettings(BaseCog):
             raise CustomError(locale["not_role"])
         await inter.response.send_modal(VerefySetupModal(locale, _, self.client, channel))
 
-    @server.sub_command(name=__("verefy-role", key="COMMAND_NAME_VEREFY-ROLE"),
-                         description=__("set verefy-role", key="COMMAND_DESCRIPTION_VEREFY-ROLE"))
-    async def set_verefy_role(
+    @server.sub_command(name=__("verify-role", key="COMMAND_NAME_VEREFY-ROLE"),
+                         description=__("set verify-role", key="COMMAND_DESCRIPTION_VEREFY-ROLE"))
+    async def set_verify_role(
         self, inter: AppCmdInter, 
         role: disnake.Role = commands.Param(
             name=__("role", key="COMMAND_PARAM_NAME_ROLE"),
@@ -54,7 +49,32 @@ class ServerSettings(BaseCog):
         defaults = {
             "role_id": role.id
         }
-        _role = await get_or_create_role(self.client, inter.guild, "VEREFY", defaults)
+        _role = await get_or_create_role(self.client, inter.guild, "VERIFY", defaults)
+        if _role[1] is False:
+            _role[0].role_id = role.id
+            await _role[0].save()
+            
+        await inter.send(
+            embed = disnake.Embed(
+                title=locale["title"],
+                description=locale["description"].format(role=role.mention)
+            )
+        )
+
+    @server.sub_command(name=__("marry-role", key="COMMAND_NAME_MARRY-ROLE"),
+                         description=__("set marry-role", key="COMMAND_DESCRIPTION_MARRY-ROLE"))
+    async def set_marry_role(
+        self, inter: AppCmdInter, 
+        role: disnake.Role = commands.Param(
+            name=__("role", key="COMMAND_PARAM_NAME_ROLE"),
+            description=__("select role", key="COMMAND_PARAM_DESCRIPTION_ROLE")
+        )
+    ):
+        locale = _(inter.locale, "set_marry_role")
+        defaults = {
+            "role_id": role.id
+        }
+        _role = await get_or_create_role(self.client, inter.guild, "MARRY", defaults)
         if _role[1] is False:
             _role[0].role_id = role.id
             await _role[0].save()

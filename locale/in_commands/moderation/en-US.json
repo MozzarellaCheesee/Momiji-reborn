@@ -1,43 +1,44 @@
 {
     "ban": {
-        "title": "User was banned",
-        "description": "User was banned on this server",
+        "title": "User has been banned",
+        "description": "User has been banned from this server",
         "field_name_1": "User:",
         "field_name_2": "Reason:",
-        "field_name_3": "Member's id:",
+        "field_name_3": "User ID:",
         "not_reason": "None"
     },
 
     "unban": {
-        "title": "User has been unbanned",
-        "description": "You have unbanned a user on this server",
+        "title": "User has been unbanned from the server",
+        "description": "You have unbanned a user from this server",
         "field_name_1": "User:",
         "field_name_2": "Reason:",
-        "field_name_3": "User's ID:",
+        "field_name_3": "User ID:",
+        "not_reason": "None",
         "error": "User not banned"
     },
 
     "mute": {
-        "title": "User was muted",
-        "description": "User was muted on this server",
-        "field_name_1": "User:",
+        "title": "Participant was muted",
+        "description": "Participant has been muted on this server",
+        "field_name_1": "Participant:",
         "field_name_2": "Duration:",
         "field_name_3": "Reason:",
-        "field_name_4": "Member's id:",
+        "field_name_4": "Member ID:",
         "not_reason": "None"
     },
 
     "unmute": {
-        "title": "User was unmuted",
-        "description": "User was unmuted on this server",
-        "field_name_1": "User:",
+        "title": "Participant was disabled",
+        "description": "Participant has been unmuted on this server",
+        "field_name_1": "Participant:",
         "field_name_2": "Reason:",
-        "field_name_3": "Member's id:",
+        "field_name_3": "Member ID:",
         "not_reason": "None"
     },
 
     "warn": {
-        "title": "Warn",
+        "title": "User has been brewed",
         "description": "The user was warned",
         "field_name_1": "Participant:",
         "field_name_2": "Reason:",
@@ -46,36 +47,49 @@
         "not_reason": "None"
     },
 
+    "unwarn": {
+        "title": "User has been banned",
+        "description": "The warning has been removed from the user",
+        "field_name_1": "Participant\nreceived a warning:",
+        "field_name_2": "Warning\nModerator:",
+        "field_name_3": "Reason:",
+        "not_reason": "None",
+        "self_error": "You cannot remove the warning from yourself",
+        "not_warn": "No such warning exists"
+    },
+
     "kick": {
-        "title": "User was kicked",
-        "description": "User was kicked from the server",
-        "field_name_1": "User:",
+        "title": "Participant was kicked",
+        "description": "Participant was kicked from the server",
+        "field_name_1": "Participant:",
         "field_name_2": "Reason:",
-        "field_name_3": "Member's id:",
+        "field_name_3": "Member ID:",
         "not_reason": "None"
     },
 
     "clear": {
-        "title": "Messages have been deleted",
+        "title": "Posts have been deleted",
         "description": "You have deleted messages in the channel",
         "field_name_1": "Channel:",
-        "field_name_2": "Messages count:"
+        "field_name_2": "Number of Posts:"
     },
 
     "server_warns": {
-        "title": "All warns on the server",
-        "description": "To remove a warn, use the command:\n`/moderation unwarn <case-number>`.\nYou can find the case number when viewing user alerts or server warnings (if you are viewing the second option, the case number is the number by account in embed)",
+        "title": "All alerts on the server",
+        "description": "To remove a warning, use the command:\n`/moderation remove-warning <case-number>`.\nYou can find the case number when viewing user alerts or server alerts (if you are viewing the second option, the case number is the number according to the account in embed)",
         "reason": "Reason",
         "moderator": "Moderator",
+        "not_warns": "There are no warnings on the server yet",
         "not_reason": "None"
     },
 
     "user_warns": {
-        "title": "All member's warns",
-        "description": "To remove a warn, use the command:\n`/moderation unwarn <case-number>`.\nYou can find the case number when viewing user alerts or server warnings (if you are viewing the second option, the case number is the number by account in embed)",
+        "title": "All Participant Warnings",
+        "description": "To remove a warning, use the command:\n`/moderation remove-warning <case-number>`.\nYou can find the case number when viewing user alerts or server alerts (if you are viewing the second option, the case number is the number according to the account in embed)",
         "number": "Case number",
         "reason": "Reason",
         "moderator": "Moderator",
+        "not_warns": "User has no warnings yet",
         "not_reason": "None"
     }
 }

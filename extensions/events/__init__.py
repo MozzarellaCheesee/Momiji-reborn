@@ -3,6 +3,8 @@ import traceback
 import dataclasses
 from disnake.ext import commands
 
+import logging
+
 from core.i18n import LocalizationStorage
 from tools.exeption import CustomError
 from tools.ui.buttons import SupportButton

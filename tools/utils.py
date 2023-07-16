@@ -1,4 +1,5 @@
 import disnake
+from disnake.ext import commands
 from tortoise.queryset import Prefetch
 from PIL import Image, ImageDraw, ImageFont, Image, ImageChops
 from io import BytesIO
@@ -80,6 +81,20 @@ async def get_member_profile(member, client, to_prefetch: list[str | Prefetch] =
         profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db).prefetch_related(to_prefetch)
     return profile
 
+async def get_member_profile_for_marry(member, client):
+
+    """
+    Возвращает профиль участника
+    :inter:
+    :client:
+    :return: profile
+    """
+
+    user_in_db = await client.db.Users.get(discord_id=member.id)
+    server_in_db = await client.db.Servers.get(discord_id=member.guild.id)
+    profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db).select_related("user", "family")
+    return profile
+
 async def standard_emb(
         member: disnake.Member = None,
         description: str = None,
@@ -92,7 +107,7 @@ async def standard_emb(
         emd.set_thumbnail(url=member.display_avatar)
     return emd
 
-async def _account(locale: dict, client, inter, user):
+async def account(locale: dict, client, inter, user):
     user_in_db = await client.db.Users.filter(discord_id=user.id).first().prefetch_related("authorizedsessions")
 
     if not user_in_db:
@@ -131,3 +146,9 @@ async def _account(locale: dict, client, inter, user):
 
         file = disnake.File(fp=image_binary, filename="image.png")
         await inter.send(file=file)
+
+async def get_or_create_role(client: commands.InteractionBot, server: any, _type: str, defaults: dict):
+    _server = await client.db.Servers.get(discord_id=server.id)
+    defaults["server"] = _server
+    role = await client.db.Roles.get_or_create(defaults=defaults, role_type=_type, server_id=_server.id)
+    return role
