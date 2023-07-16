@@ -11,6 +11,7 @@ commands_ = {
     "extensions.commands.gaiety",
     "extensions.commands.info",
     "extensions.commands.moderation",
+    "extensions.commands.profile",
     "extensions.commands.rating",
     "extensions.commands.roleplay",
     "extensions.commands.server_settings",

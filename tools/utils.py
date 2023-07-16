@@ -3,11 +3,12 @@ from disnake.ext import commands
 from tortoise.queryset import Prefetch
 from PIL import Image, ImageDraw, ImageFont, Image, ImageChops
 from io import BytesIO
+from core.models.profiles import Profiles
 
-def bias(original_x, meaning):
+def bias(original_x, meaning, f: float):
     if len(str(meaning)) == 1:
         return original_x
-    new_x: int = original_x - (3 * len(str(meaning)))
+    new_x: int = original_x - (f * len(str(meaning)))
     return new_x
 
 def circle(pfp, size=(215, 215)):
@@ -110,7 +111,7 @@ async def standard_emb(
 async def account(locale: dict, client, inter, user):
     user_in_db = await client.db.Users.filter(discord_id=user.id).first().prefetch_related("authorizedsessions")
 
-    if not user_in_db:
+    if len(user_in_db) < 1:
         return await inter.send(locale["error"], ephemeral=True)
 
     await inter.response.defer()
@@ -126,7 +127,7 @@ async def account(locale: dict, client, inter, user):
     authorizedsessions = len(user_in_db.authorizedsessions)
 
     avatar_in_png = user.display_avatar.with_static_format("png")
-    avatar = circle(Image.open(BytesIO(await avatar_in_png.read())).convert("RGBA"), (142, 141))
+    avatar = circle(Image.open(BytesIO(await avatar_in_png.read())).convert("RGBA"), (142, 142))
     card.paste(avatar, (46, 238), avatar)
 
     name_font = ImageFont.truetype("assets/fonts/OpenSans_SemiCondensed-ExtraBold.ttf", size=25)
@@ -134,11 +135,11 @@ async def account(locale: dict, client, inter, user):
 
     draw.text((215, 280), name, fill="white", font=name_font)
     draw.text((215, 310), f"{locale['not_description']}", fill="grey", font=font)
-    draw.text((bias(565, experience), 137), f"{experience}", fill="white", font=font)
-    draw.text((bias(565, messages), 328), f"{messages}", fill="white", font=font)
-    draw.text((bias(565, donate_valute), 515), f"{donate_valute}", fill="white", font=font)
-    draw.text((bias(823, level), 137), f"{level}", fill="white", font=font)
-    draw.text((bias(823, authorizedsessions), 328), f"{authorizedsessions}", fill="white", font=font)
+    draw.text((bias(565, experience, 3), 137), f"{experience}", fill="white", font=font)
+    draw.text((bias(565, messages, 3), 328), f"{messages}", fill="white", font=font)
+    draw.text((bias(565, donate_valute, 3), 515), f"{donate_valute}", fill="white", font=font)
+    draw.text((bias(823, level, 3), 137), f"{level}", fill="white", font=font)
+    draw.text((bias(823, authorizedsessions, 3), 328), f"{authorizedsessions}", fill="white", font=font)
 
     with BytesIO() as image_binary:
         card.save(image_binary, "PNG")
@@ -146,6 +147,56 @@ async def account(locale: dict, client, inter, user):
 
         file = disnake.File(fp=image_binary, filename="image.png")
         await inter.send(file=file)
+
+async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
+    user_in_db = await client.db.Users.get(discord_id=user.id)
+    server_in_db = await client.db.Servers.get(discord_id=inter.guild.id)
+    profile: Profiles = await client.db.Profiles.filter(user=user_in_db, server=server_in_db).prefetch_related("partner", "tickets", "warns_profile").first()
+
+    if not profile:
+        return await inter.send(locale["error"], ephemeral=True)
+
+    if profile.partner is None:
+        partner = locale["no_partner"]
+    else:
+        partner = inter.guild.get_member(profile.partner.discord_id)
+
+    await inter.response.defer()
+
+    name = f'@{user.name}' if len(user.display_name) <= 15 else f'@{user.name}'[:15]+'...'
+    card = Image.open('./assets/profile_server.png')
+    draw = ImageDraw.Draw(card)
+
+    lvl = profile.level
+    message = profile.messages
+    open_tickets = len(profile.tickets)
+    money = profile.money
+    warns = len(profile.warns_profile)
+
+    avatar_in_png = user.display_avatar.with_static_format("png")
+    avatar = circle(Image.open(BytesIO(await avatar_in_png.read())).convert("RGBA"), (213, 213))
+    card.paste(avatar, (89, 121), avatar)
+
+    name_font = ImageFont.truetype("assets/fonts/OpenSans_SemiCondensed-ExtraBold.ttf", size=25)
+    font = ImageFont.truetype("assets/fonts/OpenSans_SemiCondensed-ExtraBold.ttf", size=15)
+
+    draw.text((110, 350), name, fill='white', font=name_font)
+    draw.text((730, 76.5), f"{partner}", fill='white', font=font)
+    draw.text((bias(770, lvl, 2.6), 132.5), f"{lvl}", fill='white', font=font)
+    draw.text((bias(770, message, 2.6), 187.5), f"{message}", fill='white', font=font)
+    draw.text((bias(770, open_tickets, 2.6), 242.5), f"{open_tickets}", fill='white', font=font)
+    draw.text((bias(770, money, 2.6), 297.5), f"{money}", fill='white', font=font)
+    draw.text((bias(770, warns, 2.6), 352.5), f"{warns}", fill='white', font=font)
+
+    with BytesIO() as image_binary:
+        card.save(image_binary, "PNG")
+        image_binary.seek(0)
+
+        file = disnake.File(fp=image_binary, filename="image.png")
+        await inter.send(file=file)
+
+
+
 
 async def get_or_create_role(client: commands.InteractionBot, server: any, _type: str, defaults: dict):
     _server = await client.db.Servers.get(discord_id=server.id)

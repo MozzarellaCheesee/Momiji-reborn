@@ -62,5 +62,5 @@ class OnErrors(BaseCog):
             )
         )
 
-def setup(client: commands.InteractionBot):
-    client.add_cog(OnErrors(client))
+# def setup(client: commands.InteractionBot):
+#     client.add_cog(OnErrors(client))
