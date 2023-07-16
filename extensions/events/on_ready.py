@@ -57,7 +57,7 @@ class OnReady(BaseCog):
             f"\033[38;5;38m[CLIENT] \033[38;5;67m⌗ \033[38;5;105m{self.client.user}\033[0;0m is worked stable.\n"
             f"----------------------------------------------"
         )
-        logging.info("Bot has started")
+        logging.info("Бот был запущен")
 
 def setup(client: commands.InteractionBot):
     client.add_cog(OnReady(client))
