@@ -30,8 +30,8 @@ class User(BaseCog):
     async def user(self, inter: AppCmdInter,):
         ...
 
-    @user.sub_command(name=__("user-info", key="COMMAND_NAME_USER-INFO"),
-                      description=__("information and status of the user or member", key="COMMAND_DESCRIPTION_USER-INFO"))
+    @user.sub_command(name=__("user-info", key="COMMAND_NAME_USER_INFO"),
+                      description=__("information and status of the user or member", key="COMMAND_DESCRIPTION_USER_INFO"))
     async def info_(self, inter: AppCmdInter,
                     user: disnake.User = commands.Param(
                         name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
@@ -117,7 +117,7 @@ class User(BaseCog):
 
         await inter.send(embed=embed)
 
-    @commands.user_command(name=__("profile", key="COMMAND_NAME_PROFILE_USER-COMMAND"),)
+    @commands.user_command(name=__("User-information", key="COMMAND_NAME_PROFILE_USER_COMMAND"),)
     async def info(self, inter, member: disnake.Member):
         locale = _(inter.locale, "profile")
         bool_to_symbol = {True: '+', False: '-'}
@@ -162,7 +162,7 @@ class User(BaseCog):
         
         await Paginator(pages=embeds, inter=inter, ephemeral=True).start()
 
-    @commands.user_command(name=__("avatar", key="COMMAND_NAME_AVATAR"))
+    @commands.user_command(name=__("Avatar", key="COMMAND_NAME_AVATAR_USER_COMMAND"))
     async def avatar(self, inter, member: disnake.Member):
         locale = _(inter.locale, "avatar")
 

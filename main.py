@@ -16,7 +16,6 @@ logging.basicConfig(
     datefmt='%H:%M:%S',
 )
 
-
 client = commands.InteractionBot(intents=disnake.Intents.all(), strict_localization=True)
 
 def load_extensions():

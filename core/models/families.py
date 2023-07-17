@@ -15,4 +15,4 @@ class Families(Model):
         table = 'families'
 
     def __str__(self):
-        return str(self.wife, self.husband)
+        return str(self.id)

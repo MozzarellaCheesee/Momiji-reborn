@@ -3,5 +3,8 @@
     "COMMAND_GROUP_DESCRIPTION_FAMILY": "команды для создания отношений",
 
     "COMMAND_NAME_MARRY": "свадьба",
-    "COMMAND_DESCRIPTION_MARRY": "заключить брак с пользователем"
+    "COMMAND_DESCRIPTION_MARRY": "заключить брак с пользователем",
+    
+    "COMMAND_NAME_LOVE": "профиль",
+    "COMMAND_DESCRIPTION_LOVE": "вывести ваш любовный профиль"
 }

@@ -1,7 +1,7 @@
 {
     "account": {
         "error": "User not in database",
-        "not_description": "No description"
+        "not_description": "Status not set"
     },
 
     "profile": {

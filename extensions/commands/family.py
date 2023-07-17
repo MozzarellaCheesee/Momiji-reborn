@@ -9,6 +9,7 @@ from core.i18n import LocalizationStorage
 from tools.utils import get_member_profile_for_marry, get_or_create_role
 from tools.exeption import CustomError
 from core.checks import BaseChecks
+from tools.utils import love_profile
 
 
 _ = LocalizationStorage("family")
@@ -74,8 +75,6 @@ class MarryButtons(disnake.ui.View):
         
         self.check = 1
 
-
-
     @disnake.ui.button(emoji="❎")
     async def no_callback(self, button, inter: disnake.Interaction):
         await inter.response.edit_message(
@@ -123,6 +122,24 @@ class Family(BaseCog):
                 description=locale["description"].format(user=user.mention, author=inter.author.mention)
             ), view=MarryButtons(author_profile, self.client, member_profile, locale, role, user, inter.author, inter)
         )
+
+    @family.sub_command(
+        name=__('love-profile', key="COMMAND_NAME_LOVE"),
+        description=__('view love profile', key="COMMAND_DESCRIPTION_LOVE")
+    )
+    async def loveprofile(
+        self, inter: AppCmdInter,
+        member: disnake.Member = commands.Param(
+            name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
+            description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
+            default=lambda inter: inter.author
+        )
+    ):
+        locale = _(inter.locale, "love_profile")
+        loc = err(inter.locale, "errors")
+        if member.bot:
+            raise CustomError(loc['bot_error'])
+        await love_profile(locale, self.client, inter, member)
     
 def setup(client: commands.InteractionBot):
     client.add_cog(Family(client))

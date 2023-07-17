@@ -16,5 +16,10 @@
             "author_married": "You're already married and I don't approve of cheating!",
             "not_role": "Role for marriage has not been set."
         }
+    },
+    
+    "love_profile": {
+        "renewal_date": "renewal date",
+        "date_of_create": "date of creation"
     }
 }

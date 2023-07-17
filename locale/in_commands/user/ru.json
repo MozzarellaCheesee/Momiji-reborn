@@ -1,7 +1,7 @@
 {
     "account": {
         "error": "Пользователя нет в базе данных",
-        "not_description": "Описание отсутствует"
+        "not_description": "Статус не установлен"
     },
 
     "profile": {

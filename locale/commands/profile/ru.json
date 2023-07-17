@@ -1,0 +1,10 @@
+{
+    "COMMAND_GROUP_PROFILE": "профиль",
+    "COMMAND_GROUP_DESCRIPTION_PROFILE": "команды профиля",
+
+    "COMMAND_NAME_VIEW": "просмотр",
+    "COMMAND_DESCRIPTION_VIEW": "просмотр профиля пользователя",
+
+    "COMMAND_NAME_PROFILE": "Профиль"
+
+}

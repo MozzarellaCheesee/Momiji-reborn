@@ -76,11 +76,6 @@ class LeaderBoardSelect(StandardSelect):
         super().__init__(options=components, placeholder=locale['placeholder'])
     
     async def callback(self, interaction: disnake.MessageInteraction):
-        if self.values[0] == self.locale["top_balance"]:
-            await send_top(interaction, self.client, self.locale, "money", self.server, self)
-
-        elif self.values[0] == self.locale["top_message"]:
-            await send_top(interaction, self.client, self.locale, "messages", self.server, self)
-
-        else:
-            await send_top(interaction, self.client, self.locale, "level", self.server, self)
+        if self.values[0] == self.locale["top_balance"]: await send_top(interaction, self.client, self.locale, "money", self.server, self)
+        elif self.values[0] == self.locale["top_message"]: await send_top(interaction, self.client, self.locale, "messages", self.server, self)
+        else: await send_top(interaction, self.client, self.locale, "level", self.server, self)

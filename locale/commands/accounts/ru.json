@@ -1,0 +1,9 @@
+{
+    "COMMAND_NAME_ACCOUNT": "аккаунт",
+    "COMMAND_DESCRIPTION_ACCOUNT": "Аккаунт пользователя в системе бота",
+
+    "COMMAND_NAME_ACCOUNT_USER_COMMAND": "Аккаунт",
+
+    "COMMAND_PARAM_NAME_USER": "пользователь",
+    "COMMAND_PARAM_DESCRIPTION_USER": "выберите пользователя"
+}

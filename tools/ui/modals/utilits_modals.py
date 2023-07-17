@@ -59,7 +59,6 @@ class ReportModal(Modal):
         await inter.response.send_message(embed=user_embed, ephemeral=True, view=SupportButton())
         await self.bot.report_channel.send(embed=dev_embed, view=BlockButton(self.interaction.author, self.bot, dev_embed))
 
-
 class IdeaModal(Modal):
     
     def __init__(self, locale: dict, bot: disnake.ext.commands.bot.InteractionBot, interaction: disnake.AppCmdInter) -> None:
