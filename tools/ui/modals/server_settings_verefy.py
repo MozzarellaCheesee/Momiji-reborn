@@ -67,7 +67,7 @@ class VerefyButton(View):
         }
         server = await self.client.db.Servers.get_or_create(defaults=defaults, discord_id=interaction.guild.id)
         try:
-            role = await self.client.db.Roles.get(server=server[0], role_type="VEREFY")
+            role = await self.client.db.Roles.get(server=server[0], role_type="VERIFY")
             role_in_discord: disnake.Role = interaction.guild.get_role(role.role_id)
             code = randint(1000, 9999)
             await interaction.response.send_modal(VerefyModal(self.client, code, role_in_discord, locale))

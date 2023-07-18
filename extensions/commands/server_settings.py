@@ -31,7 +31,7 @@ class ServerSettings(BaseCog):
     ):
         locale = _(inter.locale, "verefy")
         server_in_db = await self.client.db.Servers.get(discord_id=inter.guild.id)
-        role = await self.client.db.Roles.get_or_none(server=server_in_db, role_type="VEREFY")
+        role = await self.client.db.Roles.get_or_none(server=server_in_db, role_type="VERIFY")
         if role is None:
             raise CustomError(locale["not_role"])
         await inter.response.send_modal(VerefySetupModal(locale, _, self.client, channel))
