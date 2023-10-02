@@ -1,0 +1,29 @@
+{
+    "8ball": {
+        "title": "The ball says:",
+
+        "1": "Undoubtedly",
+        "2": "Determined",
+        "3": "No doubt",
+        "4": "Definitely yes",
+        "5": "You can be sure of it",
+
+        "6": "I think yes",
+        "7": "Most likely",
+        "8": "Good prospects",
+        "9": "Signs say yes",
+        "10": "Yes",
+
+        "11": "Not clear yet, try again",
+        "12": "Ask later",
+        "13": "Better not tell",
+        "14": "Now it is impossible to predict",
+        "15": "Concentrate and ask again",
+
+        "16": "Don't even think",
+        "17": "My answer is no",
+        "18": "According to my data - no",
+        "19": "Prospects are not very good",
+        "20": "Very doubtful"
+    }
+}

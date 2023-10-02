@@ -1,0 +1,47 @@
+{
+    "verefy": {
+        "not_role": "The role for those who have passed verification is not installed on the server",
+        "not_verefy": "Verification failed, please try again",
+        "item_error": "Enter at least one value: `title`, `Description` `Image`",
+        "top_role_error": "Failed because the bot's role is lower than or equal to that of the verified user",
+        "verefy": {
+            "description": "**You have passed verification and will be able to access the server in a couple of seconds...**"
+        },
+        "setup_modal": {
+            "components": {
+                "labels": {
+                    "color": "color",
+                    "title": "Title",
+                    "description": "Description",
+                    "image": "Image",
+                    "footer": "footer",
+                    "verefy": "Enter the code below"
+                },
+                "placeholders": {
+                    "color": "Enter a color in HEX format, example: 2b2d31 without #",
+                    "title": "Enter a title to display",
+                    "description": "Enter a description to display",
+                    "image": "Insert image link",
+                    "footer": "Enter text to be displayed at the bottom"
+                }
+            },
+            "titles": {
+                "modal": "Modal verification settings window",
+                "verefy": "Verification"
+            },
+            "embeds": {
+                "title": "You have successfully configured verification"
+            }
+        }
+    },
+
+    "set_verefy_role": {
+        "title": "Verification Role",
+        "description": "You have successfully installed the verification role, now the role for verified members is {role}"
+    },
+
+    "set_marry_role": {
+        "title": "Role for Spouses",
+        "description": "You have successfully set the spouse role, the member's spouse role is now {role}"
+    }
+}

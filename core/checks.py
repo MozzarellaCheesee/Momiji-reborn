@@ -30,8 +30,14 @@ class BaseChecks:
         """
         async def predicate(inter: disnake.ApplicationCommandInteraction):
             locale = locale_path(inter.locale, "errors")
-            if inter.author == inter.filled_options["member" or "участник"]:
-                raise CustomError(locale['self_error'])
+            try:
+                member = inter.filled_options["member" or "участник"]
+            except:
+                return True
+
+            if inter.author == member:
+                raise CustomError(locale['self_error']) 
+                
             return True
         return commands.check(predicate)
 
