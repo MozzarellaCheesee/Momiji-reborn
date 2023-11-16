@@ -459,7 +459,7 @@ class Moderation(BaseCog):
                 reason = warns.reason
             user_in_discord: disnake.Member = inter.guild.get_member(warns.profile.user.discord_id)
             moderator_in_discord: disnake.Member = inter.guild.get_member(warns.moderator.user.discord_id)
-            first_page.add_field(name=warns.number,
+            first_page.add_field(name=f"№ {warns.number}",
                                  value=f"{user_in_discord.mention}\n**{locale['reason']}** - {reason}\n"
                                        f"**{locale['moderator']}** - {moderator_in_discord.mention}",
                                  inline=False)
@@ -482,7 +482,7 @@ class Moderation(BaseCog):
                 user_in_discord: disnake.Member = inter.guild.get_member(warns.profile.user.discord_id)
                 moderator_in_discord: disnake.Member = inter.guild.get_member(warns.moderator.user.discord_id)
                 temp_page.add_field(
-                    name=warns.number,
+                    name=f"№ {warns.number}",
                     value=f"{user_in_discord.mention}\n**{locale['reason']}** - {reason}\n"
                           f"**{locale['moderator']}** - {moderator_in_discord.mention}",
                     inline=False)

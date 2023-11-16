@@ -4,10 +4,11 @@ from disnake.ext import commands
 from core.i18n import LocalizationStorage
 from core.cog import BaseCog
 
-from tools.dataclasses import Channels, Models, Emojies
+from tools.dataclasses import Models
 from tools.ui.modals.server_settings_verefy import VerefyButton
 
 import logging
+import dataclasses
 
 _ = LocalizationStorage("server_settings")
 
@@ -17,6 +18,20 @@ class OnReady(BaseCog):
     @commands.Cog.listener()
     async def on_ready(self):
         logging.info("Загрузка клиента")
+
+        @dataclasses.dataclass
+        class Channels:
+            on_error_channel = self.client.get_channel(985268089174233180)
+            report_channel = self.client.get_channel(1125118943959453768)
+            idea_channel = self.client.get_channel(1125118961978183790)
+            log_join_channel = self.client.get_channel(978325826753953975)
+            log_remove_channel = self.client.get_channel(978620072014782515)
+
+        @dataclasses.dataclass
+        class Emojies:
+            messages_emoji = self.client.get_emoji(1127503836429438976)
+            money_emoji = self.client.get_emoji(1126456975337730078)
+            level_emoji = self.client.get_emoji(1127504341482344489)
 
         self.client.channels = Channels
         self.client.db = Models
