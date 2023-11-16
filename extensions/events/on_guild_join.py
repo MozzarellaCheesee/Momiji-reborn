@@ -1,4 +1,8 @@
-from extensions.events.__init__ import *
+import disnake
+from disnake.ext import commands
+
+from core.cog import BaseCog
+
 
 class GuildJoin(BaseCog):
 
@@ -9,7 +13,7 @@ class GuildJoin(BaseCog):
 
         for member in guild.members:
             defauilts = {
-            "discord_id": member.id
+                "discord_id": member.id
             }
             if not member.bot:
                 user_in_db = await self.client.db.Users.get_or_create(defaults=defauilts, discord_id=member.id)
@@ -19,7 +23,6 @@ class GuildJoin(BaseCog):
         await self.client.channels.log_join_channel.send(
             f"Бот успешно присоединился к серверу `{guild.name}`! Owner: {guild.owner.mention} ({guild.owner.name}) | Members count: {guild.member_count}"
         )
-
 
 
 def setup(client: commands.InteractionBot):

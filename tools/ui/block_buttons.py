@@ -1,5 +1,6 @@
 import disnake
 
+
 class BlockButton(disnake.ui.View):
     def __init__(self, user, client, embed):
         self.client = client
@@ -8,7 +9,7 @@ class BlockButton(disnake.ui.View):
         super().__init__(timeout=None)
 
     @disnake.ui.button(
-        label="ЗАБЛОКИРОВАТЬ", 
+        label="ЗАБЛОКИРОВАТЬ",
         style=disnake.ButtonStyle.red
     )
     async def a_callback(self, button: disnake.Button, inter: disnake.Interaction):
@@ -17,15 +18,16 @@ class BlockButton(disnake.ui.View):
         await user.save()
         await inter.response.edit_message(embed=self.embed, view=UnBlockButton(self.user, self.client, self.embed))
 
+
 class UnBlockButton(disnake.ui.View):
     def __init__(self, user, client, embed):
         self.client = client
         self.user = user
         self.embed = embed
         super().__init__(timeout=None)
-    
+
     @disnake.ui.button(
-        label="РАЗБЛОКИРОВАТЬ", 
+        label="РАЗБЛОКИРОВАТЬ",
         style=disnake.ButtonStyle.green
     )
     async def a_callback(self, button: disnake.Button, inter: disnake.Interaction):

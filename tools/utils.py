@@ -1,10 +1,10 @@
 import disnake
 from disnake.ext import commands
 from tortoise.queryset import Prefetch
-from PIL import Image, ImageDraw, ImageFont, Image, ImageChops
+from PIL import ImageDraw, ImageFont, Image, ImageChops
 from io import BytesIO
 from core.models.profiles import Profiles
-import datetime
+
 
 def circle(pfp, size=(215, 215)):
     pfp = pfp.resize(size, Image.LANCZOS).convert("RGBA")
@@ -18,13 +18,13 @@ def circle(pfp, size=(215, 215)):
     pfp.putalpha(mask)
     return pfp
 
-def divide_chunks(lst, n):
 
+def divide_chunks(lst, n):
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
 
-def get_avatar_formats(member: disnake.User | disnake.Member) -> list[str]:
 
+def get_avatar_formats(member: disnake.User | disnake.Member) -> list[str]:
     """
     Вовращает список с ссылками на различные размеры аватара пользователя (поддерживает анимированные аватарки)
     :param member: пользователь
@@ -40,8 +40,8 @@ def get_avatar_formats(member: disnake.User | disnake.Member) -> list[str]:
         formats.append(f"[GIF]({member.display_avatar.replace(format='gif', size=1024).url})")
     return formats
 
-def split_guild_members(guild_members: list[disnake.Member]) -> tuple[list[disnake.Member], ...]:
 
+def split_guild_members(guild_members: list[disnake.Member]) -> tuple[list[disnake.Member], ...]:
     """
     Разделяет пользователей и ботов
     :param guild_members:
@@ -61,7 +61,6 @@ def split_guild_members(guild_members: list[disnake.Member]) -> tuple[list[disna
 
 
 async def get_member_profile(member, client, to_prefetch: list[str | Prefetch] = None):
-
     """
     Возвращает профиль участника
     :inter:
@@ -77,8 +76,8 @@ async def get_member_profile(member, client, to_prefetch: list[str | Prefetch] =
         profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db).prefetch_related(to_prefetch)
     return profile
 
-async def get_member_profile_for_marry(member, client):
 
+async def get_member_profile_for_marry(member, client):
     """
     Возвращает профиль участника
     :inter:
@@ -91,17 +90,6 @@ async def get_member_profile_for_marry(member, client):
     profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db).select_related("user", "family")
     return profile
 
-async def standard_emb(
-        member: disnake.Member = None,
-        description: str = None,
-        title: str = None) -> disnake.Embed:
-    emd = disnake.Embed(
-        color=0x2b2d31,
-        description=description,
-        title=title)
-    if member is not None:
-        emd.set_thumbnail(url=member.display_avatar)
-    return emd
 
 async def account(locale: dict, client, inter, user):
     user_in_db = await client.db.Users.filter(discord_id=user.id).first().prefetch_related("authorizedsessions")
@@ -111,7 +99,7 @@ async def account(locale: dict, client, inter, user):
 
     await inter.response.defer()
 
-    name = f'{user.name}' if len(user.display_name) <= 10 else f'{user.name}'[:10]+'...'
+    name = f'{user.name}' if len(user.display_name) <= 10 else f'{user.name}'[:10] + '...'
     card = Image.open('./assets/profile_user.png')
     draw = ImageDraw.Draw(card)
 
@@ -143,11 +131,12 @@ async def account(locale: dict, client, inter, user):
         file = disnake.File(fp=image_binary, filename="image.png")
         await inter.send(file=file)
 
+
 async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
     user_in_db = await client.db.Users.get(discord_id=user.id)
     server_in_db = await client.db.Servers.get(discord_id=inter.guild.id)
     profile: Profiles = await client.db.Profiles.filter(user=user_in_db, server=server_in_db) \
-    .prefetch_related("partner", "tickets", "warns_profile").first()
+        .prefetch_related("partner", "tickets", "warns_profile").first()
 
     if not profile:
         return await inter.send(locale["error"], ephemeral=True)
@@ -159,8 +148,7 @@ async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
     else:
         partner = inter.guild.get_member(profile.partner.discord_id)
 
-
-    name = f'@{user.name}' if len(user.display_name) <= 15 else f'@{user.name}'[:15]+'...'
+    name = f'@{user.name}' if len(user.display_name) <= 15 else f'@{user.name}'[:15] + '...'
     card = Image.open('./assets/profile_server.png')
     draw = ImageDraw.Draw(card)
 
@@ -193,12 +181,14 @@ async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
         await inter.send(file=file)
 
 
-async def love_profile(locale: dict, client: commands.InteractionBot, inter: disnake.AppCmdInter, member: disnake.Member):
-
+async def love_profile(locale: dict, client: commands.InteractionBot, inter: disnake.AppCmdInter,
+                       member: disnake.Member):
     user_in_db = await client.db.Users.get(discord_id=member.id)
     server_in_db = await client.db.Servers.get(discord_id=inter.guild.id)
-    profile: Profiles = await client.db.Profiles.filter(user=user_in_db, server=server_in_db).prefetch_related("family", "family__wife", "family__husband").first()
-    
+    profile: Profiles = await client.db.Profiles.filter(user=user_in_db, server=server_in_db).prefetch_related("family",
+                                                                                                               "family__wife",
+                                                                                                               "family__husband").first()
+
     if profile.family is None:
         return await inter.send("У вас нет заключенного брака", ephemeral=True)
 
@@ -207,11 +197,13 @@ async def love_profile(locale: dict, client: commands.InteractionBot, inter: dis
     husband: disnake.Member = await client.fetch_user(profile.family.husband)
     wife: disnake.Member = await client.fetch_user(profile.family.wife)
 
-    wife_name = f'{wife.name}' if len(wife.name) <= 15 else f'{wife.name}'[:15]+'...'
-    husband_name =  f'{husband.name}' if len(husband.name) <= 15 else f'{husband.name}'[:15]+'...'
+    wife_name = f'{wife.name}' if len(wife.name) <= 15 else f'{wife.name}'[:15] + '...'
+    husband_name = f'{husband.name}' if len(husband.name) <= 15 else f'{husband.name}'[:15] + '...'
 
-    wife_avatar = circle(Image.open(BytesIO(await wife.display_avatar.with_static_format("png").read())).convert("RGBA"), (230, 230))
-    husband_avatar = circle(Image.open(BytesIO(await husband.display_avatar.with_static_format("png").read())).convert("RGBA"), (230, 230))
+    wife_avatar = circle(
+        Image.open(BytesIO(await wife.display_avatar.with_static_format("png").read())).convert("RGBA"), (230, 230))
+    husband_avatar = circle(
+        Image.open(BytesIO(await husband.display_avatar.with_static_format("png").read())).convert("RGBA"), (230, 230))
 
     date_of_create = profile.family.date_of_create.strftime("%d.%m.%Y")
     renewal_date = profile.family.renewal_date.strftime("%d.%m.%Y")
@@ -239,6 +231,7 @@ async def love_profile(locale: dict, client: commands.InteractionBot, inter: dis
 
         file = disnake.File(fp=image_binary, filename="image.png")
         await inter.send(file=file)
+
 
 async def get_or_create_role(client: commands.InteractionBot, server: any, _type: str, defaults: dict):
     _server = await client.db.Servers.get(discord_id=server.id)

@@ -1,4 +1,8 @@
-from extensions.events.__init__ import *
+import disnake
+from disnake.ext import commands
+
+from core.cog import BaseCog
+
 
 class MemberJoin(BaseCog):
 
@@ -14,7 +18,6 @@ class MemberJoin(BaseCog):
         user_in_db = await self.client.db.Users.get_or_create(defaults=defaults, discord_id=member.id)
         server_in_db = await self.client.db.Servers.get(discord_id=member.guild.id)
         await self.client.db.Profiles.create(user=user_in_db, server=server_in_db, family=None)
-
 
 
 def setup(client: commands.InteractionBot):

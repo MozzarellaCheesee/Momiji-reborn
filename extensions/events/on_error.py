@@ -1,4 +1,13 @@
-from extensions.events.__init__ import *
+import disnake
+from disnake.ext import commands
+
+from core.i18n import LocalizationStorage
+from core.cog import BaseCog
+
+from tools.exeption import CustomError
+from tools.ui.buttons import SupportButton
+
+import traceback
 
 _ = LocalizationStorage('errors')
 
@@ -57,7 +66,8 @@ class OnErrors(BaseCog):
         await self.client.channels.on_error_channel.send(
             embed=disnake.Embed(
                 title="Ошибка комманды!",
-                description=f"{''.join(traceback_list)} \n\n ```{error.__class__.__name__}: {error}```\n\n Команда вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}>"
+                description=f"{''.join(traceback_list)} \n\n ```{error.__class__.__name__}: {error}```\n\n Команда "
+                            f"вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}> "
             )
         )
 
@@ -113,9 +123,11 @@ class OnErrors(BaseCog):
         await self.client.channels.on_error_channel.send(
             embed=disnake.Embed(
                 title="Ошибка комманды!",
-                description=f"{''.join(traceback_list)} \n\n ```{error.__class__.__name__}: {error}```\n\n Команда вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}>"
+                description=f"{''.join(traceback_list)} \n\n ```{error.__class__.__name__}: {error}```\n\n Команда "
+                            f"вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}> "
             )
         )
+
 
 def setup(client: commands.InteractionBot):
     client.add_cog(OnErrors(client))

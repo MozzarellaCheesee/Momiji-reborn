@@ -1,4 +1,8 @@
-from extensions.events.__init__ import *
+import disnake
+from disnake.ext import commands
+
+from core.cog import BaseCog
+
 
 class GuildRemove(BaseCog):
 
@@ -9,7 +13,6 @@ class GuildRemove(BaseCog):
         await self.client.channels.log_remove_channel.send(
             f"Бот успешно вышел с сервера `{guild.name}`! Owner: {guild.owner.mention} ({guild.owner.name}) | Members count: {guild.member_count}"
         )
-
 
 
 def setup(client: commands.InteractionBot):

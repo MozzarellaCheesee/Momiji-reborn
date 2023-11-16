@@ -20,8 +20,5 @@ async def init_database():
             ]
         }
     )
-    try:
-        # await Tortoise.generate_schemas(safe=True)   
-        logging.info("База данных подключена")
-    except:
-        logging.error("Модели уже были сгенерированы")
+    # await Tortoise.generate_schemas(safe=True)
+    logging.info("База данных подключена")
