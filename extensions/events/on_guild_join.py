@@ -21,7 +21,8 @@ class GuildJoin(BaseCog):
                     await self.client.db.Profiles.create(user=user_in_db[0], server=server_in_db[0], family=None)
 
         await self.client.channels.log_join_channel.send(
-            f"Бот успешно присоединился к серверу `{guild.name}`! Owner: {guild.owner.mention} ({guild.owner.name}) | Members count: {guild.member_count}"
+            f"Бот успешно присоединился к серверу `{guild.name}`! Owner: {guild.owner.mention} ({guild.owner.name}) | \
+            Members count: {guild.member_count}"
         )
 
 

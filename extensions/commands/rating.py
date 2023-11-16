@@ -7,10 +7,10 @@ from core.cog import BaseCog
 from core.i18n import LocalizationStorage
 from tools.utils import get_member_profile
 from tools.exeption import CustomError
-from tools.ui.components import  StandartView
+from tools.ui.components import StandartView
 from tools.ui.leaderboard_select import LeaderBoardSelect
 
-_ =LocalizationStorage('rating')
+_ = LocalizationStorage('rating')
 
 
 class Rating(BaseCog):
@@ -19,7 +19,7 @@ class Rating(BaseCog):
                             description=__("rating commands", key="COMMAND_GROUP_DESCRIPTION_RATING"))
     async def rating(self, inter: AppCmdInter):
         ...
-    
+
     @rating.sub_command(
         name=__("leaderboard", key="COMMAND_NAME_LEADERBOARD"),
         description=__("view tops on the server by category", key="COMMAND_DESCRIPTION_LEADERBOARD")
@@ -37,7 +37,6 @@ class Rating(BaseCog):
             ).set_thumbnail(
                 url=inter.author.display_avatar.url
             ), view=view)
-    
 
     @commands.has_permissions(moderate_members=True)
     @commands.bot_has_permissions(moderate_members=True)
@@ -46,26 +45,26 @@ class Rating(BaseCog):
         description=__("set user level on server", key="COMMAND_DESCRIPTION_LEVEL")
     )
     async def level(
-        self, 
-        inter: AppCmdInter,
-        member: disnake.User = commands.Param(
-            name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
-            description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER")
-        ),
-        level: int = commands.Param(
-            name=__("level", key="COMMAND_PARAM_NAME_LEVEL"),
-            description=__("select level", key="COMMAND_PARAM_DESCRIPTION_LEVEL"),
-            ge=1
-        ),
-        action: str = commands.Param(
-            name=__("action", key="COMMAND_PARAM_NAME_ACTION"),
-            description=__("select action", key="COMMAND_PARAM_DESCRIPTION_ACTION"),
-            choices=[
-                __("Give", key="COMMAND_PARAM_CHOISE_GIVE"),
-                __("Take", key="COMMAND_PARAM_CHOISE_TAKE"),
-                __("Set", key="COMMAND_PARAM_CHOISE_SET")
-            ]
-        )
+            self,
+            inter: AppCmdInter,
+            member: disnake.User = commands.Param(
+                name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
+                description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER")
+            ),
+            level: int = commands.Param(
+                name=__("level", key="COMMAND_PARAM_NAME_LEVEL"),
+                description=__("select level", key="COMMAND_PARAM_DESCRIPTION_LEVEL"),
+                ge=1
+            ),
+            action: str = commands.Param(
+                name=__("action", key="COMMAND_PARAM_NAME_ACTION"),
+                description=__("select action", key="COMMAND_PARAM_DESCRIPTION_ACTION"),
+                choices=[
+                    __("Give", key="COMMAND_PARAM_CHOISE_GIVE"),
+                    __("Take", key="COMMAND_PARAM_CHOISE_TAKE"),
+                    __("Set", key="COMMAND_PARAM_CHOISE_SET")
+                ]
+            )
     ):
         locale = _(inter.locale, "level")
         if member.bot:
@@ -99,7 +98,7 @@ class Rating(BaseCog):
                 value=f"> `{profile_in_db.level}`",
                 inline=False
             )
-        
+
         await profile_in_db.save()
         await inter.send(embed=embed)
 
@@ -110,26 +109,26 @@ class Rating(BaseCog):
         description=__("set user messages count on server", key="COMMAND_DESCRIPTION_MESSAGES")
     )
     async def messages(
-        self, 
-        inter: AppCmdInter,
-        member: disnake.User = commands.Param(
-            name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
-            description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER")
-        ),
-        messages: int = commands.Param(
-            name=__("messages", key="COMMAND_PARAM_NAME_MESSAGES"),
-            description=__("select messages", key="COMMAND_PARAM_DESCRIPTION_MESSAGES"),
-            ge=0
-        ),
-        action: str = commands.Param(
-            name=__("action", key="COMMAND_PARAM_NAME_ACTION"),
-            description=__("select action", key="COMMAND_PARAM_DESCRIPTION_ACTION"),
-            choices=[
-                __("Give", key="COMMAND_PARAM_CHOISE_GIVE"),
-                __("Take", key="COMMAND_PARAM_CHOISE_TAKE"),
-                __("Set", key="COMMAND_PARAM_CHOISE_SET")
-            ]
-        )
+            self,
+            inter: AppCmdInter,
+            member: disnake.User = commands.Param(
+                name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
+                description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER")
+            ),
+            messages: int = commands.Param(
+                name=__("messages", key="COMMAND_PARAM_NAME_MESSAGES"),
+                description=__("select messages", key="COMMAND_PARAM_DESCRIPTION_MESSAGES"),
+                ge=0
+            ),
+            action: str = commands.Param(
+                name=__("action", key="COMMAND_PARAM_NAME_ACTION"),
+                description=__("select action", key="COMMAND_PARAM_DESCRIPTION_ACTION"),
+                choices=[
+                    __("Give", key="COMMAND_PARAM_CHOISE_GIVE"),
+                    __("Take", key="COMMAND_PARAM_CHOISE_TAKE"),
+                    __("Set", key="COMMAND_PARAM_CHOISE_SET")
+                ]
+            )
     ):
         locale = _(inter.locale, "messages")
         if member.bot:
@@ -161,7 +160,7 @@ class Rating(BaseCog):
                 value=f"> `{profile_in_db.messages}`",
                 inline=False
             )
-        
+
         await profile_in_db.save()
         await inter.send(embed=embed)
 
@@ -172,26 +171,26 @@ class Rating(BaseCog):
         description=__("set user experience count on server", key="COMMAND_DESCRIPTION_EXPERIENCE")
     )
     async def experience(
-        self, 
-        inter: AppCmdInter,
-        member: disnake.User = commands.Param(
-            name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
-            description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER")
-        ),
-        experience: int = commands.Param(
-            name=__("experience", key="COMMAND_PARAM_NAME_EXPERIENCE"),
-            description=__("select experience", key="COMMAND_PARAM_DESCRIPTION_EXPERIENCE"),
-            ge=0
-        ),
-        action: str = commands.Param(
-            name=__("action", key="COMMAND_PARAM_NAME_ACTION"),
-            description=__("select action", key="COMMAND_PARAM_DESCRIPTION_ACTION"),
-            choices=[
-                __("Give", key="COMMAND_PARAM_CHOISE_GIVE"),
-                __("Take", key="COMMAND_PARAM_CHOISE_TAKE"),
-                __("Set", key="COMMAND_PARAM_CHOISE_SET")
-            ]
-        )
+            self,
+            inter: AppCmdInter,
+            member: disnake.User = commands.Param(
+                name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
+                description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER")
+            ),
+            experience: int = commands.Param(
+                name=__("experience", key="COMMAND_PARAM_NAME_EXPERIENCE"),
+                description=__("select experience", key="COMMAND_PARAM_DESCRIPTION_EXPERIENCE"),
+                ge=0
+            ),
+            action: str = commands.Param(
+                name=__("action", key="COMMAND_PARAM_NAME_ACTION"),
+                description=__("select action", key="COMMAND_PARAM_DESCRIPTION_ACTION"),
+                choices=[
+                    __("Give", key="COMMAND_PARAM_CHOISE_GIVE"),
+                    __("Take", key="COMMAND_PARAM_CHOISE_TAKE"),
+                    __("Set", key="COMMAND_PARAM_CHOISE_SET")
+                ]
+            )
     ):
         locale = _(inter.locale, "experience")
         if member.bot:
@@ -223,9 +222,10 @@ class Rating(BaseCog):
                 value=f"> `{profile_in_db.experience}`",
                 inline=False
             )
-        
+
         await profile_in_db.save()
         await inter.send(embed=embed)
+
 
 def setup(client: commands.InteractionBot):
     client.add_cog(Rating(client))

@@ -3,23 +3,28 @@ from disnake.ext import commands
 from tools.exeption import CustomError
 from core.i18n import LocalizationStorage
 
+
 class BaseChecks:
-    
+
     def is_higher(locale_path: object):
         """
         Проверка на топ роль участника
 
         :return: True или False
         """
+
         async def predicate(inter: disnake.ApplicationCommandInteraction):
             locale = locale_path(inter.locale, "errors")
             try:
-                member_cheсk = inter.author.top_role <= inter.filled_options["member" or "участник"].top_role or inter.me.top_role <= inter.filled_options["member" or "участник"].top_role
+                member_cheсk = inter.author.top_role <= inter.filled_options[
+                    "member" or "участник"].top_role or inter.me.top_role <= inter.filled_options[
+                                   "member" or "участник"].top_role
                 if member_cheсk:
                     raise CustomError(locale["top_role_error"])
                 return True
             except:
                 return True
+
         return commands.check(predicate)
 
     def self_check(locale_path: object):
@@ -28,6 +33,7 @@ class BaseChecks:
 
         :return: True или False
         """
+
         async def predicate(inter: disnake.ApplicationCommandInteraction):
             locale = locale_path(inter.locale, "errors")
             try:
@@ -36,9 +42,10 @@ class BaseChecks:
                 return True
 
             if inter.author == member:
-                raise CustomError(locale['self_error']) 
-                
+                raise CustomError(locale['self_error'])
+
             return True
+
         return commands.check(predicate)
 
     def bot_check(locale_path: object):
@@ -47,9 +54,11 @@ class BaseChecks:
 
         :return: True или False
         """
+
         async def predicate(inter: disnake.ApplicationCommandInteraction):
             locale = locale_path(inter.locale, "errors")
             if inter.filled_options["member" or "участник"].bot:
                 raise CustomError(locale['bot_error'])
             return True
+
         return commands.check(predicate)

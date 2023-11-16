@@ -14,13 +14,14 @@ from tools.exeption import CustomError
 _ = LocalizationStorage("economy")
 err = LocalizationStorage("errors#2")
 
+
 class Economy(BaseCog):
 
     @commands.slash_command(name=__("economy", key="COMMAND_GROUP_ECONOMY"),
                             description=__("economy commands", key="COMMAND_GROUP_DESCRIPTION_ECONOMY"))
     async def economy(self, inter: AppCmdInter):
         ...
-        
+
     @commands.cooldown(1, 28800, commands.BucketType.user)
     @economy.sub_command(name=__("work", key="COMMAND_NAME_WORK"),
                          description=__("get money and experience", key="COMMAND_DESCRIPTION_WORK"))
@@ -52,21 +53,21 @@ class Economy(BaseCog):
 
         await profile.save()
         await inter.send(embed=embed)
- 
+
     @BaseChecks.self_check(err)
     @economy.sub_command(name=__("pay", key="COMMAND_NAME_PAY"),
                          description=__("transfer money to a user", key="COMMAND_DESCRIPTION_PAY"))
     async def pay(
-        self, 
-        inter: AppCmdInter,
-        member: disnake.User = commands.Param(
-            name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
-            description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER")
-        ),
-        amount: int = commands.Param(
-            name=__("amount", key="COMMAND_PARAM_NAME_AMOUNT"),
-            description=__("enteramount", key="COMMAND_PARAM_DESCRIPTION_AMOUNT")
-        )
+            self,
+            inter: AppCmdInter,
+            member: disnake.User = commands.Param(
+                name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
+                description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER")
+            ),
+            amount: int = commands.Param(
+                name=__("amount", key="COMMAND_PARAM_NAME_AMOUNT"),
+                description=__("enteramount", key="COMMAND_PARAM_DESCRIPTION_AMOUNT")
+            )
     ):
         locale = _(inter.locale, "pay")
         if member.bot:
@@ -76,7 +77,7 @@ class Economy(BaseCog):
 
         if author_profile.money < amount:
             raise CustomError(locale["error"])
-        
+
         member_profile = await get_member_profile(member, self.client)
 
         member_profile.money = member_profile.money + amount

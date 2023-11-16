@@ -2,6 +2,7 @@ from tortoise import fields
 from tortoise import models
 from tortoise.models import Model
 
+
 class Servers(Model):
     id = fields.IntField(pk=True)
     discord_id = fields.BigIntField(null=False)

@@ -2,6 +2,7 @@ from tortoise import fields
 from tortoise.models import Model
 from tortoise import models
 
+
 class Users(Model):
     id = fields.IntField(pk=True)
     discord_id = fields.BigIntField(null=False)
@@ -12,7 +13,6 @@ class Users(Model):
     experience = fields.IntField(default=0, null=False)
     authorizedsessions: fields.ReverseRelation["models.AuthorizedSessions"]
     profiles: fields.ReverseRelation["models.Profiles"]
-
 
     class Meta:
         table = 'users'

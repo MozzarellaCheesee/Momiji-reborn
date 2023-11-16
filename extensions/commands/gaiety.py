@@ -9,6 +9,7 @@ from core.i18n import LocalizationStorage
 
 _ = LocalizationStorage("gaiety")
 
+
 class Gaiety(BaseCog):
 
     @commands.slash_command(name=__("gaiety", key="COMMAND_GROUP_GAIETY"),
@@ -27,7 +28,7 @@ class Gaiety(BaseCog):
                 description=locale[f"{answer}"]
             )
         )
-        
+
 
 def setup(client: commands.InteractionBot):
     client.add_cog(Gaiety(client))

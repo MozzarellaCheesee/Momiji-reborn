@@ -16,7 +16,7 @@ class Utilits(BaseCog):
     @commands.slash_command(name=__("utilits", key="COMMAND_GROUP_UTILITS"),
                             description=__("utilit commands", key="COMMAND_GROUP_DESCRIPTION_UTILITS"))
     async def utilits(self, inter: AppCmdInter):
-       ...
+        ...
 
     @commands.cooldown(1, 240, commands.BucketType.user)
     @utilits.sub_command(name=__("report", key="COMMAND_NAME_REPORT"),
@@ -37,6 +37,7 @@ class Utilits(BaseCog):
         if user.status == "BLOCKED":
             raise CustomError(locale["error"])
         await inter.response.send_modal(modal=IdeaModal(locale=locale, bot=self.client, interaction=inter))
+
 
 def setup(client: commands.InteractionBot):
     client.add_cog(Utilits(client))

@@ -3,8 +3,8 @@ import disnake
 import json
 from pathlib import Path
 
-
 Momiji_dir = Path(__file__).parents[1]
+
 
 class LocalizationStorage:
 
@@ -30,11 +30,9 @@ class LocalizationStorage:
                     continue
                 self._load_file(file)
 
-
     def _load_file(self, file: Path):
         data = json.loads(file.read_text("utf-8"))
         self._loc[file.stem] = data
-
 
     def __call__(self, locale: disnake.Locale, command_name: str):
         """

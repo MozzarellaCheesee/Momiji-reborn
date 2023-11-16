@@ -7,6 +7,7 @@ from tools.ui.components import StandartView, StandardSelect
 
 from core.settings import commands_, events
 
+
 class ReloadCogs(StandardSelect):
     def __init__(self, cogs_list: list):
         super().__init__(placeholder='select cogs to reload', options=cogs_list, row=1, max_values=len(cogs_list))
@@ -22,28 +23,31 @@ class ReloadCogs(StandardSelect):
             )
         )
 
+
 class Developer(BaseCog):
 
     @commands.is_owner()
-    @commands.slash_command(name="разблокировать", description='ТОЛЬКО ВЛАДЕЛЕЦ БОТА! Разблокировать пользователя в системе')
+    @commands.slash_command(name="разблокировать",
+                            description='ТОЛЬКО ВЛАДЕЛЕЦ БОТА! Разблокировать пользователя в системе')
     async def unblock(self, inter: AppCmdInter, user: disnake.User):
         user = await self.client.db.Users.get(discord_id=user.id)
         if user.status != "BLOCKED":
             await inter.send('Пользователь не заблокирован', ephemeral=True)
             return
-        
+
         user.status = None
         await user.save()
         await inter.send('Пользователь был разблокирован', ephemeral=True)
 
     @commands.is_owner()
-    @commands.slash_command(name="заблокировать", description='ТОЛЬКО ВЛАДЕЛЕЦ БОТА! Заблокировать пользователя в системе')
+    @commands.slash_command(name="заблокировать",
+                            description='ТОЛЬКО ВЛАДЕЛЕЦ БОТА! Заблокировать пользователя в системе')
     async def block(self, inter: AppCmdInter, user: disnake.User):
         user = await self.client.db.Users.get(discord_id=user.id)
         if user.status == "BLOCKED":
             await inter.send('Пользователь уже заблокирован', ephemeral=True)
             return
-        
+
         user.status = "BLOCKED"
         await user.save()
         await inter.send('Пользователь был заблокирован', ephemeral=True)
@@ -52,7 +56,7 @@ class Developer(BaseCog):
     @commands.slash_command(name="перезагрузка", description='ТОЛЬКО ВЛАДЕЛЕЦ БОТА! Перезагрузка модулей бота')
     async def reload(self, inter: AppCmdInter):
         view = StandartView(inter, self.client, timeout=60)
-        view.add_item(ReloadCogs(list(list(commands_)+list(events))))
+        view.add_item(ReloadCogs(list(list(commands_) + list(events))))
         await inter.send(
             embed=disnake.Embed(
                 title="Reload cogs"

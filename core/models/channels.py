@@ -2,9 +2,12 @@ from tortoise import fields
 from tortoise import models
 from tortoise.models import Model
 
+
 class Channels(Model):
     id = fields.IntField(pk=True)
-    server: fields.ForeignKeyRelation["models.Servers"] = fields.ForeignKeyField("models.Servers", related_name="channels", null=False, on_delete=fields.CASCADE)
+    server: fields.ForeignKeyRelation["models.Servers"] = fields.ForeignKeyField("models.Servers",
+                                                                                 related_name="channels", null=False,
+                                                                                 on_delete=fields.CASCADE)
     channel_id = fields.BigIntField(null=False)
     channel_type = fields.CharField(max_length=15, null=False)
 

@@ -11,7 +11,8 @@ class GuildRemove(BaseCog):
         await self.client.db.Servers.filter(discord_id=guild.id).delete()
 
         await self.client.channels.log_remove_channel.send(
-            f"Бот успешно вышел с сервера `{guild.name}`! Owner: {guild.owner.mention} ({guild.owner.name}) | Members count: {guild.member_count}"
+            f"Бот успешно вышел с сервера `{guild.name}`! Owner: {guild.owner.mention} ({guild.owner.name}) | \
+            Members count: {guild.member_count}"
         )
 
 

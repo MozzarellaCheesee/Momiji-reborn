@@ -1,23 +1,24 @@
 import disnake
-from disnake import AppCmdInter, UserCommandInteraction
+from disnake import AppCmdInter
 from disnake import Localized as __
 from disnake.ext import commands
 import datetime
 
 from core.cog import BaseCog
 from core.i18n import LocalizationStorage
-from tools.utils import get_member_profile_for_marry, get_or_create_role
+from tools.utils import get_member_profile_for_marry
 from tools.exeption import CustomError
 from core.checks import BaseChecks
 from tools.utils import love_profile
 
-
 _ = LocalizationStorage("family")
 err = LocalizationStorage('errors#2')
 
+
 class MarryButtons(disnake.ui.View):
-    
-    def __init__(self, author, client: commands.InteractionBot, member, locale: dict, role: disnake.Role, check_member: disnake.Member, disnake_author: disnake.Member, inter):
+
+    def __init__(self, author, client: commands.InteractionBot, member, locale: dict, role: disnake.Role,
+                 check_member: disnake.Member, disnake_author: disnake.Member, inter):
         super().__init__(timeout=60)
         self.author = author
         self.member = member
@@ -44,7 +45,6 @@ class MarryButtons(disnake.ui.View):
     async def interaction_check(self, interaction: disnake.Interaction) -> bool:
         return interaction.author == self.check_member
 
-
     @disnake.ui.button(emoji="✅")
     async def yes_callback(self, button, inter: disnake.Interaction):
         role: disnake.Role = inter.guild.get_role(self.role.role_id)
@@ -61,18 +61,19 @@ class MarryButtons(disnake.ui.View):
         self.author.money -= 12000
         self.author.partner = self.member.user
         self.member.partner = self.author.user
-        await self.author.save() 
+        await self.author.save()
         await self.member.save()
         await inter.response.edit_message(
             embed=disnake.Embed(
                 title=self.locale["buttons"]["embeds"]["yes_title"],
-                description=self.locale["buttons"]["embeds"]["yes_description"].format(author=self.disnake_author.mention, member=self.check_member.mention)
+                description=self.locale["buttons"]["embeds"]["yes_description"].format(
+                    author=self.disnake_author.mention, member=self.check_member.mention)
             ), view=None
         )
 
         await self.disnake_author.add_roles(role, reason='marry')
         await self.check_member.add_roles(role, reason='marry')
-        
+
         self.check = 1
 
     @disnake.ui.button(emoji="❎")
@@ -84,8 +85,9 @@ class MarryButtons(disnake.ui.View):
             ), view=None
         )
 
+
 class Family(BaseCog):
-    
+
     @commands.slash_command(name=__("family", key="COMMAND_GROUP_FAMILY"),
                             description=__("family's commands", key="COMMAND_GROUP_DESCRIPTION_FAMILY"))
     async def family(self, inter: AppCmdInter):
@@ -98,10 +100,10 @@ class Family(BaseCog):
         description=__('marry command', key="COMMAND_DESCRIPTION_MARRY")
     )
     async def marry(self, inter: AppCmdInter,
-                   user: disnake.User = commands.Param(
+                    user: disnake.User = commands.Param(
                         name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
                         description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"))
-    ):
+                    ):
         locale = _(inter.locale, "marry")
         author_profile = await get_member_profile_for_marry(inter.author, self.client)
         member_profile = await get_member_profile_for_marry(user, self.client)
@@ -117,7 +119,7 @@ class Family(BaseCog):
             raise CustomError(locale["errors"]["not_money"])
         await inter.send(
             user.mention,
-            embed = disnake.Embed(
+            embed=disnake.Embed(
                 title=locale["title"],
                 description=locale["description"].format(user=user.mention, author=inter.author.mention)
             ), view=MarryButtons(author_profile, self.client, member_profile, locale, role, user, inter.author, inter)
@@ -128,18 +130,19 @@ class Family(BaseCog):
         description=__('view love profile', key="COMMAND_DESCRIPTION_LOVE")
     )
     async def loveprofile(
-        self, inter: AppCmdInter,
-        member: disnake.Member = commands.Param(
-            name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
-            description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
-            default=lambda inter: inter.author
-        )
+            self, inter: AppCmdInter,
+            member: disnake.Member = commands.Param(
+                name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
+                description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
+                default=lambda inter: inter.author
+            )
     ):
         locale = _(inter.locale, "love_profile")
         loc = err(inter.locale, "errors")
         if member.bot:
             raise CustomError(loc['bot_error'])
         await love_profile(locale, self.client, inter, member)
-    
+
+
 def setup(client: commands.InteractionBot):
     client.add_cog(Family(client))

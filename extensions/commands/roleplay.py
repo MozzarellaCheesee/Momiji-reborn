@@ -13,18 +13,20 @@ import aiohttp
 _ = LocalizationStorage("roleplay")
 err = LocalizationStorage("errors#2")
 
+
 async def two_answers(inter: AppCmdInter, command_name: str, member: disnake.Member = None):
     locale = _(inter.locale, command_name)
     embed = disnake.Embed().set_image(url=await get_gif(f"anime_{command_name}"))
     embed.description = f"{inter.author.mention} {locale['description_1']} {member.mention}" \
-                        if member else f"{inter.author.mention} {locale['description_2']}"
+        if member else f"{inter.author.mention} {locale['description_2']}"
 
     await inter.send(embed=embed)
+
 
 async def one_answer(inter: AppCmdInter, command_name: str):
     locale = _(inter.locale, command_name)
     await inter.send(
-        embed = disnake.Embed(
+        embed=disnake.Embed(
             description=f"{inter.author.mention} {locale['description_1']}"
         ).set_image(url=await get_gif(f"anime_{command_name}"))
     )
@@ -47,6 +49,7 @@ async def get_gif(q: str):
             else:
                 return None
 
+
 class Emoties(BaseCog):
 
     ########################################
@@ -66,9 +69,8 @@ class Emoties(BaseCog):
                         name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
                         description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
                         default=None)
-    ):
+                    ):
         await two_answers(inter, "hello", member)
-            
 
     ########################################
 
@@ -80,7 +82,7 @@ class Emoties(BaseCog):
                       name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
                       description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
                       default=None)
-    ):
+                  ):
         await two_answers(inter, "hug", member)
 
     ########################################
@@ -93,7 +95,7 @@ class Emoties(BaseCog):
                        name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
                        description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
                        default=None)
-    ):
+                   ):
         await two_answers(inter, "kiss", member)
 
     ########################################
@@ -106,7 +108,7 @@ class Emoties(BaseCog):
                         name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
                         description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
                         default=None)
-    ):
+                    ):
         await two_answers(inter, "punch", member)
 
     ########################################
@@ -114,19 +116,19 @@ class Emoties(BaseCog):
     @BaseChecks.self_check(err)
     @emotion.sub_command(name=__("pat", key="COMMAND_NAME_PAT"),
                          description=__('pat someone', key="COMMAND_DESCRIPTION_PAT")
-    )
+                         )
     async def pat(self, inter: AppCmdInter,
                   member: disnake.Member = commands.Param(
                       name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
                       description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
                       default=None)
-    ):
+                  ):
         await two_answers(inter, "pat", member)
 
     ########################################
 
     @emotion.sub_command(name=__("smoke", key="COMMAND_NAME_SMOKE"),
-                        description=__('smoke a cigarette', key="COMMAND_DESCRIPTION_SMOKE"))
+                         description=__('smoke a cigarette', key="COMMAND_DESCRIPTION_SMOKE"))
     async def smoke(self, inter: AppCmdInter):
         await one_answer(inter, "smoke")
 
@@ -139,7 +141,6 @@ class Emoties(BaseCog):
 
     ########################################
 
-
     @BaseChecks.self_check(err)
     @emotion.sub_command(name=__("angry", key="COMMAND_NAME_ANGRY"),
                          description=__('get angry at someone', key="COMMAND_DESCRIPTION_ANGRY"))
@@ -148,7 +149,7 @@ class Emoties(BaseCog):
                         name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
                         description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
                         default=None)
-    ):
+                    ):
         await two_answers(inter, "angry", member)
 
     ########################################
@@ -158,10 +159,10 @@ class Emoties(BaseCog):
                          description=__('bite someone', key="COMMAND_DESCRIPTION_BITE"))
     async def bite(self, inter: AppCmdInter,
                    member: disnake.Member = commands.Param(
-                        name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
-                        description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
-                        default=None)
-    ):
+                       name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
+                       description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
+                       default=None)
+                   ):
         await two_answers(inter, "bite", member)
 
     ########################################
@@ -171,10 +172,10 @@ class Emoties(BaseCog):
                          description=__('clap someone', key="COMMAND_DESCRIPTION_CLAP"))
     async def clap(self, inter: AppCmdInter,
                    member: disnake.Member = commands.Param(
-                        name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
-                        description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
-                        default=None)
-    ):
+                       name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
+                       description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
+                       default=None)
+                   ):
         await two_answers(inter, "clap", member)
 
     ########################################
@@ -184,10 +185,10 @@ class Emoties(BaseCog):
                          description=__('feed someone', key="COMMAND_DESCRIPTION_FEED"))
     async def feed(self, inter: AppCmdInter,
                    member: disnake.Member = commands.Param(
-                        name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
-                        description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
-                        default=None)
-    ):
+                       name=__("member", key="COMMAND_PARAM_NAME_MEMBER"),
+                       description=__("select member", key="COMMAND_PARAM_DESCRIPTION_MEMBER"),
+                       default=None)
+                   ):
         await two_answers(inter, "feed", member)
 
     ########################################
@@ -196,6 +197,7 @@ class Emoties(BaseCog):
                          description=__('tear up the dance floor', key="COMMAND_DESCRIPTION_DANCE"))
     async def dance(self, inter: AppCmdInter):
         await one_answer(inter, "dance")
+
 
 def setup(client: commands.InteractionBot):
     client.add_cog(Emoties(client))
