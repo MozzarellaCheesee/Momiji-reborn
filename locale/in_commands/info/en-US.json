@@ -1,7 +1,7 @@
 {
     "help": {
         "title": "Help command",
-        "description": "This command was created solely to notify you that all bot commands are available when you enter `/` (slash) in the chat. All parameters that are needed for the command will be listed there, as well as a full description for each parameter and command. The bot is translated into 2 languages: English (USA), Russian and will adapt to the language of your discord client. Thanks for using our bot! Support us through the links below:\n>>> **[Link to server](https://yandex.ru)**\n**[Link to site](https://yandex.ru)\n** [Link to donation](https://yandex.ru)**",
+        "description": "This command was created solely to notify you that all bot commands are available when you enter `/` (slash) in the chat. All parameters that are needed for the command will be listed there, as well as a full description for each parameter and command. The bot is translated into 2 languages: English (USA), Russian and will adapt to the language of your discord client. Thanks for using our bot! Support us through the links below:\n>>> **[Link to server](https://discord.gg/WgUU4zkDhY )**\n**Link to site (Soon)\n**Link to donation (Soon)**",
         "footer": "Coming soon..."
     },
 
