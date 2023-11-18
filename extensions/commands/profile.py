@@ -20,6 +20,26 @@ class Profile(BaseCog):
     async def profile(self, inter: AppCmdInter):
         ...
 
+    @profile.sub_command(name=__("create", key="COMMAND_NAME_PROFILE_CREATE"),
+                         description=__("create a profile on the server", key="COMMAND_DESCRIPTION_PROFILE_CREATE"))
+    async def create(self, inter: AppCmdInter):
+        locale = _(inter.locale, "profile_create")
+        server_in_db = await self.client.db.Servers.get_or_create(discord_id=inter.author.guild.id)
+        author_user_in_db = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
+        author_profile = await self.client.db.Profiles.get_or_create(user=author_user_in_db[0], server=server_in_db[0])
+        if author_profile[1]:
+            return await inter.send(
+                embed=disnake.Embed(
+                    title=locale['title'],
+                    description=locale['description']
+                )
+            )
+        await inter.send(
+            embed=disnake.Embed(
+                title=locale["error"]
+            )
+        )
+
     @profile.sub_command(name=__("view", key="COMMAND_NAME_VIEW"),
                          description=__("view profile", key="COMMAND_DESCRIPTION_VIEW"))
     async def view(self, inter: AppCmdInter,

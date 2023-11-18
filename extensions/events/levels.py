@@ -11,31 +11,35 @@ class Level(BaseCog):
 
     @commands.Cog.listener()
     async def on_message(self, message: disnake.Message):
-        try:
-            user = await self.client.db.Users.get(discord_id=message.author.id)
-            profile = await get_member_profile(message.author, self.client)
-            profile.messages += 1
-            user.messages += 1
+        if message.author.bot:
+            return
 
-            if len(message.content) > 5:
-                new_lvl = profile.level * 50
-                new_user_lvl = user.level * 50
-                rand_xp = randint(1, 7)
+        user = await self.client.db.Users.get_or_create(discord_id=message.author.id)
+        server = await self.client.db.Servers.get_or_create(discord_id=message.guild.id)
+        profile = await self.client.db.Profiles.get_or_none(user=user[0], server=server[0])
+        user[0].messages += 1
+
+        if len(message.content) > 5:
+            rand_xp = randint(1, 7)
+
+            if profile is not None:
+                profile.messages += 1
+                new_profile_lvl = profile.level * 50
                 profile.experience += rand_xp
-                user.experience += rand_xp
 
-                if profile.experience >= new_lvl:
+                if profile.experience >= new_profile_lvl:
                     profile.level += 1
                     profile.experience = 0
+                await profile.save()
 
-                if user.experience >= new_user_lvl:
-                    user.level += 1
-                    user.experience = 0
+            new_user_lvl = user[0].level * 50
+            user[0].experience += rand_xp
 
-            await profile.save()
-            await user.save()
-        except tortoise.exceptions.DoesNotExist:
-            ...
+            if user[0].experience >= new_user_lvl:
+                user[0].level += 1
+                user[0].experience = 0
+
+        await user[0].save()
 
 
 def setup(client: commands.InteractionBot):

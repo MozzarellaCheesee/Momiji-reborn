@@ -3,12 +3,22 @@ from disnake.ext import commands
 
 from core.i18n import LocalizationStorage
 from core.cog import BaseCog
-
-from tools.dataclasses import Models
 from tools.ui.modals.server_settings_verefy import VerefyButton
 
 import logging
 import dataclasses
+
+from tortoise.models import Model
+
+from core.models.authorized_sessions import AuthorizedSessions
+from core.models.channels import Channels
+from core.models.families import Families
+from core.models.profiles import Profiles
+from core.models.servers import Servers
+from core.models.tickets import Tickets
+from core.models.users import Users
+from core.models.warns import Warns
+from core.models.roles import Roles
 
 _ = LocalizationStorage("server_settings")
 
@@ -18,6 +28,18 @@ class OnReady(BaseCog):
     @commands.Cog.listener()
     async def on_ready(self):
         logging.info("Загрузка клиента")
+
+        @dataclasses.dataclass
+        class Models:
+            AuthorizedSessions: Model = AuthorizedSessions
+            Channels: Model = Channels
+            Families: Model = Families
+            Profiles: Model = Profiles
+            Servers: Model = Servers
+            Tickets: Model = Tickets
+            Users: Model = Users
+            Warns: Model = Warns
+            Roles: Model = Roles
 
         @dataclasses.dataclass
         class Channels:
@@ -36,20 +58,6 @@ class OnReady(BaseCog):
         self.client.channels = Channels
         self.client.db = Models
         self.client.emojies = Emojies
-
-        for user in self.client.users:
-            if not user.bot:
-                await self.client.db.Users.get_or_create(discord_id=user.id)
-                logging.info(f"Пользователь {user.name} | {user.id} успешно найден/добавлен в базе(-у) данных")
-
-        for guild in self.client.guilds:
-            server_in_db = await self.client.db.Servers.get_or_create(discord_id=guild.id)
-            logging.info(f"Сервер {guild.name} | {guild.id} успешно найден/добавлен в базе(-у) данных")
-            for member in guild.members:
-                if not member.bot:
-                    user_in_db = await self.client.db.Users.get(discord_id=member.id)
-                    if await self.client.db.Profiles.get_or_none(server=server_in_db[0], user=user_in_db) is None:
-                        await self.client.db.Profiles.create(user=user_in_db, server=server_in_db[0])
 
         await self.client.change_presence(
             activity=disnake.Streaming(name="Waiting for new members..", url="https://www.twitch.tv/astolfo_oxo"))

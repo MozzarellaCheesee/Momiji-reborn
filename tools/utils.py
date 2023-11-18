@@ -68,12 +68,12 @@ async def get_member_profile(member, client, to_prefetch: list[str | Prefetch] =
     :return: profile
     """
 
-    user_in_db = await client.db.Users.get(discord_id=member.id)
-    server_in_db = await client.db.Servers.get(discord_id=member.guild.id)
+    user_in_db = await client.db.Users.get_or_create(discord_id=member.id)
+    server_in_db = await client.db.Servers.get_or_create(discord_id=member.guild.id)
     if to_prefetch is None:
-        profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db)
+        profile = await client.db.Profiles.get_or_none(user=user_in_db[0], server=server_in_db[0])
     else:
-        profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db).prefetch_related(to_prefetch)
+        profile = await client.db.Profiles.get(user=user_in_db[0], server=server_in_db[0]).prefetch_related(to_prefetch)
     return profile
 
 
@@ -85,9 +85,9 @@ async def get_member_profile_for_marry(member, client):
     :return: profile
     """
 
-    user_in_db = await client.db.Users.get(discord_id=member.id)
-    server_in_db = await client.db.Servers.get(discord_id=member.guild.id)
-    profile = await client.db.Profiles.get(user=user_in_db, server=server_in_db).select_related("user", "family")
+    user_in_db = await client.db.Users.get_or_create(discord_id=member.id)
+    server_in_db = await client.db.Servers.get_or_create(discord_id=member.guild.id)
+    profile = await client.db.Profiles.get(user=user_in_db[0], server=server_in_db[0]).select_related("user", "family")
     return profile
 
 
@@ -99,7 +99,7 @@ async def account(locale: dict, client, inter, user):
 
     await inter.response.defer()
 
-    name = f'{user.name}' if len(user.display_name) <= 10 else f'{user.name}'[:10] + '...'
+    name = f'{user.name}' if len(user.name) <= 10 else f'{user.name}'[:10] + '...'
     card = Image.open('./assets/profile_user.png')
     draw = ImageDraw.Draw(card)
 
@@ -133,9 +133,9 @@ async def account(locale: dict, client, inter, user):
 
 
 async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
-    user_in_db = await client.db.Users.get(discord_id=user.id)
-    server_in_db = await client.db.Servers.get(discord_id=inter.guild.id)
-    profile: Profiles = await client.db.Profiles.filter(user=user_in_db, server=server_in_db) \
+    user_in_db = await client.db.Users.get_or_create(discord_id=user.id)
+    server_in_db = await client.db.Servers.get_or_create(discord_id=inter.guild.id)
+    profile: Profiles = await client.db.Profiles.filter(user=user_in_db[0], server=server_in_db[0]) \
         .prefetch_related("partner", "tickets", "warns_profile").first()
 
     if not profile:
@@ -148,7 +148,7 @@ async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
     else:
         partner = inter.guild.get_member(profile.partner.discord_id)
 
-    name = f'@{user.name}' if len(user.display_name) <= 15 else f'@{user.name}'[:15] + '...'
+    name = f'@{user.name}' if len(user.name) <= 15 else f'@{user.name}'[:15] + '...'
     card = Image.open('./assets/profile_server.png')
     draw = ImageDraw.Draw(card)
 
@@ -182,15 +182,17 @@ async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
 
 
 async def love_profile(locale: dict, client: commands.InteractionBot, inter: disnake.AppCmdInter,
-                       member: disnake.Member):
-    user_in_db = await client.db.Users.get(discord_id=member.id)
-    server_in_db = await client.db.Servers.get(discord_id=inter.guild.id)
-    profile: Profiles = await client.db.Profiles.filter(user=user_in_db, server=server_in_db).prefetch_related("family",
-                                                                                                               "family__wife",
-                                                                                                               "family__husband").first()
+                       member: disnake.Member, buttons: disnake.ui.View):
+    user_in_db = await client.db.Users.get_or_create(discord_id=member.id)
+    server_in_db = await client.db.Servers.get_or_create(discord_id=inter.guild.id)
+    profile: Profiles = await client.db.Profiles.filter(
+        user=user_in_db[0], server=server_in_db[0]
+    ).prefetch_related("family",
+                       "family__wife",
+                       "family__husband").first()
 
     if profile.family is None:
-        return await inter.send("У вас нет заключенного брака", ephemeral=True)
+        return await inter.send(locale['error'].format(member=member.mention), ephemeral=True)
 
     await inter.response.defer()
 
@@ -229,12 +231,18 @@ async def love_profile(locale: dict, client: commands.InteractionBot, inter: dis
         card.save(image_binary, "PNG")
         image_binary.seek(0)
 
-        file = disnake.File(fp=image_binary, filename="image.png")
-        await inter.send(file=file)
+        await inter.send(
+            embed=disnake.Embed(
+                title=f"<:momiji_divorce:1175038682818941050> - {locale['button_1']}, :bank: - {locale['button_2']}"
+            ).set_image(
+                file=disnake.File(fp=image_binary, filename="image.png")
+
+            ),
+            view=buttons)
 
 
 async def get_or_create_role(client: commands.InteractionBot, server: any, _type: str, defaults: dict):
-    _server = await client.db.Servers.get(discord_id=server.id)
-    defaults["server"] = _server
-    role = await client.db.Roles.get_or_create(defaults=defaults, role_type=_type, server_id=_server.id)
+    _server = await client.db.Servers.get_or_create(discord_id=server.id)
+    defaults["server"] = _server[0]
+    role = await client.db.Roles.get_or_create(defaults=defaults, role_type=_type, server_id=_server[0].id)
     return role

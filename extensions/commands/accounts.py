@@ -14,8 +14,6 @@ err = LocalizationStorage('errors#2')
 
 class Accounts(BaseCog):
 
-    # @commands.slash_command()
-
     @commands.slash_command(name=__("account", key="COMMAND_NAME_ACCOUNT"),
                             description=__("User account in the bot system", key="COMMAND_DESCRIPTION_ACCOUNT"))
     async def account(self, inter: AppCmdInter,

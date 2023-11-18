@@ -8,7 +8,6 @@ from random import randint, getrandbits
 from core.cog import BaseCog
 from core.checks import BaseChecks
 from core.i18n import LocalizationStorage
-from tools.utils import get_member_profile
 from tools.exeption import CustomError
 
 _ = LocalizationStorage("economy")
@@ -31,7 +30,13 @@ class Economy(BaseCog):
         money = randint(50, 150)
         experience = randint(16, 45)
 
-        profile = await get_member_profile(inter.author, self.client)
+        user_in_db = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
+        server_in_db = await self.client.db.Servers.get_or_create(discord_id=inter.author.guild.id)
+        profile = await self.client.db.Profiles.get_or_none(user=user_in_db[0], server=server_in_db[0])
+
+        if not profile:
+            return await inter.send(locale['error'], ephemeral=True)
+
         profile.money = profile.money + money
 
         embed = disnake.Embed(
@@ -43,7 +48,6 @@ class Economy(BaseCog):
         ).set_thumbnail(
             url=inter.author.display_avatar.url
         )
-
         if true_or_false == 1:
             profile.experience = profile.experience + experience
             embed.add_field(
@@ -73,12 +77,21 @@ class Economy(BaseCog):
         if member.bot:
             raise CustomError(locale["error_bot"])
 
-        author_profile = await get_member_profile(inter.author, self.client)
+        server_in_db = await self.client.db.Servers.get_or_create(discord_id=inter.author.guild.id)
+        author_user_in_db = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
+        author_profile = await self.client.db.Profiles.get_or_none(user=author_user_in_db[0], server=server_in_db[0])
+
+        if author_profile is None:
+            return await inter.send(locale['error_'], ephemeral=True)
 
         if author_profile.money < amount:
             raise CustomError(locale["error"])
 
-        member_profile = await get_member_profile(member, self.client)
+        member_user_in_db = await self.client.db.Users.get_or_create(discord_id=member.id)
+        member_profile = await self.client.db.Profiles.get_or_none(user=member_user_in_db[0], server=server_in_db[0])
+
+        if member_profile is None:
+            return await inter.send(locale['error__'], ephemeral=True)
 
         member_profile.money = member_profile.money + amount
         author_profile.money = author_profile.money - amount

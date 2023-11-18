@@ -6,6 +6,9 @@ from disnake.ext import commands
 from core.cog import BaseCog
 from core.i18n import LocalizationStorage
 from core.checks import BaseChecks
+from core.models.profiles import Profiles
+from core.models.servers import Servers
+from core.models.users import Users
 from tools.exeption import CustomError
 from tools.utils import get_member_profile
 from tools.utils import divide_chunks
@@ -40,19 +43,7 @@ class Moderation(BaseCog):
                 name=__("reason", key="COMMAND_PARAM_NAME_REASON"),
                 description=__("reason for ban", key="COMMAND_PARAM_DESCRIPTION_REASON"),
                 default=None
-            ),
-            # duration: int = commands.Param(name="do_not_work", default=None),
-            # unit=commands.Param(
-            #     name="do_not_work_too",
-            #     choices=[
-            #         __("seconds", key="SECONDS"),
-            #         __("minutes", key="MINUTES"),
-            #         __("hours", key="HOURS"),
-            #         __("days", key="DAYS"),
-            #         __("weeks", key="WEEKS")
-            #     ],
-            #     default=None
-            # )
+            )
     ):
         locale = _(inter.locale, "ban")
         reason_ = locale['not_reason'] if not reason else reason
@@ -307,15 +298,28 @@ class Moderation(BaseCog):
             )
     ):
         locale = _(inter.locale, "warn")
-        profile_in_db = await get_member_profile(member, self.client, "server")
-        moder_profile = await get_member_profile(inter.author, self.client)
-        server_warns = await self.client.db.Warns.filter(server=profile_in_db.server.id).order_by("-number").limit(1)
+        server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=member.guild.id)
+        moderate_user_in_db: tuple[Users, bool] = await self.client.db.Users.get_or_create(discord_id=member.id)
+        moderator_user_in_db: tuple[Users, bool] = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
+        moderate_profile_in_db: tuple[Profiles, bool] = await self.client.db.Profiles.get_or_create(
+            user=moderate_user_in_db[0], server=server_in_db[0]
+        )
+        moderator_profile_in_db: tuple[Profiles, bool] = await self.client.db.Profiles.get_or_create(
+            user=moderator_user_in_db[0], server=server_in_db[0]
+        )
+        moderator_profile_in_db: Profiles = await moderator_profile_in_db[0].all().prefetch_related('server')
+        server_warns = await self.client.db.Warns.filter(
+            server=moderator_profile_in_db[1].server.id
+        ).order_by("-number").limit(1)
         if len(server_warns) < 1:
             number = 1
         else:
             number = server_warns[0].number + 1
-        await self.client.db.Warns.create(number=number, server=profile_in_db.server, profile=profile_in_db,
-                                          reason=reason, moderator=moder_profile)
+
+        await self.client.db.Warns.create(number=number, server=moderator_profile_in_db[1].server,
+                                          profile=moderate_profile_in_db[0], reason=reason,
+                                          moderator=moderator_profile_in_db[1])
+
         if reason is None:
             reason = locale["not_reason"]
         await inter.send(
@@ -349,10 +353,10 @@ class Moderation(BaseCog):
             )
     ):
         locale = _(inter.locale, "unwarn")
-        server = await self.client.db.Servers.get(discord_id=inter.guild.id)
+        server = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
         try:
             warn = await self.client.db.Warns.filter(
-                server=server.id, number=case
+                server=server[0].id, number=case
             ).limit(1).prefetch_related("profile",
                                         "profile__user",
                                         "moderator",
@@ -435,8 +439,8 @@ class Moderation(BaseCog):
     )
     async def server_warns(self, inter: AppCmdInter):
         locale = _(inter.locale, "server_warns")
-        server_in_db = await self.client.db.Servers.get(discord_id=inter.guild.id)
-        warns = await self.client.db.Warns.filter(server=server_in_db.id).order_by(
+        server_in_db = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
+        warns = await self.client.db.Warns.filter(server=server_in_db[0].id).order_by(
             "number"
         ).prefetch_related("profile",
                            "profile__user",
@@ -525,7 +529,7 @@ class Moderation(BaseCog):
             else:
                 reason = warns.reason
             moderator_in_discord: disnake.Member = inter.guild.get_member(warns.moderator.user.discord_id)
-            first_page.add_field(name=i,
+            first_page.add_field(name="№ " + i,
                                  value=f"{locale['number']} - {warns.number}\n"
                                        f"**{locale['reason']}** - {reason}\n"
                                        f"**{locale['moderator']}** - {moderator_in_discord.mention}",
@@ -547,7 +551,7 @@ class Moderation(BaseCog):
                 else:
                     reason = warns.reason
                 moderator_in_discord: disnake.Member = inter.guild.get_member(warns.moderator.user.discord_id)
-                temp_page.add_field(name=i,
+                temp_page.add_field(name="№ " + i,
                                     value=f"{locale['number']} - {warns.number}\n"
                                           f"**{locale['reason']}** - {reason}\n"
                                           f"**{locale['moderator']}** - {moderator_in_discord.mention}",

@@ -19,7 +19,12 @@
     },
     
     "love_profile": {
+        "button_1": "Divorce",
+        "button_2": "Top up your bank account",
+        "error": "{member} is not married",
         "renewal_date": "renewal date",
-        "date_of_create": "date of creation"
+        "date_of_create": "date of creation",
+        "divorce_title": "{author} and {member} got divorced",
+        "divorce_description": "Sad to realise this, but we've lost a good couple on the server. <:momiji_divorce:1175038682818941050>"
     }
 }

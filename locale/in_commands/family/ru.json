@@ -19,7 +19,12 @@
     },
 
     "love_profile": {
-        "renewal_date": "дата продления",
-        "date_of_create": "дата создания"
+        "button_1": "Развестись",
+        "button_2": "Пополнить семейный банковский счет",
+        "error": "{member} не состоит в браке",
+        "renewal_date": "Дата продления",
+        "date_of_create": "Дата создания",
+        "divorce_title": "{author} и {member} развелись",
+        "divorce_description": "Грустно это осознавать, но мы потеряли хорошую пару на сервере <:momiji_divorce:1175038682818941050>"
     }
 }

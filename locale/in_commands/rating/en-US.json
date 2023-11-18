@@ -25,6 +25,7 @@
         "take": "Take",
         "set": "Set",
         "error": "Level cannot be less than one",
+        "error_": "User profile is not in the database, register `/profile create`",
         "error_bot": "You cannot change bot level"
     },
 
@@ -37,6 +38,7 @@
         "field_name_2": "Posts issued/removed:",
         "field_name_3": "Number of user posts so far:",
         "error": "The number of participant's messages cannot be less than 0",
+        "error_": "User profile is not in the database, register `/profile create`",
         "error_bot": "You cannot change bot messages count"
     },
 
@@ -49,6 +51,7 @@
         "field_name_2": "Experience granted/removed:",
         "field_name_3": "Number of member experience so far:",
         "error": "The amount of participant's experience cannot be less than 0",
+        "error_": "User profile is not in the database, register `/profile create`",
         "error_bot": "You can't change the bot experience"
     }
 }

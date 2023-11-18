@@ -16,7 +16,7 @@ class MemberJoin(BaseCog):
         }
 
         user_in_db = await self.client.db.Users.get_or_create(defaults=defaults, discord_id=member.id)
-        server_in_db = await self.client.db.Servers.get(discord_id=member.guild.id)
+        server_in_db = await self.client.db.Servers.get_or_create(discord_id=member.guild.id)
         await self.client.db.Profiles.create(user=user_in_db, server=server_in_db, family=None)
 
 

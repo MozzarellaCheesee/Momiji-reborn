@@ -4,7 +4,7 @@ from disnake.ext import commands
 class BaseCog(commands.Cog):
 
     def __init__(self, client: commands.InteractionBot):
-        self.client = client
+        self.client: commands.InteractionBot = client
         
     async def cog_load(self) -> None:
         print(

@@ -20,6 +20,7 @@
           <option value="N813" />
           <option value="N802" />
           <option value="N803" />
+          <option value="N806" />
         </list>
       </option>
     </inspection_tool>
@@ -31,6 +32,19 @@
           <option value="typing.TextIO.__getitem__" />
           <option value="typing.Coroutine.__getitem__" />
           <option value="extensions.commands.moderation.Moderation.bot" />
+          <option value="disnake.ext.commands.bot.InteractionBot.db" />
+          <option value="tortoise.models.Users" />
+          <option value="tortoise.models.Servers" />
+          <option value="tortoise.models.Families" />
+          <option value="tortoise.models.Warns" />
+          <option value="tortoise.models.Tickets" />
+          <option value="tortoise.models.Channels" />
+          <option value="tortoise.models.Profiles" />
+          <option value="tortoise.models.Roles" />
+          <option value="tortoise.models.AuthorizedSessions" />
+          <option value="disnake.role.Role.role_id" />
+          <option value="disnake.user.User.is_on_mobile" />
+          <option value="disnake.ext.commands.bot.InteractionBot.channels" />
         </list>
       </option>
     </inspection_tool>

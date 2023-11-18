@@ -5,7 +5,7 @@ import logging
 
 async def init_database():
     await Tortoise.init(
-        db_url=DB_URL, 
+        db_url=DB_URL,
         modules={
             "models": [
                 "core.models.users",

@@ -38,7 +38,7 @@
      },
 
      "warn": {
-         "title": "The user was brewed",
+         "title": "The user was warned",
          "description": "A warning was issued to the user",
          "field_name_1": "Participant:",
          "field_name_2": "Reason:",
@@ -48,7 +48,7 @@
      },
 
      "unwarn": {
-         "title": "User has been banned",
+         "title": "The user was unwarned",
          "description": "The user has been cleared of the warning",
          "field_name_1": "Participant\nreceived\nwarning:",
          "field_name_2": "The moderator\nwho issued the\nwarning:",

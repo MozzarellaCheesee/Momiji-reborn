@@ -26,10 +26,10 @@ class Rating(BaseCog):
     )
     async def leaderboard(self, inter: AppCmdInter):
         locale = _(inter.locale, "leaderboard")
-        server_in_db = await self.client.db.Servers.get(discord_id=inter.guild.id)
+        server_in_db = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
 
         view = StandartView(inter, self.client, timeout=60)
-        view.add_item(LeaderBoardSelect(locale, server_in_db, self.client))
+        view.add_item(LeaderBoardSelect(locale, server_in_db[0], self.client))
         await inter.send(
             embed=disnake.Embed(
                 title=locale['title'],
@@ -70,6 +70,10 @@ class Rating(BaseCog):
         if member.bot:
             raise CustomError(locale['error'])
         profile_in_db = await get_member_profile(member, self.client)
+
+        if profile_in_db is None:
+            raise CustomError(locale['error_'])
+
         embed = disnake.Embed(title=locale['title']).set_thumbnail(url=inter.author.display_avatar.url)
         action_in_symbol = {
             "Give": level,

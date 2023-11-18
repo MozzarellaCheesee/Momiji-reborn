@@ -97,7 +97,8 @@ class User(BaseCog):
                     embeds.append(activities_embed)
 
         embed.description = "\n".join(main_information) + "\n" + "\n".join(
-            second_information) if user in inter.guild.members else "\n".join(main_information)
+            second_information
+        ) if user in inter.guild.members else "\n".join(main_information)
 
         if len(embeds) > 1:
             await Paginator(pages=embeds, inter=inter, ephemeral=True).start()

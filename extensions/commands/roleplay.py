@@ -14,24 +14,6 @@ _ = LocalizationStorage("roleplay")
 err = LocalizationStorage("errors#2")
 
 
-async def two_answers(inter: AppCmdInter, command_name: str, member: disnake.Member = None):
-    locale = _(inter.locale, command_name)
-    embed = disnake.Embed().set_image(url=await get_gif(f"anime_{command_name}"))
-    embed.description = f"{inter.author.mention} {locale['description_1']} {member.mention}" \
-        if member else f"{inter.author.mention} {locale['description_2']}"
-
-    await inter.send(embed=embed)
-
-
-async def one_answer(inter: AppCmdInter, command_name: str):
-    locale = _(inter.locale, command_name)
-    await inter.send(
-        embed=disnake.Embed(
-            description=f"{inter.author.mention} {locale['description_1']}"
-        ).set_image(url=await get_gif(f"anime_{command_name}"))
-    )
-
-
 async def get_gif(q: str):
     async with aiohttp.ClientSession() as session:
         async with session.get(
@@ -48,6 +30,24 @@ async def get_gif(q: str):
                 return result['results'][0]['media_formats']['gif']['url']
             else:
                 return None
+
+
+async def two_answers(inter: AppCmdInter, command_name: str, member: disnake.Member = None):
+    locale = _(inter.locale, command_name)
+    embed = disnake.Embed().set_image(url=await get_gif(f"anime_{command_name}"))
+    embed.description = f"{inter.author.mention} {locale['description_1']} {member.mention}" \
+        if member else f"{inter.author.mention} {locale['description_2']}"
+
+    await inter.send(embed=embed)
+
+
+async def one_answer(inter: AppCmdInter, command_name: str):
+    locale = _(inter.locale, command_name)
+    await inter.send(
+        embed=disnake.Embed(
+            description=f"{inter.author.mention} {locale['description_1']}"
+        ).set_image(url=await get_gif(f"anime_{command_name}"))
+    )
 
 
 class Emoties(BaseCog):

@@ -30,26 +30,26 @@ class Developer(BaseCog):
     @commands.slash_command(name="разблокировать",
                             description='ТОЛЬКО ВЛАДЕЛЕЦ БОТА! Разблокировать пользователя в системе')
     async def unblock(self, inter: AppCmdInter, user: disnake.User):
-        user = await self.client.db.Users.get(discord_id=user.id)
-        if user.status != "BLOCKED":
+        user = await self.client.db.Users.get_or_create(discord_id=user.id)
+        if user[0].status != "BLOCKED":
             await inter.send('Пользователь не заблокирован', ephemeral=True)
             return
 
-        user.status = None
-        await user.save()
+        user[0].status = None
+        await user[0].save()
         await inter.send('Пользователь был разблокирован', ephemeral=True)
 
     @commands.is_owner()
     @commands.slash_command(name="заблокировать",
                             description='ТОЛЬКО ВЛАДЕЛЕЦ БОТА! Заблокировать пользователя в системе')
     async def block(self, inter: AppCmdInter, user: disnake.User):
-        user = await self.client.db.Users.get(discord_id=user.id)
-        if user.status == "BLOCKED":
+        user = await self.client.db.Users.get_or_create(discord_id=user.id)
+        if user[0].status == "BLOCKED":
             await inter.send('Пользователь уже заблокирован', ephemeral=True)
             return
 
-        user.status = "BLOCKED"
-        await user.save()
+        user[0].status = "BLOCKED"
+        await user[0].save()
         await inter.send('Пользователь был заблокирован', ephemeral=True)
 
     @commands.is_owner()

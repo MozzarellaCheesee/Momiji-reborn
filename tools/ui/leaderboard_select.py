@@ -4,10 +4,12 @@ from .components import StandardSelect
 from tools.utils import divide_chunks
 from tools.ui.paginator import Paginator
 
-async def send_top(inter: disnake.MessageInteraction, client: commands.InteractionBot, locale: dict, top_type, server, select):
-    sorted_profiles = await client.db.Profiles.filter(server=server).order_by(f'-{top_type}').limit(50).prefetch_related("user")
-    other_pages_profiles = list(divide_chunks(sorted_profiles[10:], 10))
 
+async def send_top(inter: disnake.MessageInteraction, client: commands.InteractionBot, locale: dict, top_type, server,
+                   select):
+    sorted_profiles = await client.db.Profiles.filter(server=server).order_by(f'-{top_type}').limit(
+        50).prefetch_related("user")
+    other_pages_profiles = list(divide_chunks(sorted_profiles[10:], 10))
 
     first_page = disnake.Embed(
         description='',
@@ -32,13 +34,14 @@ async def send_top(inter: disnake.MessageInteraction, client: commands.Interacti
         user_description = profiles.description
         if user_description is None:
             user_description = locale["description_none"]
-        first_page.description += f"**{i})** {user_in_discord.mention} - {top} {emoji}\n{locale['profile_description']} - {user_description}\n"
+        first_page.description += f"**{i})** {user_in_discord.mention} - {top} {emoji}\n{locale['profile_description']}\
+                                  - {user_description}\n"
     pages = [first_page]
 
     start = 1
 
     for ten_leaderboard in other_pages_profiles:
-        temp_page  = disnake.Embed(
+        temp_page = disnake.Embed(
             description='',
             title=locale[f'title_select_{top_type}']
         )
@@ -54,13 +57,15 @@ async def send_top(inter: disnake.MessageInteraction, client: commands.Interacti
             user_description = other_profiles.description
             if user_description is None:
                 user_description = locale["description_none"]
-            temp_page.description += f"**{i})** {user_in_discord.mention} - {top} {emoji}\n{locale['profile_description']} - {user_description}\n"
+            temp_page.description += f"**{i})** {user_in_discord.mention} \
+             - {top} {emoji}\n{locale['profile_description']} - {user_description}\n"
         pages.append(temp_page)
 
     if len(pages) < 2:
         return await inter.response.edit_message(embed=pages[0])
-    
+
     await Paginator(pages=pages, inter_resp=inter, timeout=60, ephemeral=True, childrens=[select]).start_edit_resp()
+
 
 class LeaderBoardSelect(StandardSelect):
 
@@ -74,8 +79,11 @@ class LeaderBoardSelect(StandardSelect):
             disnake.SelectOption(label=self.locale["top_level"], emoji="<:momiji_activity:1127504341482344489>"),
         ]
         super().__init__(options=components, placeholder=locale['placeholder'])
-    
+
     async def callback(self, interaction: disnake.MessageInteraction):
-        if self.values[0] == self.locale["top_balance"]: await send_top(interaction, self.client, self.locale, "money", self.server, self)
-        elif self.values[0] == self.locale["top_message"]: await send_top(interaction, self.client, self.locale, "messages", self.server, self)
-        else: await send_top(interaction, self.client, self.locale, "level", self.server, self)
+        if self.values[0] == self.locale["top_balance"]:
+            await send_top(interaction, self.client, self.locale, "money", self.server, self)
+        elif self.values[0] == self.locale["top_message"]:
+            await send_top(interaction, self.client, self.locale, "messages", self.server, self)
+        else:
+            await send_top(interaction, self.client, self.locale, "level", self.server, self)
