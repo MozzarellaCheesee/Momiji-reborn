@@ -168,7 +168,15 @@ class Family(BaseCog):
                     ):
         locale = _(inter.locale, "marry")
         author_profile = await get_member_profile_for_marry(inter.author, self.client)
+
+        if author_profile is None:
+            return await inter.send(locale['error_'], ephemeral=True)
+
         member_profile = await get_member_profile_for_marry(user, self.client)
+
+        if member_profile is None:
+            return await inter.send(locale['error__'], ephemeral=True)
+
         server_in_db = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
         role = await self.client.db.Roles.get_or_none(server=server_in_db[0], role_type="MARRY")
         if role is None:

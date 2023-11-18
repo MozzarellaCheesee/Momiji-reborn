@@ -15,13 +15,16 @@
             "member_married": "This person is already married. No need to lead him on the path of infidelity, I think?",
             "author_married": "You're already married and I don't approve of cheating!",
             "not_role": "Role for marriage has not been set."
-        }
+        },
+        "error_": "You are not in the database.",
+        "error__": "The user is not in the database."
     },
     
     "love_profile": {
         "button_1": "Divorce",
         "button_2": "Top up your bank account",
         "error": "{member} is not married",
+        "error_": "You are not in the database.",
         "renewal_date": "renewal date",
         "date_of_create": "date of creation",
         "divorce_title": "{author} and {member} got divorced",

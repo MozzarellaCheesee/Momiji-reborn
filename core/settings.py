@@ -1,7 +1,7 @@
 from dotenv import dotenv_values
 
 config = dotenv_values()
-DB_URL="mysql://p527749_astolfo_owo:AstolfoServant13_@185.105.110.5:3306/p527749_momiji_db"
+DB_URL="mysql://p527749_astolfo_owo:lI7xK0dC0c@185.105.110.5:3306/p527749_momiji_db"
 
 commands_ = {
     "extensions.commands.accounts",
