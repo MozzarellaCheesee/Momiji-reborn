@@ -17,9 +17,11 @@ class PrivateVoices(BaseCog):
             return
 
         server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=member.guild.id)
-        _server_in_db: Servers = await server_in_db[0].first().prefetch_related("channels")
-        channel: list[Channels] = await _server_in_db.channels
-        if not channel:
+        _server_in_db: Servers = await server_in_db[0].all().filter(
+            discord_id=server_in_db[0].discord_id
+        ).prefetch_related("channels")
+        channel: list[Channels] = await _server_in_db[0].channels
+        if len(channel) < 1:
             return
         _channel: Channels = await channel[0].filter(channel_type="VoicesChannel").first()
         if not _channel:
