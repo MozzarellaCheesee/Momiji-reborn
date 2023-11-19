@@ -12,7 +12,7 @@ async def main():
     load_locale(client)
     load_extensions(client)
     await init_database()
-    await client.start(config["TOKEN"])
+    await client.start(config["MOMIJI_TOKEN"])
 
 
 if __name__ == "__main__":
