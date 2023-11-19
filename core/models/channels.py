@@ -15,4 +15,4 @@ class Channels(Model):
         table = 'channels'
 
     def __str__(self):
-        return str(self.server)
+        return str(self.channel_id)

@@ -1,11 +1,14 @@
 import disnake
 from disnake import AppCmdInter
 from disnake.ext import commands
-from core.cog import BaseCog
-from tools.exeption import CustomError
-from core.i18n import LocalizationStorage
 from disnake.i18n import Localised as __
 
+from core.cog import BaseCog
+from core.models.channels import Channels
+from core.models.servers import Servers
+
+from tools.exeption import CustomError
+from core.i18n import LocalizationStorage
 from tools.ui.modals.server_settings_verefy import VerefySetupModal
 from tools.utils import get_or_create_role
 
@@ -85,6 +88,65 @@ class ServerSettings(BaseCog):
                 title=locale["title"],
                 description=locale["description"].format(role=role.mention)
             )
+        )
+
+    @server.sub_command(name=__("private-rooms", key="COMMAND_NAME_PRIVATE_ROOMS"),
+                        description=__("set private_rooms", key="COMMAND_DESCRIPTION_PRIVATE_ROOMS"))
+    async def create_rooms_object(self, inter: AppCmdInter,
+                                  action:str = commands.Param(
+                                      name=__("action", key="COMMAND_PARAM_NAME_ACTION"),
+                                      description=__("Select an action", key="COMMAND_PARAM_DESCRIPTION_ACTION"),
+                                      choices=[
+                                          __("set", key="SET"),
+                                          __("delete", key="DELETE")
+                                      ],
+                                      default="set")
+    ):
+        locale = _(inter.locale, "create_rooms_object")
+        server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
+        channel_in_db: Channels | None = await self.client.db.Channels.get_or_none(server=server_in_db[0],
+                                                                                   channel_type="VoicesChannel")
+        if action == "delete" or action == "удалить":
+            if channel_in_db is not None:
+                old_channel: disnake.VoiceChannel = inter.guild.get_channel(channel_in_db.channel_id)
+                await channel_in_db.delete()
+                try:
+                    await old_channel.delete()
+                except AttributeError:
+                    ...
+                return await inter.send(
+                    embed=disnake.Embed(
+                        title=locale['delete']['title'],
+                        description=locale['delete']['description']
+                    ),
+                    ephemeral=True
+                )
+            else:
+                return await inter.send(
+                    embed=disnake.Embed(
+                        title=locale['delete']['error']
+                    ),
+                    ephemeral=True
+                )
+
+        if channel_in_db is not None:
+            old_channel: disnake.VoiceChannel = inter.guild.get_channel(channel_in_db.channel_id)
+            await channel_in_db.delete()
+            try:
+                await old_channel.delete()
+            except AttributeError:
+                ...
+
+        new_channel: disnake.VoiceChannel = await inter.guild.create_voice_channel(name="Создать [ + ]", user_limit=2)
+
+        await self.client.db.Channels.create(server=server_in_db[0],
+                                             channel_id=new_channel.id, channel_type="VoicesChannel")
+        await inter.send(
+            embed=disnake.Embed(
+                title=locale['set']['title'],
+                description=locale['set']['description'].format(channel=new_channel.mention)
+            ),
+            ephemeral=True
         )
 
 

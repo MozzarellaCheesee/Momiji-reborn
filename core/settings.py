@@ -25,5 +25,6 @@ events = {
     "extensions.events.on_guild_remove",
     "extensions.events.on_member_join",
     "extensions.events.on_member_remove",
+    "extensions.events.private_voices",
     "extensions.events.on_ready",
 }

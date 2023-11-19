@@ -13,6 +13,7 @@ from tortoise.models import Model
 from core.models.authorized_sessions import AuthorizedSessions
 from core.models.channels import Channels
 from core.models.families import Families
+from core.models.private_vc import PrivateVCS
 from core.models.profiles import Profiles
 from core.models.servers import Servers
 from core.models.tickets import Tickets
@@ -21,6 +22,7 @@ from core.models.warns import Warns
 from core.models.roles import Roles
 
 _ = LocalizationStorage("server_settings")
+
 
 
 class OnReady(BaseCog):
@@ -34,6 +36,7 @@ class OnReady(BaseCog):
             AuthorizedSessions: Model = AuthorizedSessions
             Channels: Model = Channels
             Families: Model = Families
+            PrivateVCS: Model = PrivateVCS
             Profiles: Model = Profiles
             Servers: Model = Servers
             Tickets: Model = Tickets

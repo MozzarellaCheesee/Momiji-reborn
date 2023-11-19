@@ -43,5 +43,17 @@
     "set_marry_role": {
         "title": "Role for Spouses",
         "description": "You have successfully set the spouse role, the member's spouse role is now {role}"
-    }
+    },
+
+    "create_rooms_object": {
+          "delete": {
+              "title": "Delete",
+              "description": "You have deleted the channel for creating private voices",
+              "error": "You do not have a channel for creating private voices"
+          },
+          "kit": {
+              "title": "Create",
+              "description": "In order to create a private voice in {channel}"
+          }
+      }
 }

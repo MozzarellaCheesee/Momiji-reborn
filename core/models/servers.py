@@ -13,6 +13,7 @@ class Servers(Model):
     roles: fields.ReverseRelation["models.Roles"]
     tickets: fields.ReverseRelation["models.Tickets"]
     warns: fields.ReverseRelation["models.Warns"]
+    private_vcs: fields.ReverseRelation['models.PrivateVCS']
 
     class Meta:
         table = 'servers'
