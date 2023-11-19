@@ -251,4 +251,4 @@ async def get_or_create_role(client: commands.InteractionBot, server: any, _type
     _server = await client.db.Servers.get_or_create(discord_id=server.id)
     defaults["server"] = _server[0]
     role = await client.db.Roles.get_or_create(defaults=defaults, role_type=_type, server_id=_server[0].id)
-    return role
+    return role, _server

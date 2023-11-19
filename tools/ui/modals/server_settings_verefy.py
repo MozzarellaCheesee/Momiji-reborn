@@ -1,5 +1,5 @@
 import disnake
-from disnake.ui import Modal, TextInput, View, Button
+from disnake.ui import Modal, TextInput, View
 from disnake.ext import commands
 from disnake import TextInputStyle, ModalInteraction, MessageInteraction
 
@@ -10,6 +10,7 @@ from asyncio import sleep
 import validators
 import re
 
+from core.models.servers import Servers
 
 
 class VerefyModal(Modal):
@@ -45,10 +46,10 @@ class VerefyModal(Modal):
             ), ephemeral=True
         )
         await sleep(5)
-        
-
-
-        await member.add_roles(self.role, reason='verify')
+        try:
+            await member.add_roles(self.role, reason='verify')
+        except disnake.Forbidden:
+            ...
 
 
 class VerefyButton(View):
@@ -76,6 +77,7 @@ class VerefyButton(View):
                     description=locale["not_role"]
                 ),
                 ephemeral=True)
+
 
 class VerefySetupModal(Modal):
 
@@ -164,8 +166,6 @@ class VerefySetupModal(Modal):
         except:
             ...
 
-        
-
         await inter.response.send_message(
             embed=disnake.Embed(
                 description=self.locale["setup_modal"]["embeds"]["title"]
@@ -175,3 +175,7 @@ class VerefySetupModal(Modal):
         await self.channel.send(
             embed=embed, view=VerefyButton(self.client, self.lang_locale)
         )
+
+        server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
+        server_in_db[0].verify = True
+        await server_in_db[0].save()

@@ -18,5 +18,7 @@
     "COMMAND_NAME_PRIVATE_ROOMS": "приватные-комнаты",
     "COMMAND_DESCRIPTION_PRIVATE_ROOMS": "установить приватные комнаты",
     "COMMAND_PARAM_NAME_ACTION": "действие",
-    "COMMAND_PARAM_DESCRIPTION_ACTION": "выберите действие"
+    "COMMAND_PARAM_DESCRIPTION_ACTION": "выберите действие",
+    "COMMAND_NAME_SERVER_SETTINGS": "настройки-сервера",
+    "COMMAND_DESCRIPTION_SERVER_SETTINGS": "информация о настройках сервера"
 }
