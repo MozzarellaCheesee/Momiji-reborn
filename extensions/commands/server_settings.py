@@ -159,17 +159,16 @@ class ServerSettings(BaseCog):
         locale = _(inter.locale, "server_settings_info")
         server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
         settings = [server_in_db[0].vip, server_in_db[0].logs, server_in_db[0].verify,
-                    server_in_db[0].private_vcs_channel, server_in_db[0].married_role]
-        types_settings = ["Вип", "Логи", "Верификация", "Приватные каналы", "Супружеская роль"]
+                    server_in_db[0].private_vcs_channel, server_in_db[0].married_role, server_in_db[0].verify_role]
         embed = disnake.Embed(
-            title="Серверные настройки",
-            description="Ниже указаны все включеные и выключенные настройки"
+            title=locale['title'],
+            description=locale['description']
         )
 
-        for i, setting in enumerate(settings, start=0):
+        for i, setting in enumerate(settings, start=1):
             embed.add_field(
-                name=types_settings[i],
-                value=EMOJI[setting]
+                name=locale[f'field_name_{i}'],
+                value=f"{locale[f'field_description_{i}']}\n{locale['state']}: {EMOJI[setting]}"
             )
 
         await inter.send(embed=embed)

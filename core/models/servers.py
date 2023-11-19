@@ -12,6 +12,7 @@ class Servers(Model):
     verify = fields.BooleanField(default=False)
     private_vcs_channel = fields.BooleanField(default=False)
     married_role = fields.BooleanField(default=False)
+    verify_role = fields.BooleanField(default=False)
 
     channels: fields.ReverseRelation["models.Channels"]
     profiles: fields.ReverseRelation["models.Profiles"]

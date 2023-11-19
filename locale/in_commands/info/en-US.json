@@ -13,7 +13,8 @@
         "field_name_2": "Python Version:",
         "field_name_3": "Library:",
         "field_name_4": "Number of servers:",
-        "field_name_5": "Ping:"
+        "field_name_5": "Ping:",
+        "field_name_6": "Shards count"
     },
 
     "server": {

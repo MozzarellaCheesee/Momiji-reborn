@@ -55,5 +55,23 @@
               "title": "Create",
               "description": "In order to create a private voice in {channel}"
           }
-      }
+      },
+
+    "server_settings_info": {
+         "title": "Server settings",
+         "description": "Below are all enabled and disabled settings, as well as commands to manage them\n`<>` - required parameter\n`[]` - optional parameter",
+         "state": "State",
+         "field_name_1": "Vip",
+         "field_name_2": "Logs",
+         "field_name_3": "Verification",
+         "field_name_4": "Private channels",
+         "field_name_5": "Marital Roles",
+         "field_name_6": "Verification Role",
+         "field_description_1": "Under development (default off)",
+         "field_description_2": "Under development (default off)",
+         "field_description_3": "`/server verify <channel>`",
+         "field_description_4": "`/server private-rooms [action]`",
+         "field_description_5": "`/server marry-role <role>`",
+         "field_description_6": "`/server role-verification <role>`"
+     }
 }

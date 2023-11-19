@@ -44,7 +44,8 @@ class Info(BaseCog):
             "<@799139246928560139>",
             "<t:1651903200:f>", "3.10",
             "**[Disnake 2.9.0](https://docs.disnake.dev/en/stable/)**",
-            f"{len(self.client.guilds)}", f"{self.client.latency * 1000:.0f} ms"
+            f"{len(self.client.guilds)}", f"{self.client.latency * 1000:.0f} ms",
+            f"{self.client.shard_count}"
         ]
 
         embed = disnake.Embed(

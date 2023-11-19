@@ -567,3 +567,304 @@ task: <Task pending name='disnake: on_application_command' coro=<Client._run_eve
 00:29:15 - INFO - received_message: 619 - Shard ID 0 has connected to Gateway: ["gateway-prd-us-east1-b-lz5w",{"micros":97548,"calls":["id_created",{"micros":1209,"calls":[]},"session_lookup_time",{"micros":3398,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-274",{"micros":91207,"calls":["start_session",{"micros":70983,"calls":["discord-api-6c89db896f-wkf6h",{"micros":65529,"calls":["get_user",{"micros":19312},"get_guilds",{"micros":6802},"send_scheduled_deletion_message",{"micros":15},"guild_join_requests",{"micros":387},"authorized_ip_coro",{"micros":17}]}]},"starting_guild_connect",{"micros":89,"calls":[]},"presence_started",{"micros":10514,"calls":[]},"guilds_started",{"micros":175,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":9407,"calls":[]},"connect_finished",{"micros":9413,"calls":[]},"build_ready",{"micros":28,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 6d2684165e2d4425b53707ebe72e35e8, Resume URL: wss://gateway-us-east1-b.discord.gg).
 00:29:17 - INFO - on_ready: 32 - Загрузка клиента
 00:29:17 - INFO - on_ready: 74 - Бот был запущен
+00:34:05 - INFO - load_locale: 43 - Начало загружки модуля локализации
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\accounts был успешно загружен
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\economy был успешно загружен
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\family был успешно загружен
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\gaiety был успешно загружен
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\info был успешно загружен
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\moderation был успешно загружен
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\profile был успешно загружен
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\rating был успешно загружен
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\roleplay был успешно загружен
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\server_settings был успешно загружен
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\user был успешно загружен
+00:34:05 - INFO - load_locale: 47 - --Модуль locale\commands\utilits был успешно загружен
+00:34:05 - INFO - load_locale: 48 - Локализация для аргументов и названий команд загружена
+00:34:05 - INFO - load_extensions: 17 - Начало загрузки команд
+00:34:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.rating был успешно загружен
+00:34:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.user был успешно загружен
+00:34:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.server_settings был успешно загружен
+00:34:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.roleplay был успешно загружен
+00:34:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.family был успешно загружен
+00:34:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.developer был успешно загружен
+00:34:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.economy был успешно загружен
+00:34:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.moderation был успешно загружен
+00:34:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.gaiety был успешно загружен
+00:34:06 - INFO - load_extensions: 21 - --Модуль extensions.commands.utilits был успешно загружен
+00:34:06 - INFO - load_extensions: 21 - --Модуль extensions.commands.info был успешно загружен
+00:34:06 - INFO - load_extensions: 21 - --Модуль extensions.commands.profile был успешно загружен
+00:34:06 - INFO - load_extensions: 21 - --Модуль extensions.commands.accounts был успешно загружен
+00:34:06 - INFO - load_extensions: 27 - Комманды были успешны загружены
+00:34:06 - INFO - load_extensions: 29 - Начало загрузки ивентов
+00:34:06 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_join был успешно загружен
+00:34:06 - INFO - load_extensions: 33 - --Модуль extensions.events.levels был успешно загружен
+00:34:06 - INFO - load_extensions: 33 - --Модуль extensions.events.on_ready был успешно загружен
+00:34:06 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_remove был успешно загружен
+00:34:06 - INFO - load_extensions: 33 - --Модуль extensions.events.private_voices был успешно загружен
+00:34:06 - INFO - load_extensions: 33 - --Модуль extensions.events.on_error был успешно загружен
+00:34:06 - INFO - load_extensions: 39 - Ивенты были успешно загружены
+00:34:06 - INFO - init_database: 25 - База данных подключена
+00:34:06 - INFO - login: 861 - logging in using static token
+00:34:07 - INFO - identify: 522 - Shard ID 0 has sent the IDENTIFY payload.
+00:34:08 - INFO - received_message: 619 - Shard ID 0 has connected to Gateway: ["gateway-prd-us-east1-c-f13k",{"micros":132296,"calls":["id_created",{"micros":1270,"calls":[]},"session_lookup_time",{"micros":441,"calls":[]},"session_lookup_finished",{"micros":21,"calls":[]},"discord-sessions-prd-2-230",{"micros":129929,"calls":["start_session",{"micros":102757,"calls":["discord-api-6c89db896f-wnfbh",{"micros":91343,"calls":["get_user",{"micros":10841},"get_guilds",{"micros":11713},"send_scheduled_deletion_message",{"micros":13},"guild_join_requests",{"micros":260},"authorized_ip_coro",{"micros":11}]}]},"starting_guild_connect",{"micros":66,"calls":[]},"presence_started",{"micros":8982,"calls":[]},"guilds_started",{"micros":181,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":17909,"calls":[]},"connect_finished",{"micros":17916,"calls":[]},"build_ready",{"micros":24,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: eccdb982a24e50e588515c026fb054c5, Resume URL: wss://gateway-us-east1-c.discord.gg).
+00:34:10 - INFO - on_ready: 32 - Загрузка клиента
+00:34:10 - INFO - on_ready: 74 - Бот был запущен
+00:38:42 - INFO - load_locale: 43 - Начало загружки модуля локализации
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\accounts был успешно загружен
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\economy был успешно загружен
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\family был успешно загружен
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\gaiety был успешно загружен
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\info был успешно загружен
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\moderation был успешно загружен
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\profile был успешно загружен
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\rating был успешно загружен
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\roleplay был успешно загружен
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\server_settings был успешно загружен
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\user был успешно загружен
+00:38:42 - INFO - load_locale: 47 - --Модуль locale\commands\utilits был успешно загружен
+00:38:42 - INFO - load_locale: 48 - Локализация для аргументов и названий команд загружена
+00:38:42 - INFO - load_extensions: 17 - Начало загрузки команд
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.developer был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.rating был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.utilits был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.profile был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.economy был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.gaiety был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.server_settings был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.info был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.accounts был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.family был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.moderation был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.roleplay был успешно загружен
+00:38:42 - INFO - load_extensions: 21 - --Модуль extensions.commands.user был успешно загружен
+00:38:42 - INFO - load_extensions: 27 - Комманды были успешны загружены
+00:38:42 - INFO - load_extensions: 29 - Начало загрузки ивентов
+00:38:42 - INFO - load_extensions: 33 - --Модуль extensions.events.levels был успешно загружен
+00:38:42 - INFO - load_extensions: 33 - --Модуль extensions.events.on_ready был успешно загружен
+00:38:42 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_join был успешно загружен
+00:38:42 - INFO - load_extensions: 33 - --Модуль extensions.events.private_voices был успешно загружен
+00:38:42 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_remove был успешно загружен
+00:38:42 - INFO - load_extensions: 33 - --Модуль extensions.events.on_error был успешно загружен
+00:38:42 - INFO - load_extensions: 39 - Ивенты были успешно загружены
+00:38:42 - INFO - init_database: 25 - База данных подключена
+00:38:42 - INFO - login: 861 - logging in using static token
+00:38:44 - INFO - identify: 522 - Shard ID 0 has sent the IDENTIFY payload.
+00:38:44 - INFO - received_message: 619 - Shard ID 0 has connected to Gateway: ["gateway-prd-us-east1-c-vg5x",{"micros":92390,"calls":["id_created",{"micros":1274,"calls":[]},"session_lookup_time",{"micros":476,"calls":[]},"session_lookup_finished",{"micros":22,"calls":[]},"discord-sessions-prd-2-146",{"micros":89474,"calls":["start_session",{"micros":78084,"calls":["discord-api-6c89db896f-7p2tj",{"micros":73507,"calls":["get_user",{"micros":7812},"get_guilds",{"micros":8144},"send_scheduled_deletion_message",{"micros":10},"guild_join_requests",{"micros":3752},"authorized_ip_coro",{"micros":12}]}]},"starting_guild_connect",{"micros":93,"calls":[]},"presence_started",{"micros":321,"calls":[]},"guilds_started",{"micros":202,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":10739,"calls":[]},"connect_finished",{"micros":10745,"calls":[]},"build_ready",{"micros":26,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 861b38807b91e11686935882fe000077, Resume URL: wss://gateway-us-east1-c.discord.gg).
+00:38:46 - INFO - on_ready: 32 - Загрузка клиента
+00:38:46 - INFO - on_ready: 74 - Бот был запущен
+00:39:18 - INFO - load_locale: 43 - Начало загружки модуля локализации
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\accounts был успешно загружен
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\economy был успешно загружен
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\family был успешно загружен
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\gaiety был успешно загружен
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\info был успешно загружен
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\moderation был успешно загружен
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\profile был успешно загружен
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\rating был успешно загружен
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\roleplay был успешно загружен
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\server_settings был успешно загружен
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\user был успешно загружен
+00:39:18 - INFO - load_locale: 47 - --Модуль locale\commands\utilits был успешно загружен
+00:39:18 - INFO - load_locale: 48 - Локализация для аргументов и названий команд загружена
+00:39:18 - INFO - load_extensions: 17 - Начало загрузки команд
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.family был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.profile был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.rating был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.moderation был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.roleplay был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.economy был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.info был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.utilits был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.user был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.gaiety был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.server_settings был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.developer был успешно загружен
+00:39:18 - INFO - load_extensions: 21 - --Модуль extensions.commands.accounts был успешно загружен
+00:39:18 - INFO - load_extensions: 27 - Комманды были успешны загружены
+00:39:18 - INFO - load_extensions: 29 - Начало загрузки ивентов
+00:39:18 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_join был успешно загружен
+00:39:18 - INFO - load_extensions: 33 - --Модуль extensions.events.levels был успешно загружен
+00:39:18 - INFO - load_extensions: 33 - --Модуль extensions.events.private_voices был успешно загружен
+00:39:18 - INFO - load_extensions: 33 - --Модуль extensions.events.on_ready был успешно загружен
+00:39:18 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_remove был успешно загружен
+00:39:18 - INFO - load_extensions: 33 - --Модуль extensions.events.on_error был успешно загружен
+00:39:18 - INFO - load_extensions: 39 - Ивенты были успешно загружены
+00:39:18 - INFO - init_database: 25 - База данных подключена
+00:39:18 - INFO - login: 861 - logging in using static token
+00:39:19 - INFO - identify: 522 - Shard ID 0 has sent the IDENTIFY payload.
+00:39:20 - INFO - received_message: 619 - Shard ID 0 has connected to Gateway: ["gateway-prd-us-east1-b-g0qw",{"micros":210380,"calls":["id_created",{"micros":1395,"calls":[]},"session_lookup_time",{"micros":393,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-259",{"micros":207299,"calls":["start_session",{"micros":175210,"calls":["discord-api-6c89db896f-5fvzv",{"micros":167258,"calls":["get_user",{"micros":14270},"get_guilds",{"micros":6274},"send_scheduled_deletion_message",{"micros":13},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":9}]}]},"starting_guild_connect",{"micros":55,"calls":[]},"presence_started",{"micros":19364,"calls":[]},"guilds_started",{"micros":171,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":12466,"calls":[]},"connect_finished",{"micros":12473,"calls":[]},"build_ready",{"micros":24,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 92e25e553da1f4ec7e98c34d933da90e, Resume URL: wss://gateway-us-east1-b.discord.gg).
+00:39:22 - INFO - on_ready: 32 - Загрузка клиента
+00:39:22 - INFO - on_ready: 74 - Бот был запущен
+00:45:49 - INFO - load_locale: 43 - Начало загружки модуля локализации
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\accounts был успешно загружен
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\economy был успешно загружен
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\family был успешно загружен
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\gaiety был успешно загружен
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\info был успешно загружен
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\moderation был успешно загружен
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\profile был успешно загружен
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\rating был успешно загружен
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\roleplay был успешно загружен
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\server_settings был успешно загружен
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\user был успешно загружен
+00:45:49 - INFO - load_locale: 47 - --Модуль locale\commands\utilits был успешно загружен
+00:45:49 - INFO - load_locale: 48 - Локализация для аргументов и названий команд загружена
+00:45:49 - INFO - load_extensions: 17 - Начало загрузки команд
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.accounts был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.profile был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.family был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.user был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.utilits был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.info был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.roleplay был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.gaiety был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.moderation был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.economy был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.server_settings был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.developer был успешно загружен
+00:45:49 - INFO - load_extensions: 21 - --Модуль extensions.commands.rating был успешно загружен
+00:45:49 - INFO - load_extensions: 27 - Комманды были успешны загружены
+00:45:49 - INFO - load_extensions: 29 - Начало загрузки ивентов
+00:45:49 - INFO - load_extensions: 33 - --Модуль extensions.events.levels был успешно загружен
+00:45:49 - INFO - load_extensions: 33 - --Модуль extensions.events.on_ready был успешно загружен
+00:45:49 - INFO - load_extensions: 33 - --Модуль extensions.events.private_voices был успешно загружен
+00:45:49 - INFO - load_extensions: 33 - --Модуль extensions.events.on_error был успешно загружен
+00:45:49 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_join был успешно загружен
+00:45:49 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_remove был успешно загружен
+00:45:49 - INFO - load_extensions: 39 - Ивенты были успешно загружены
+00:45:49 - INFO - init_database: 25 - База данных подключена
+00:45:49 - INFO - login: 861 - logging in using static token
+00:45:51 - INFO - identify: 522 - Shard ID 0 has sent the IDENTIFY payload.
+00:45:51 - INFO - received_message: 619 - Shard ID 0 has connected to Gateway: ["gateway-prd-us-east1-d-nxfr",{"micros":122732,"calls":["id_created",{"micros":1777,"calls":[]},"session_lookup_time",{"micros":4526,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-108",{"micros":115883,"calls":["start_session",{"micros":96689,"calls":["discord-api-6c89db896f-qxnsz",{"micros":89038,"calls":["get_user",{"micros":16154},"get_guilds",{"micros":6650},"send_scheduled_deletion_message",{"micros":8},"guild_join_requests",{"micros":1},"authorized_ip_coro",{"micros":10}]}]},"starting_guild_connect",{"micros":55,"calls":[]},"presence_started",{"micros":1624,"calls":[]},"guilds_started",{"micros":161,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":17327,"calls":[]},"connect_finished",{"micros":17332,"calls":[]},"build_ready",{"micros":19,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 070b09d9e0763a7f256e283815bd15db, Resume URL: wss://gateway-us-east1-d.discord.gg).
+00:45:53 - INFO - on_ready: 32 - Загрузка клиента
+00:45:53 - INFO - on_ready: 74 - Бот был запущен
+01:11:04 - INFO - load_locale: 43 - Начало загружки модуля локализации
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\accounts был успешно загружен
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\economy был успешно загружен
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\family был успешно загружен
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\gaiety был успешно загружен
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\info был успешно загружен
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\moderation был успешно загружен
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\profile был успешно загружен
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\rating был успешно загружен
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\roleplay был успешно загружен
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\server_settings был успешно загружен
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\user был успешно загружен
+01:11:04 - INFO - load_locale: 47 - --Модуль locale\commands\utilits был успешно загружен
+01:11:04 - INFO - load_locale: 48 - Локализация для аргументов и названий команд загружена
+01:11:04 - INFO - load_extensions: 17 - Начало загрузки команд
+01:11:04 - INFO - load_extensions: 21 - --Модуль extensions.commands.gaiety был успешно загружен
+01:11:04 - INFO - load_extensions: 21 - --Модуль extensions.commands.user был успешно загружен
+01:11:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.server_settings был успешно загружен
+01:11:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.family был успешно загружен
+01:11:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.utilits был успешно загружен
+01:11:05 - ERROR - load_extensions: 26 - ++Произошла ошибка при загрузке команд: Extension 'extensions.commands.info' raised an error: JSONDecodeError: Expecting property name enclosed in double quotes: line 18 column 5 (char 1150)
+01:11:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.rating был успешно загружен
+01:11:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.economy был успешно загружен
+01:11:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.profile был успешно загружен
+01:11:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.moderation был успешно загружен
+01:11:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.accounts был успешно загружен
+01:11:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.developer был успешно загружен
+01:11:05 - INFO - load_extensions: 21 - --Модуль extensions.commands.roleplay был успешно загружен
+01:11:05 - INFO - load_extensions: 27 - Комманды были успешны загружены
+01:11:05 - INFO - load_extensions: 29 - Начало загрузки ивентов
+01:11:05 - INFO - load_extensions: 33 - --Модуль extensions.events.levels был успешно загружен
+01:11:05 - INFO - load_extensions: 33 - --Модуль extensions.events.private_voices был успешно загружен
+01:11:05 - INFO - load_extensions: 33 - --Модуль extensions.events.on_ready был успешно загружен
+01:11:05 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_remove был успешно загружен
+01:11:05 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_join был успешно загружен
+01:11:05 - INFO - load_extensions: 33 - --Модуль extensions.events.on_error был успешно загружен
+01:11:05 - INFO - load_extensions: 39 - Ивенты были успешно загружены
+01:11:05 - INFO - init_database: 25 - База данных подключена
+01:11:05 - INFO - login: 861 - logging in using static token
+01:11:06 - INFO - identify: 522 - Shard ID 0 has sent the IDENTIFY payload.
+01:11:06 - INFO - received_message: 619 - Shard ID 0 has connected to Gateway: ["gateway-prd-us-east1-b-q6ld",{"micros":138465,"calls":["id_created",{"micros":1667,"calls":[]},"session_lookup_time",{"micros":577,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-184",{"micros":135216,"calls":["start_session",{"micros":120242,"calls":["discord-api-6c89db896f-58tvq",{"micros":112666,"calls":["get_user",{"micros":16578},"get_guilds",{"micros":23837},"send_scheduled_deletion_message",{"micros":29},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":12}]}]},"starting_guild_connect",{"micros":52,"calls":[]},"presence_started",{"micros":2763,"calls":[]},"guilds_started",{"micros":186,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":11944,"calls":[]},"connect_finished",{"micros":11950,"calls":[]},"build_ready",{"micros":20,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: ae25576f92ac6c805bad208e0cdbfa5d, Resume URL: wss://gateway-us-east1-b.discord.gg).
+01:11:09 - INFO - on_ready: 32 - Загрузка клиента
+01:11:09 - INFO - on_ready: 74 - Бот был запущен
+01:11:30 - INFO - load_locale: 43 - Начало загружки модуля локализации
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\accounts был успешно загружен
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\economy был успешно загружен
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\family был успешно загружен
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\gaiety был успешно загружен
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\info был успешно загружен
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\moderation был успешно загружен
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\profile был успешно загружен
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\rating был успешно загружен
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\roleplay был успешно загружен
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\server_settings был успешно загружен
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\user был успешно загружен
+01:11:30 - INFO - load_locale: 47 - --Модуль locale\commands\utilits был успешно загружен
+01:11:30 - INFO - load_locale: 48 - Локализация для аргументов и названий команд загружена
+01:11:30 - INFO - load_extensions: 17 - Начало загрузки команд
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.server_settings был успешно загружен
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.family был успешно загружен
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.utilits был успешно загружен
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.economy был успешно загружен
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.rating был успешно загружен
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.moderation был успешно загружен
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.developer был успешно загружен
+01:11:30 - ERROR - load_extensions: 26 - ++Произошла ошибка при загрузке команд: Extension 'extensions.commands.info' raised an error: JSONDecodeError: Expecting property name enclosed in double quotes: line 18 column 5 (char 1150)
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.gaiety был успешно загружен
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.accounts был успешно загружен
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.roleplay был успешно загружен
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.profile был успешно загружен
+01:11:30 - INFO - load_extensions: 21 - --Модуль extensions.commands.user был успешно загружен
+01:11:30 - INFO - load_extensions: 27 - Комманды были успешны загружены
+01:11:30 - INFO - load_extensions: 29 - Начало загрузки ивентов
+01:11:30 - INFO - load_extensions: 33 - --Модуль extensions.events.levels был успешно загружен
+01:11:30 - INFO - load_extensions: 33 - --Модуль extensions.events.private_voices был успешно загружен
+01:11:30 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_join был успешно загружен
+01:11:30 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_remove был успешно загружен
+01:11:30 - INFO - load_extensions: 33 - --Модуль extensions.events.on_ready был успешно загружен
+01:11:30 - INFO - load_extensions: 33 - --Модуль extensions.events.on_error был успешно загружен
+01:11:30 - INFO - load_extensions: 39 - Ивенты были успешно загружены
+01:11:30 - INFO - init_database: 25 - База данных подключена
+01:11:30 - INFO - login: 861 - logging in using static token
+01:11:32 - INFO - identify: 522 - Shard ID 0 has sent the IDENTIFY payload.
+01:11:32 - INFO - received_message: 619 - Shard ID 0 has connected to Gateway: ["gateway-prd-us-east1-b-3hgr",{"micros":149118,"calls":["id_created",{"micros":1380,"calls":[]},"session_lookup_time",{"micros":2145,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-268",{"micros":144224,"calls":["start_session",{"micros":126624,"calls":["discord-api-6c89db896f-4hvwh",{"micros":118371,"calls":["get_user",{"micros":26902},"get_guilds",{"micros":46845},"send_scheduled_deletion_message",{"micros":7},"guild_join_requests",{"micros":1},"authorized_ip_coro",{"micros":11}]}]},"starting_guild_connect",{"micros":57,"calls":[]},"presence_started",{"micros":2219,"calls":[]},"guilds_started",{"micros":200,"calls":[]},"guilds_connect",{"micros":3,"calls":[]},"presence_connect",{"micros":15086,"calls":[]},"connect_finished",{"micros":15094,"calls":[]},"build_ready",{"micros":27,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: d7c341ac6fbff2ceb5ff2a04183f3779, Resume URL: wss://gateway-us-east1-b.discord.gg).
+01:11:34 - INFO - on_ready: 32 - Загрузка клиента
+01:11:34 - INFO - on_ready: 74 - Бот был запущен
+01:12:16 - INFO - load_locale: 43 - Начало загружки модуля локализации
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\accounts был успешно загружен
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\economy был успешно загружен
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\family был успешно загружен
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\gaiety был успешно загружен
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\info был успешно загружен
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\moderation был успешно загружен
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\profile был успешно загружен
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\rating был успешно загружен
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\roleplay был успешно загружен
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\server_settings был успешно загружен
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\user был успешно загружен
+01:12:16 - INFO - load_locale: 47 - --Модуль locale\commands\utilits был успешно загружен
+01:12:16 - INFO - load_locale: 48 - Локализация для аргументов и названий команд загружена
+01:12:16 - INFO - load_extensions: 17 - Начало загрузки команд
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.moderation был успешно загружен
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.roleplay был успешно загружен
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.server_settings был успешно загружен
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.gaiety был успешно загружен
+01:12:16 - ERROR - load_extensions: 26 - ++Произошла ошибка при загрузке команд: Extension 'extensions.commands.info' raised an error: JSONDecodeError: Expecting property name enclosed in double quotes: line 18 column 5 (char 1150)
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.developer был успешно загружен
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.utilits был успешно загружен
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.profile был успешно загружен
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.rating был успешно загружен
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.economy был успешно загружен
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.user был успешно загружен
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.accounts был успешно загружен
+01:12:16 - INFO - load_extensions: 21 - --Модуль extensions.commands.family был успешно загружен
+01:12:16 - INFO - load_extensions: 27 - Комманды были успешны загружены
+01:12:16 - INFO - load_extensions: 29 - Начало загрузки ивентов
+01:12:16 - INFO - load_extensions: 33 - --Модуль extensions.events.on_ready был успешно загружен
+01:12:16 - INFO - load_extensions: 33 - --Модуль extensions.events.private_voices был успешно загружен
+01:12:16 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_join был успешно загружен
+01:12:16 - INFO - load_extensions: 33 - --Модуль extensions.events.levels был успешно загружен
+01:12:16 - INFO - load_extensions: 33 - --Модуль extensions.events.on_guild_remove был успешно загружен
+01:12:16 - INFO - load_extensions: 33 - --Модуль extensions.events.on_error был успешно загружен
+01:12:16 - INFO - load_extensions: 39 - Ивенты были успешно загружены
+01:12:16 - INFO - init_database: 25 - База данных подключена
+01:12:16 - INFO - login: 861 - logging in using static token
+01:12:18 - INFO - identify: 522 - Shard ID 0 has sent the IDENTIFY payload.
+01:12:18 - INFO - received_message: 619 - Shard ID 0 has connected to Gateway: ["gateway-prd-us-east1-d-954h",{"micros":117776,"calls":["id_created",{"micros":2368,"calls":[]},"session_lookup_time",{"micros":15181,"calls":[]},"session_lookup_finished",{"micros":17,"calls":[]},"discord-sessions-prd-2-105",{"micros":98544,"calls":["start_session",{"micros":85607,"calls":["discord-api-6c89db896f-6rnfs",{"micros":80026,"calls":["get_user",{"micros":9581},"get_guilds",{"micros":7873},"send_scheduled_deletion_message",{"micros":11},"guild_join_requests",{"micros":1},"authorized_ip_coro",{"micros":9}]}]},"starting_guild_connect",{"micros":69,"calls":[]},"presence_started",{"micros":530,"calls":[]},"guilds_started",{"micros":204,"calls":[]},"guilds_connect",{"micros":3,"calls":[]},"presence_connect",{"micros":12103,"calls":[]},"connect_finished",{"micros":12108,"calls":[]},"build_ready",{"micros":22,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: e30de0d333c44878096a654f1c3b1e50, Resume URL: wss://gateway-us-east1-d.discord.gg).
+01:12:20 - INFO - on_ready: 32 - Загрузка клиента
+01:12:20 - INFO - on_ready: 74 - Бот был запущен
