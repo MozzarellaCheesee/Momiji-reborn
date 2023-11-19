@@ -23,7 +23,6 @@ class PrivateVoices(BaseCog):
         if before.channel is not None and len(before.channel.members) < 1:
             private_vc: PrivateVCS = await self.client.db.PrivateVCS.get_or_none(server=server_in_db[0],
                                                                                  channel_id=before.channel.id)
-            print(private_vc.id)
             if private_vc is not None:
                 await private_vc.delete()
                 await before.channel.delete()

@@ -14,6 +14,11 @@ from tools.utils import get_or_create_role
 
 _ = LocalizationStorage("server_settings")
 
+EMOJI: dict = {
+    True: "<a:Toggleon:1175843384766779393>",
+    False: "<a:Toggleoff:1175843484020785152>"
+}
+
 
 class ServerSettings(BaseCog):
 
@@ -148,6 +153,26 @@ class ServerSettings(BaseCog):
             ),
             ephemeral=True
         )
+
+    @server.sub_command()
+    async def server_settings(self, inter: AppCmdInter):
+        locale = _(inter.locale, "server_settings_info")
+        server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
+        settings = [server_in_db[0].vip, server_in_db[0].logs, server_in_db[0].verify,
+                    server_in_db[0].private_vcs_channel, server_in_db[0].married_role]
+        types_settings = ["Вип", "Логи", "Верификация", "Приватные каналы", "Супружеская роль"]
+        embed = disnake.Embed(
+            title="Серверные настройки",
+            description="Ниже указаны все включеные и выключенные настройки"
+        )
+
+        for i, setting in enumerate(settings, start=0):
+            embed.add_field(
+                name=types_settings[i],
+                value=EMOJI[setting]
+            )
+
+        await inter.send(embed=embed)
 
 
 def setup(client: commands.InteractionBot):

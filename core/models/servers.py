@@ -8,6 +8,11 @@ class Servers(Model):
     discord_id = fields.BigIntField(null=False)
     vip = fields.BooleanField(default=False)
     renewal_date = fields.DatetimeField(default=None, null=True)
+    logs = fields.BooleanField(default=False)
+    verify = fields.BooleanField(default=False)
+    private_vcs_channel = fields.BooleanField(default=False)
+    married_role = fields.BooleanField(default=False)
+
     channels: fields.ReverseRelation["models.Channels"]
     profiles: fields.ReverseRelation["models.Profiles"]
     roles: fields.ReverseRelation["models.Roles"]

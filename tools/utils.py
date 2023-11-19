@@ -142,7 +142,6 @@ async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
         .prefetch_related("partner", "tickets", "warns_profile").first()
 
     if not profile:
-        print('b')
         return await inter.send(locale["error"], ephemeral=True)
 
     await inter.response.defer()
