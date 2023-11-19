@@ -29,11 +29,7 @@ class PrivateVoices(BaseCog):
         if not channel:
             return
 
-        print(f"{channel_.channel_id}\n")
-
         channel_obj: disnake.VoiceChannel = member.guild.get_channel(int(channel_.channel_id))
-
-        print(after.channel.id, channel_obj.id)
 
         try:
             if after.channel == channel_obj:
