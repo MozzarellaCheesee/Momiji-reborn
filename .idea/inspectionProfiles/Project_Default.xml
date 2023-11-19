@@ -45,14 +45,6 @@
           <option value="disnake.role.Role.role_id" />
           <option value="disnake.user.User.is_on_mobile" />
           <option value="disnake.ext.commands.bot.InteractionBot.channels" />
-          <option value="tuple.server" />
-          <option value="core.models.profiles.Profiles.__getitem__" />
-          <option value="disnake.ext.commands.bot.InteractionBot.emojies" />
-          <option value="tortoise.models.PrivateVCS" />
-          <option value="list.members" />
-          <option value="list.category" />
-          <option value="list.delete" />
-          <option value="list.id" />
         </list>
       </option>
     </inspection_tool>

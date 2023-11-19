@@ -1,0 +1,58 @@
+{
+    "hello": {
+        "description_1": "greeted",
+        "description_2": "greeted with everybody"
+    },
+
+    "hug": {
+        "description_1": "hugged",
+        "description_2": "hugged everyone"
+    },
+
+    "kiss": {
+        "description_1": "kissed",
+        "description_2": "kissed everyone"
+    },
+
+    "punch": {
+        "description_1": "punched",
+        "description_2": "punched everyone"
+    },
+
+    "pat": {
+        "description_1": "pat",
+        "description_2": "pat everyone"
+    },
+
+    "smoke": {
+        "description_1": "smokes a cigarette"
+    },
+
+    "sad": {
+        "description_1": "mourn"
+    },
+
+    "angry": {
+        "description_1": "angry at",
+        "description_2": "angry at everyone"
+    },
+
+    "bite": {
+        "description_1": "bitten",
+        "description_2": "bitten everyone"
+    },
+
+    "clap": {
+        "description_1": "patted",
+        "description_2": "patted everyone"
+    },
+
+    "feed": {
+        "description_1": "fed",
+        "description_2": "fed everyone"
+    },
+
+    "dance": {
+        "description_1": "dancing"
+    }
+}

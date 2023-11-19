@@ -1,0 +1,22 @@
+{
+
+    "SET": "установить",
+    "DELETE": "удалить",
+
+    "COMMAND_GROUP_SERVER": "сервер",
+    "COMMAND_GROUP_DESCRIPTION_SERVER": "команды настройки сервера",
+    "COMMAND_NAME_VEREFY": "верификация",
+    "COMMAND_DESCRIPTION_VEREFY": "установить верификацию на вашем сервери",
+    "COMMAND_NAME_VEREFY-ROLE": "роль-верификации",
+    "COMMAND_DESCRIPTION_VEREFY-ROLE": "установить роль для верифицированных пользователей",
+    "COMMAND_PARAM_NAME_ROLE": "роль",
+    "COMMAND_PARAM_DESCRIPTION_ROLE": "выберите роль",
+    "COMMAND_PARAM_NAME_CHANNEL": "канал",
+    "COMMAND_PARAM_DESCRIPTION_CHANNEL": "выберите канал",
+    "COMMAND_NAME_MARRY-ROLE": "роль-супруг",
+    "COMMAND_DESCRIPTION_MARRY-ROLE": "установить роль для пользователей которые заключили брак",
+    "COMMAND_NAME_PRIVATE_ROOMS": "приватные-комнаты",
+    "COMMAND_DESCRIPTION_PRIVATE_ROOMS": "установить приватные комнаты",
+    "COMMAND_PARAM_NAME_ACTION": "действие",
+    "COMMAND_PARAM_DESCRIPTION_ACTION": "выберите действие"
+}

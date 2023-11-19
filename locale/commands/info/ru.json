@@ -1,0 +1,13 @@
+{
+    "COMMAND_GROUP_INFO": "инфо",
+    "COMMAND_GROUP_DESCRIPTION_INFO":"информационные команды",
+
+    "COMMAND_NAME_HELP": "хелп",
+    "COMMAND_DESCRIPTION_HELP": "команда помощи",
+
+    "COMMAND_NAME_BOT-INFO": "бот-инфо",
+    "COMMAND_DESCRIPTION_BOT-INFO": "информация и статус бота",
+
+    "COMMAND_NAME_SERVER": "сервер",
+    "COMMAND_DESCRIPRION_SERVER": "сервер инфо"
+}
