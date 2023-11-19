@@ -93,8 +93,9 @@ async def get_member_profile_for_marry(member, client):
 
 
 async def account(locale: dict, client, inter, user):
-    user_in_db = await client.db.Users.get_or_create(discord_id=user.id)
-    user_in_db: Users = await user_in_db[0].first().prefetch_related("authorizedsessions")
+    user_in_db_ = await client.db.Users.get_or_create(discord_id=user.id)
+    user_in_db: Users = await client.db.Users.filter(
+        discord_id=user_in_db_[0].discord_id).first().prefetch_related("authorizedsessions")
 
     if not user_in_db:
         return await inter.send(locale["error"], ephemeral=True)
@@ -140,23 +141,16 @@ async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
     profile: Profiles = await client.db.Profiles.filter(user=user_in_db[0], server=server_in_db[0]) \
         .prefetch_related("partner", "tickets", "warns_profile").first()
 
-    print('a')
-
     if not profile:
         print('b')
         return await inter.send(locale["error"], ephemeral=True)
-    print('a')
 
     await inter.response.defer()
 
-    print('a')
-
     if profile.partner is None:
         partner = locale["no_partner"]
-        print('a')
     else:
         partner = inter.guild.get_member(profile.partner.discord_id)
-        print('a')
 
     name = f'@{user.name}' if len(user.name) <= 15 else f'@{user.name}'[:15] + '...'
     card = Image.open('./assets/profile_server.png')
@@ -167,8 +161,6 @@ async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
     open_tickets = len(profile.tickets)
     money = profile.money
     warns = len(profile.warns_profile)
-
-    print('a')
 
     avatar_in_png = user.display_avatar.with_static_format("png")
     avatar = circle(Image.open(BytesIO(await avatar_in_png.read())).convert("RGBA"), (213, 213))

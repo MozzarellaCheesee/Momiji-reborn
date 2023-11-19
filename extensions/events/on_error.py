@@ -56,6 +56,9 @@ class OnErrors(BaseCog):
             await inter.send(embed=embed, ephemeral=True)
             return
 
+        if isinstance(error, commands.CommandOnCooldown):
+            return
+
         embed.description = descriptions_for_err.get(
             50013 if '50013' in str(error) else type(error),
             f"{locale['description']}"
