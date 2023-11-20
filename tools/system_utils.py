@@ -46,3 +46,11 @@ def load_locale(client: commands.InteractionBot):
             client.i18n.load(dir_)
             logging.info(f"--Модуль {dir_} был успешно загружен")
     logging.info("Локализация для аргументов и названий команд загружена")
+
+
+async def get_stats(client: commands.AutoShardedInteractionBot):
+    return {"servers": len(client.guilds), "shards": client.shard_count, "members": len(client.users), "library": 12}
+
+
+async def on_success_posting():
+    print("Status posting is work")

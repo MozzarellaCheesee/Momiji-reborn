@@ -35,9 +35,7 @@ class VerefyModal(Modal):
         if str(self.code) != inter.text_values["verefy"]:
             return await inter.response.send_message(self.locale["not_verefy"], ephemeral=True)
 
-        member: disnake.Member = inter.guild.get_member(inter.author.id)
-
-        if member.top_role >= inter.me.top_role:
+        if inter.author.top_role >= inter.me.top_role:
             return await inter.response.send_message(self.locale["top_role_error"], ephemeral=True)
 
         await inter.response.send_message(
@@ -46,10 +44,7 @@ class VerefyModal(Modal):
             ), ephemeral=True
         )
         await sleep(5)
-        try:
-            await member.add_roles(self.role, reason='verify')
-        except disnake.Forbidden:
-            ...
+        await inter.author.add_roles(self.role, reason='verify')
 
 
 class VerefyButton(View):
