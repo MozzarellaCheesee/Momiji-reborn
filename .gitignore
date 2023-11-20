@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-/venv
-=======
 .idea
 start.bat
 LICENSE
->>>>>>> 5ec815e (.gitignore update)
 *.pyc
 __pycache__
