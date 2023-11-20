@@ -1,0 +1,88 @@
+{
+    "verefy": {
+        "not_role": "The role for those who have passed verification is not installed on the server",
+        "not_verefy": "Verification failed, please try again",
+        "item_error": "Enter at least one value: `title`, `Description` `Image`",
+        "top_role_error": "Failed because the bot's role is lower than or equal to that of the verified user",
+        "verefy": {
+            "error": "Error, it looks like the verification role is higher (higher priority) than mine",
+            "description": "**You have passed verification and will be able to access the server in a couple of seconds...**"
+        },
+        "setup_modal": {
+            "components": {
+                "labels": {
+                    "color": "color",
+                    "title": "Title",
+                    "description": "Description",
+                    "image": "Image",
+                    "footer": "footer",
+                    "verefy": "Enter the code below"
+                },
+                "placeholders": {
+                    "color": "Enter a color in HEX format, example: 2b2d31 without #",
+                    "title": "Enter a title to display",
+                    "description": "Enter a description to display",
+                    "image": "Insert image link",
+                    "footer": "Enter text to be displayed at the bottom"
+                }
+            },
+            "titles": {
+                "modal": "Modal verification settings window",
+                "verefy": "Verification"
+            },
+            "embeds": {
+                "title": "You have successfully configured verification"
+            }
+        }
+    },
+
+    "set_verefy_role": {
+        "delete": {
+             "title": "Delete",
+             "description": "You have deleted the role for the verified users",
+             "error": "The role for verified users is not set"
+        },
+        "title": "Verification Role",
+        "description": "You have successfully installed the verification role, now the role for verified members is {role}"
+    },
+
+    "set_marry_role": {
+        "delete": {
+             "title": "Delete",
+             "description": "You have deleted the role for the married users",
+             "error": "The role for married users is not set"
+        },
+        "title": "Role for Spouses",
+        "description": "You have successfully set the spouse role, the member's spouse role is now {role}"
+    },
+
+    "create_rooms_object": {
+          "delete": {
+              "title": "Delete",
+              "description": "You have deleted the channel for creating private voices",
+              "error": "You do not have a channel for creating private voices"
+          },
+          "set": {
+              "title": "Create",
+              "description": "In order to create a private voice in {channel}"
+          }
+      },
+
+    "server_settings_info": {
+         "title": "Server settings",
+         "description": "Below are all enabled and disabled settings, as well as commands to manage them\n`<>` - required parameter\n`[]` - optional parameter",
+         "state": "State",
+         "field_name_1": "Vip",
+         "field_name_2": "Logs",
+         "field_name_3": "Verification",
+         "field_name_4": "Private channels",
+         "field_name_5": "Marry Roles",
+         "field_name_6": "Verification Role",
+         "field_description_1": "Under development (default off)",
+         "field_description_2": "Under development (default off)",
+         "field_description_3": "`/server verify <channel>`",
+         "field_description_4": "`/server private-rooms [action]`",
+         "field_description_5": "`/server marry-role <role>`",
+         "field_description_6": "`/server role-verification <role>`"
+     }
+}
