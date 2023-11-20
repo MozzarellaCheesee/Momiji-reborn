@@ -4,3 +4,4 @@ LICENSE
 *.pyc
 __pycache__
 /logs
+*.xml
