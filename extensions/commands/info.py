@@ -5,6 +5,7 @@ from disnake.ext import commands
 
 from core.cog import BaseCog
 from core.i18n import LocalizationStorage
+from tools.ui.buttons import InfoButtons
 from tools.utils import split_guild_members
 
 _ = LocalizationStorage("info")
@@ -59,7 +60,7 @@ class Info(BaseCog):
                 value=BOT_INFO[count]
             )
 
-        await inter.send(embed=embed)
+        await inter.send(embed=embed, view=InfoButtons())
 
     @info.sub_command(
         name=__('server', key="COMMAND_NAME_SERVER"),
