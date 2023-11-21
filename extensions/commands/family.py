@@ -129,9 +129,19 @@ class LoveProfileButtons(disnake.ui.View):
         family: Families = await author_profile_in_db.family.first().prefetch_related('wife', 'husband')
         if family.husband == author_user_in_db[0]:
             member: disnake.User = await self.client.fetch_user(family.wife.discord_id)
+            member_in_db: Profiles = await self.client.db.Profiles.get(server=server_in_db[0],
+                                                                       user=await family.wife)
         else:
             member: disnake.User = await self.client.fetch_user(family.husband.discord_id)
+            member_in_db: Profiles = await self.client.db.Profiles.get(server=server_in_db[0],
+                                                                       user=await family.husband)
+        author_profile_in_db.partner = None
+        member_in_db.partner = None
+        await author_profile_in_db.save()
+        await member_in_db.save()
         await self.client.db.Families.filter(id=family.id).delete()
+
+
 
         await inter.response.edit_message(
             attachments=[],
@@ -185,7 +195,7 @@ class Family(BaseCog):
             raise CustomError(locale["errors"]["author_married"])
         if member_profile.family is not None:
             raise CustomError(locale["errors"]["member_married"])
-        if author_profile.money < 12000:
+        if author_profile.money < 5000:
             raise CustomError(locale["errors"]["not_money"])
         await inter.send(
             user.mention,
