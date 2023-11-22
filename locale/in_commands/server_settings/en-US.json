@@ -42,6 +42,7 @@
              "description": "You have deleted the role for the verified users",
              "error": "The role for verified users is not set"
         },
+        "error": "You cannot put a role that is higher than or equal to the bot's role",
         "title": "Verification Role",
         "description": "You have successfully installed the verification role, now the role for verified members is {role}"
     },
@@ -52,6 +53,7 @@
              "description": "You have deleted the role for the married users",
              "error": "The role for married users is not set"
         },
+        "error": "You cannot put a role that is higher than or equal to the bot's role",
         "title": "Role for Spouses",
         "description": "You have successfully set the spouse role, the member's spouse role is now {role}"
     },
