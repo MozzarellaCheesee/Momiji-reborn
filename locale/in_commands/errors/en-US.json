@@ -16,7 +16,8 @@
             "4": "Send messages",
             "5": "View channel",
             "6": "Manage roles",
-            "7": "Moderate members"
+            "7": "Moderate members",
+            "8": "Manage channels"
         },
 
         "title": "An error has occurred",

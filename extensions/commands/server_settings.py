@@ -63,6 +63,10 @@ class ServerSettings(BaseCog):
                 default="set")
     ):
         locale = _(inter.locale, "set_verefy_role")
+
+        if role >= inter.me.top_role:
+            raise CustomError(locale['error'])
+
         server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
         role_in_db: Roles | None = await self.client.db.Roles.get_or_none(server=server_in_db[0],
                                                                           role_type="VERIFY")
@@ -123,6 +127,10 @@ class ServerSettings(BaseCog):
                 default="set")
     ):
         locale = _(inter.locale, "set_marry_role")
+
+        if role >= inter.me.top_role:
+            raise CustomError(locale['error'])
+
         server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
         role_in_db: Roles | None = await self.client.db.Roles.get_or_none(server=server_in_db[0],
                                                                           role_type="MARRY")

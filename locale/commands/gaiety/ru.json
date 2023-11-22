@@ -1,5 +1,7 @@
 {
     "COMMAND_GROUP_GAIETY": "веселости",
     "COMMAND_GROUP_DESCRIPTION_GAIETY": "команды для развлечений",
-    "COMMAND_DESCRIPTION_8BALL": "спроси у шара о том, что тебя волнует"
+    "COMMAND_DESCRIPTION_8BALL": "спроси у шара о том, что тебя волнует",
+    "COMMAND_PARAM_NAME_QUEST": "вопрос",
+    "COMMAND_PARAM_DESCRIPTION_QUEST": "введите ваш вопрос"
 }

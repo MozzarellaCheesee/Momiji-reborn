@@ -31,7 +31,7 @@ class MarryButtons(disnake.ui.View):
         self.role = role
         self.check_member = check_member
         self.disnake_author = disnake_author
-        self.inter = inter
+        self.inter: AppCmdInter = inter
         self.check = 0
 
     async def on_timeout(self) -> None:
@@ -52,6 +52,12 @@ class MarryButtons(disnake.ui.View):
     @disnake.ui.button(emoji="✅")
     async def yes_callback(self, button, inter: disnake.Interaction):
         role: disnake.Role = inter.guild.get_role(self.role.role_id)
+        if role >= self.inter.me.top_role:
+            return await inter.edit_original_message(
+                embed=disnake.Embed(
+                    description=self.locale['errors']['top_role']
+                )
+            )
         st = datetime.datetime.now()
         date = datetime.datetime.now() + datetime.timedelta(days=30)
         family = await self.client.db.Families.create(
