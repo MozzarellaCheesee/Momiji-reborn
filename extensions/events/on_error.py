@@ -35,7 +35,8 @@ class OnErrors(BaseCog):
             "manage_guild": locale["permissions"]['3'],
             "send_messages": locale["permissions"]['4'],
             "view_channel": locale["permissions"]['5'],
-            "manage_roles": locale["permissions"]['6']
+            "manage_roles": locale["permissions"]['6'],
+            "moderate_members": locale["permissions"]['7']
         }
 
         embed = disnake.Embed(
