@@ -21,6 +21,10 @@
     },
     
     "love_profile": {
+        "errors": {
+            "not_role": "Role for marriage has not been set",
+            "top_role": "My role is equal to or lower than that of married couples"
+        },
         "button_1": "Divorce",
         "button_2": "Top up your bank account",
         "error": "{member} is not married",
