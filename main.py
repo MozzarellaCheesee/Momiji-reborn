@@ -17,5 +17,6 @@ async def main():
     await client.start(config["MOMIJI_TOKEN"])
     boticord_client.autopost().init_stats(await get_stats(client)).on_success(await on_success_posting()).start(config["MOMIJI_TOKEN"])
 
+
 if __name__ == "__main__":
     client.loop.run_until_complete(main())
