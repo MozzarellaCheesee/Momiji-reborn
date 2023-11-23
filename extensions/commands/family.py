@@ -21,7 +21,7 @@ err = LocalizationStorage('errors#2')
 
 class MarryButtons(disnake.ui.View):
 
-    def __init__(self, author, client: commands.InteractionBot, member, locale: dict, role: disnake.Role,
+    def __init__(self, author, client: commands.InteractionBot, member, locale: dict, role,
                  check_member: disnake.Member, disnake_author: disnake.Member, inter):
         super().__init__(timeout=60)
         self.author = author
@@ -68,7 +68,7 @@ class MarryButtons(disnake.ui.View):
         )
         self.author.family = family
         self.member.family = family
-        self.author.money -= 12000
+        self.author.money -= 5000
         self.author.partner = self.member.user
         self.member.partner = self.author.user
         await self.author.save()
@@ -102,12 +102,13 @@ class MarryButtons(disnake.ui.View):
 
 class LoveProfileButtons(disnake.ui.View):
 
-    def __init__(self, inter: AppCmdInter, locale: dict, client: commands.InteractionBot):
+    def __init__(self, inter: AppCmdInter, locale: dict, client: commands.InteractionBot, role):
         super().__init__(timeout=120)
         self.check = 0
         self.inter = inter
         self.locale = locale
         self.client = client
+        self.role = role
 
     async def on_timeout(self) -> None:
         if self.check == 1:
@@ -125,20 +126,24 @@ class LoveProfileButtons(disnake.ui.View):
         return interaction.author == self.inter.author
 
     @disnake.ui.button(emoji="<:momiji_divorce:1175038682818941050>")
-    async def divocre_callback(self, button, inter: disnake.Interaction):
+    async def divorce_callback(self, button, inter: disnake.Interaction):
+        role: disnake.Role = inter.guild.get_role(self.role.role_id)
+        if role >= inter.me.top_role:
+            return await inter.response.send_message(self.locale["errors"]["top_role"], ephermeral=True)
         server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
         author_user_in_db: tuple[Users, bool] = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
-        author_profile_in_db: tuple[Profiles, bool] = await self.client.db.Profiles.get_or_create(
+        author_profile_in_db: Profiles = await self.client.db.Profiles.get(
             user=author_user_in_db[0], server=server_in_db[0]
         )
-        author_profile_in_db: Profiles = await author_profile_in_db[0].first().prefetch_related('family')
+        author_profile_in_db: Profiles = await author_profile_in_db.filter(
+            server=server_in_db[0], user=author_user_in_db[0]).first().prefetch_related('family')
         family: Families = await author_profile_in_db.family.first().prefetch_related('wife', 'husband')
         if family.husband == author_user_in_db[0]:
-            member: disnake.User = await self.client.fetch_user(family.wife.discord_id)
+            member: disnake.Member = inter.guild.get_member(family.wife.discord_id)
             member_in_db: Profiles = await self.client.db.Profiles.get(server=server_in_db[0],
                                                                        user=await family.wife)
         else:
-            member: disnake.User = await self.client.fetch_user(family.husband.discord_id)
+            member: disnake.Member = inter.guild.get_member(family.husband.discord_id)
             member_in_db: Profiles = await self.client.db.Profiles.get(server=server_in_db[0],
                                                                        user=await family.husband)
         author_profile_in_db.partner = None
@@ -146,8 +151,8 @@ class LoveProfileButtons(disnake.ui.View):
         await author_profile_in_db.save()
         await member_in_db.save()
         await self.client.db.Families.filter(id=family.id).delete()
-
-
+        await inter.author.remove_roles(role)
+        await member.remove_roles(role)
 
         await inter.response.edit_message(
             attachments=[],
@@ -227,7 +232,11 @@ class Family(BaseCog):
         loc = err(inter.locale, "errors")
         if member.bot:
             raise CustomError(loc['bot_error'])
-        await love_profile(locale, self.client, inter, member, LoveProfileButtons(inter, locale, self.client))
+        server_in_db = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
+        role = await self.client.db.Roles.get_or_none(server=server_in_db[0], role_type="MARRY")
+        if role is None:
+            raise CustomError(locale["errors"]["not_role"])
+        await love_profile(locale, self.client, inter, member, LoveProfileButtons(inter, locale, self.client, role))
 
 
 def setup(client: commands.InteractionBot):
