@@ -138,6 +138,10 @@ class Rating(BaseCog):
         if member.bot:
             raise CustomError(locale['error_bot'])
         profile_in_db = await get_member_profile(member, self.client)
+
+        if profile_in_db is None:
+            raise CustomError(locale['error_'])
+
         embed = disnake.Embed(title=locale['title']).set_thumbnail(url=inter.author.display_avatar.url)
         action_in_symbol = {
             "Give": messages,
@@ -200,6 +204,10 @@ class Rating(BaseCog):
         if member.bot:
             raise CustomError(locale['error_bot'])
         profile_in_db = await get_member_profile(member, self.client)
+
+        if profile_in_db is None:
+            raise CustomError(locale['error_'])
+
         embed = disnake.Embed(title=locale['title']).set_thumbnail(url=inter.author.display_avatar.url)
         action_in_symbol = {
             "Give": experience,
