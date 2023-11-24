@@ -17,8 +17,12 @@ class BaseChecks:
             locale = locale_path(inter.locale, "errors")
             try:
                 member_cheсk = inter.author.top_role <= inter.filled_options[
-                    "member" or "участник"].top_role or inter.me.top_role <= inter.filled_options[
-                                   "member" or "участник"].top_role
+                    "member" or "участник"
+                ].top_role or inter.me.top_role <= inter.filled_options[
+                    "member" or "участник"
+                ].top_role or inter.filled_options[
+                    "member" or "участник"
+                ] == inter.guild.owner
                 if member_cheсk:
                     raise CustomError(locale["top_role_error"])
                 return True
