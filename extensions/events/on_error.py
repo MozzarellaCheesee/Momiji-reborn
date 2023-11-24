@@ -58,9 +58,6 @@ class OnErrors(BaseCog):
             await inter.send(embed=embed, ephemeral=True)
             return
 
-        if isinstance(error, commands.CommandOnCooldown):
-            return
-
         embed.description = descriptions_for_err.get(
             50013 if '50013' in str(error) else type(error),
             f"{locale['description']}"
@@ -68,6 +65,10 @@ class OnErrors(BaseCog):
         )
 
         await inter.send(embed=embed, ephemeral=True, view=SupportButton())
+
+        if isinstance(error, commands.CommandOnCooldown):
+            return
+
         await self.client.channels.on_error_channel.send(
             embed=disnake.Embed(
                 title="Ошибка комманды!",
