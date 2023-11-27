@@ -70,7 +70,7 @@ class Economy(BaseCog):
             ),
             amount: int = commands.Param(
                 name=__("amount", key="COMMAND_PARAM_NAME_AMOUNT"),
-                description=__("enteramount", key="COMMAND_PARAM_DESCRIPTION_AMOUNT")
+                description=__("enter amount", key="COMMAND_PARAM_DESCRIPTION_AMOUNT")
             )
     ):
         locale = _(inter.locale, "pay")
