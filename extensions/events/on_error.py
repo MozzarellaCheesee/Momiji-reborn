@@ -15,7 +15,7 @@ _ = LocalizationStorage('errors')
 class OnErrors(BaseCog):
 
     @commands.Cog.listener()
-    async def on_slash_command_error(self, inter, error):
+    async def on_slash_command_error(self, inter: disnake.AppCmdInter, error: commands.CommandError):
         locale = _(inter.locale, "error")
         stackSummary = traceback.extract_tb(error.__traceback__, limit=20)
         traceback_list = traceback.format_list(stackSummary)
@@ -72,7 +72,8 @@ class OnErrors(BaseCog):
             embed=disnake.Embed(
                 title="Ошибка комманды!",
                 description=f"{''.join(traceback_list)} \n\n ```{error.__class__.__name__}: {error}```\n\n Команда "
-                            f"вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}> "
+                            f"вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}>\nКоманда: "
+                            f"`{inter.application_command}`"
             )
         )
 
@@ -131,7 +132,8 @@ class OnErrors(BaseCog):
             embed=disnake.Embed(
                 title="Ошибка комманды!",
                 description=f"{''.join(traceback_list)} \n\n ```{error.__class__.__name__}: {error}```\n\n Команда "
-                            f"вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}> "
+                            f"вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}>\nКоманда: "
+                            f"`{inter.application_command}`"
             )
         )
 
