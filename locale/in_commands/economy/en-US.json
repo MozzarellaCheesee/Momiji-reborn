@@ -3,14 +3,17 @@
         "title": "Work",
         "description": "You worked hard at your job and got:",
         "field_name_1": "Currency:",
-        "field_name_2": "Exp:"
+        "field_name_2": "Exp:",
+        "error": "The user is not in the database"
     },
 
     "pay": {
         "title": "Translation",
-        "description": "Transfer funds to another member",
+        "description": "Transfer funds to another participant",
         "field_name_1": "Amount:",
-        "error_bot": "You cannot transfer money to the bot",
-        "error": "Your balance is less than the amount you want to transfer."
+        "error_bot": "You cannot transfer money to a bot",
+        "error": "Your balance is less than the amount you want to transfer.",
+        "error_": "You are not in the database",
+        "error__": "The recipient is not in the database"
     }
 }

@@ -15,7 +15,7 @@ _ = LocalizationStorage('errors')
 class OnErrors(BaseCog):
 
     @commands.Cog.listener()
-    async def on_slash_command_error(self, inter, error):
+    async def on_slash_command_error(self, inter: disnake.AppCmdInter, error: commands.CommandError):
         locale = _(inter.locale, "error")
         stackSummary = traceback.extract_tb(error.__traceback__, limit=20)
         traceback_list = traceback.format_list(stackSummary)
@@ -58,9 +58,6 @@ class OnErrors(BaseCog):
             await inter.send(embed=embed, ephemeral=True)
             return
 
-        if isinstance(error, commands.CommandOnCooldown):
-            return
-
         embed.description = descriptions_for_err.get(
             50013 if '50013' in str(error) else type(error),
             f"{locale['description']}"
@@ -68,11 +65,16 @@ class OnErrors(BaseCog):
         )
 
         await inter.send(embed=embed, ephemeral=True, view=SupportButton())
+
+        if isinstance(error, commands.CommandOnCooldown):
+            return
+
         await self.client.channels.on_error_channel.send(
             embed=disnake.Embed(
                 title="Ошибка комманды!",
                 description=f"{''.join(traceback_list)} \n\n ```{error.__class__.__name__}: {error}```\n\n Команда "
-                            f"вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}> "
+                            f"вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}>\nКоманда: "
+                            f"`{inter.application_command}`"
             )
         )
 
@@ -131,7 +133,8 @@ class OnErrors(BaseCog):
             embed=disnake.Embed(
                 title="Ошибка комманды!",
                 description=f"{''.join(traceback_list)} \n\n ```{error.__class__.__name__}: {error}```\n\n Команда "
-                            f"вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}> "
+                            f"вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}>\nКоманда: "
+                            f"`{inter.application_command}`"
             )
         )
 
