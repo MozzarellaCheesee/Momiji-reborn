@@ -71,8 +71,6 @@ class ServerSettings(BaseCog):
         role_in_db: Roles | None = await self.client.db.Roles.get_or_none(server=server_in_db[0],
                                                                           role_type="VERIFY")
 
-        print(role_in_db)
-
         if action == "delete":
             if role_in_db is not None:
                 server_in_db[0].verify_role = False

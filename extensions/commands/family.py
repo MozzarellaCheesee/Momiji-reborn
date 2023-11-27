@@ -129,7 +129,7 @@ class LoveProfileButtons(disnake.ui.View):
     async def divorce_callback(self, button, inter: disnake.Interaction):
         role: disnake.Role = inter.guild.get_role(self.role.role_id)
         if role >= inter.me.top_role:
-            return await inter.response.send_message(self.locale["errors"]["top_role"], ephermeral=True)
+            return await inter.response.send_message(self.locale["errors"]["top_role"], ephemeral=True)
         server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
         author_user_in_db: tuple[Users, bool] = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
         author_profile_in_db: Profiles = await self.client.db.Profiles.get(
