@@ -35,8 +35,8 @@ class VerefyModal(Modal):
         if str(self.code) != inter.text_values["verefy"]:
             return await inter.response.send_message(self.locale["not_verefy"], ephemeral=True)
 
-        if inter.author.top_role >= inter.me.top_role:
-            return await inter.response.send_message(self.locale["top_role_error"], ephemeral=True)
+        if self.role >= inter.me.top_role:
+            return await inter.response.send_message(self.locale["verefy"]["error"], ephemeral=True)
 
         await inter.response.send_message(
             embed=disnake.Embed(

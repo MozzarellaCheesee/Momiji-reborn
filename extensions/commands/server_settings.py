@@ -218,7 +218,7 @@ class ServerSettings(BaseCog):
             except AttributeError:
                 ...
 
-        new_channel: disnake.VoiceChannel = await inter.guild.create_voice_channel(name="Создать [ + ]", user_limit=2)
+        new_channel: disnake.VoiceChannel = await inter.guild.create_voice_channel(name="Create [ + ]", user_limit=2)
 
         await self.client.db.Channels.create(server=server_in_db[0],
                                              channel_id=new_channel.id, channel_type="VoicesChannel")
