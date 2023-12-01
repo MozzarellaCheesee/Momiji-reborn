@@ -134,7 +134,8 @@ class OnErrors(BaseCog):
                 title="Ошибка комманды!",
                 description=f"{''.join(traceback_list)} \n\n ```{error.__class__.__name__}: {error}```\n\n Команда "
                             f"вызвана на сервере {inter.guild.name}\nВладелец <@{inter.guild.owner.id}>\nКоманда: "
-                            f"`{inter.application_command}`"
+                            f"`{inter.application_command.qualified_name}`\nКоманда: "
+                            f"`{inter.application_command.name}`"
             )
         )
 
