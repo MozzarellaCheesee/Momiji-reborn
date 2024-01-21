@@ -20,6 +20,7 @@ err = LocalizationStorage("errors#2")
 
 class Moderation(BaseCog):
 
+    @BaseChecks.is_higher(err)
     @commands.slash_command(name=__("moderation", key="COMMAND_GROUP_MODERATION"),
                             description=__("moderation commands", key="COMMAND_GROUP_DESCRIPTION_MODERATION"))
     async def moderation(self, inter: AppCmdInter):

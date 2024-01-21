@@ -31,7 +31,7 @@ class MarryButtons(disnake.ui.View):
         self.role = role
         self.check_member = check_member
         self.disnake_author = disnake_author
-        self.inter = inter
+        self.inter: AppCmdInter = inter
         self.check = 0
 
     async def on_timeout(self) -> None:
@@ -52,6 +52,12 @@ class MarryButtons(disnake.ui.View):
     @disnake.ui.button(emoji="✅")
     async def yes_callback(self, button, inter: disnake.Interaction):
         role: disnake.Role = inter.guild.get_role(self.role.role_id)
+        if role >= self.inter.me.top_role:
+            return await inter.edit_original_message(
+                embed=disnake.Embed(
+                    description=self.locale['errors']['top_role']
+                )
+            )
         st = datetime.datetime.now()
         date = datetime.datetime.now() + datetime.timedelta(days=30)
         family = await self.client.db.Families.create(
@@ -123,7 +129,7 @@ class LoveProfileButtons(disnake.ui.View):
     async def divorce_callback(self, button, inter: disnake.Interaction):
         role: disnake.Role = inter.guild.get_role(self.role.role_id)
         if role >= inter.me.top_role:
-            return await inter.response.send_message(self.locale["errors"]["top_role"], ephermeral=True)
+            return await inter.response.send_message(self.locale["errors"]["top_role"], ephemeral=True)
         server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=inter.guild.id)
         author_user_in_db: tuple[Users, bool] = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
         author_profile_in_db: Profiles = await self.client.db.Profiles.get(
@@ -200,7 +206,7 @@ class Family(BaseCog):
             raise CustomError(locale["errors"]["author_married"])
         if member_profile.family is not None:
             raise CustomError(locale["errors"]["member_married"])
-        if author_profile.money < 12000:
+        if author_profile.money < 5000:
             raise CustomError(locale["errors"]["not_money"])
         await inter.send(
             user.mention,

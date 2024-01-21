@@ -5,7 +5,7 @@ DB_URL="mysql://p527749_astolfo_owo:lI7xK0dC0c@185.105.110.5:3306/p527749_momiji
 
 commands_ = {
     "extensions.commands.accounts",
-#    "extensions.commands.developer",
+    "extensions.commands.developer",
     "extensions.commands.economy",
     "extensions.commands.family",
     "extensions.commands.gaiety",

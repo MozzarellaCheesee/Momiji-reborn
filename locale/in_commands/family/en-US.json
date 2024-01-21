@@ -14,7 +14,8 @@
             "not_money": "You don't have enough money :(",
             "member_married": "This person is already married. No need to lead him on the path of infidelity, I think?",
             "author_married": "You're already married and I don't approve of cheating!",
-            "not_role": "Role for marriage has not been set."
+            "not_role": "Role for marriage has not been set.",
+            "top_role": "My role is equal to or lower than that of married couples"
         },
         "error_": "You are not in the database.",
         "error__": "The user is not in the database."

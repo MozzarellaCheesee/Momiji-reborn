@@ -19,7 +19,12 @@ class Gaiety(BaseCog):
 
     @gaiety.sub_command(name='8ball',
                         description=__('ask the ball about what worries you', key="COMMAND_DESCRIPTION_8BALL"))
-    async def _8ball(self, inter: AppCmdInter):
+    async def _8ball(self, inter: AppCmdInter,
+                     question: str = commands.Param(
+                         name=__("question", key="COMMAND_PARAM_NAME_QUEST"),
+                         description=__("enter your question", key="COMMAND_PARAM_DESCRIPTION_QUEST")
+                     )
+    ):
         locale = _(inter.locale, "8ball")
         answer = randint(1, 20)
         await inter.send(
