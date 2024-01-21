@@ -3,7 +3,7 @@ from disnake.ext import commands
 from random import randint
 
 from core.cog import BaseCog
-from asyncmy.errors import OperationalError
+import tortoise
 
 
 class Level(BaseCog):
@@ -41,7 +41,7 @@ class Level(BaseCog):
             await user[0].save()
         except AttributeError:
             ...
-        except OperationalError:
+        except tortoise.exceptions.OperationalError:
             ...
 
 
