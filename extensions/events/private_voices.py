@@ -1,4 +1,5 @@
 import disnake
+from disnake.errors import Forbidden
 from disnake.ext import commands
 
 from core.cog import BaseCog
@@ -51,6 +52,13 @@ class PrivateVoices(BaseCog):
                 await member.move_to(new_channel)
         except AttributeError:
             ...
+        except Forbidden:
+            try:
+                await member.send("**The bot has no rights to create channels on the server**\n"
+                                  "**У бота нет прав для создания каналов на сервере**")
+            except:
+                await member.guild.owner.send("**The bot has no rights to create channels on the server**\n"
+                                              "**У бота нет прав для создания каналов на сервере**")
 
 
 def setup(client: commands.InteractionBot):
