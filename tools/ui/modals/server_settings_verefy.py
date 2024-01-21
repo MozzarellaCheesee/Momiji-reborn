@@ -57,10 +57,7 @@ class VerefyButton(View):
     @disnake.ui.button(style=disnake.ButtonStyle.green, emoji="<:momiji_verefy:1128318165542248538>", custom_id="verefy")
     async def a_callback(self, button, interaction: MessageInteraction):
         locale = self.locale(interaction.locale, "verefy")
-        defaults = {
-            "discord_id": interaction.guild.id
-        }
-        server = await self.client.db.Servers.get_or_create(defaults=defaults, discord_id=interaction.guild.id)
+        server = await self.client.db.Servers.get_or_create(discord_id=interaction.guild.id)
         try:
             role = await self.client.db.Roles.get(server=server[0], role_type="VERIFY")
             role_in_discord: disnake.Role = interaction.guild.get_role(role.role_id)
