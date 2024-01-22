@@ -8,6 +8,8 @@ from core.models.private_vc import PrivateVCS
 from core.models.servers import Servers
 from core.models.users import Users
 
+from tortoise.exceptions import OperationalError
+
 
 class PrivateVoices(BaseCog):
 
@@ -51,6 +53,8 @@ class PrivateVoices(BaseCog):
                                                        owner=user_in_db[0], channel_id=new_channel.id)
                 await member.move_to(new_channel)
         except AttributeError:
+            ...
+        except OperationalError:
             ...
         except Forbidden:
             try:
