@@ -6,7 +6,7 @@ from core.database import init_database
 from core.settings import config
 from tools.system_utils import load_extensions, load_locale, get_stats, on_success_posting
 
-client = commands.AutoShardedInteractionBot(intents=disnake.Intents.all(), strict_localization=True)
+client = commands.AutoShardedInteractionBot(intents=disnake.Intents.all(), strict_localization=True, shard_count=1)
 boticord_client: BoticordClient = BoticordClient(config['BOTICORD_TOKEN'], version=3)
 
 
