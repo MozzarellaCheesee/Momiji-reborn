@@ -5,12 +5,18 @@
     "COMMAND_DESCRIPTION_WORK": "заработать деньги [от 50 до 150] и опыт [от 16 до 45]",
     "COMMAND_NAME_PAY": "перевести",
     "COMMAND_DESCRIPTION_PAY": "перевести деньги пользователю",
-    "COMMAND_PARAM_NAME_AMOUNT": "количество",
-    "COMMAND_PARAM_DESCRIPTION_AMOUNT": "введите количество",
+    "COMMAND_PARAM_NAME_AMOUNT": "сумма",
+    "COMMAND_PARAM_DESCRIPTION_AMOUNT": "введите сумму",
     "COMMAND_NAME_ROULETTE": "русская-рулетка",
     "COMMAND_DESCRIPTION_ROULETTE": "поиграйся со смертью",
+    "COMMAND_NAME_COINFLIP": "монетка",
+    "COMMAND_DESCRIPTION_COINFLIP": "подбрось монетку и испытай удачу",
     "bullets": "патроны",
     "money": "ставка",
     "bullets_desc": "ведите кол-во потронов",
-    "money_desc": "введите вашу ставку"
+    "money_desc": "введите вашу ставку",
+    "heads": "орел",
+    "tail": "решка",
+    "side": "сторона",
+    "side_desc": "выберите сторону"
 }

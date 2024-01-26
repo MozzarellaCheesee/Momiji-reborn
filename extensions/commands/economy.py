@@ -4,6 +4,7 @@ from disnake import Localized as __
 from disnake.ext import commands
 
 from random import randint, getrandbits
+from asyncio import sleep
 
 from core.cog import BaseCog
 from core.checks import BaseChecks
@@ -12,6 +13,8 @@ from tools.exeption import CustomError
 
 _ = LocalizationStorage("economy")
 err = LocalizationStorage("errors#2")
+
+COIN_SIDES = ["head", "tail"]
 
 
 class Economy(BaseCog):
@@ -39,8 +42,8 @@ class Economy(BaseCog):
 
         profile.money = profile.money + money
 
-        embed = disnake.Embed(title=locale["title"], description=locale["description"])\
-            .add_field(name=locale["field_name_1"], value=f'> `{money}` <a:momiji_crystal:1126456975337730078>')\
+        embed = disnake.Embed(title=locale["title"], description=locale["description"]) \
+            .add_field(name=locale["field_name_1"], value=f'> `{money}` <a:momiji_crystal:1126456975337730078>') \
             .set_thumbnail(url=inter.author.display_avatar.url)
         if true_or_false == 1:
             profile.experience = profile.experience + experience
@@ -92,13 +95,14 @@ class Economy(BaseCog):
 
     @economy.sub_command(name=__("russian-roulette", key="COMMAND_NAME_ROULETTE"),
                          description=__("play with dead", key="COMMAND_DESCRIPTION_ROULETTE"))
-    async def roulette(self, inter: AppCmdInter,
-                       bullets: int = commands.Param(name=__("bullets", key="bullets"),
-                                                     description=__("enter bullets count", key="bullets_desc"), le=5,
-                                                     ge=1),
-                       amount: int = commands.Param(name=__("stake", key="money"),
-                                                    description=__("enter stake", key="money_desc"),
-                                                    ge=50, le=1000000)):
+    async def rus_roulette(self, inter: AppCmdInter,
+                           bullets: int = commands.Param(name=__("bullets", key="bullets"),
+                                                         description=__("enter bullets count", key="bullets_desc"),
+                                                         le=5,
+                                                         ge=1),
+                           amount: int = commands.Param(name=__("stake", key="money"),
+                                                        description=__("enter stake", key="money_desc"),
+                                                        ge=50, le=1000000)):
         locale = _(inter.locale, "roulette")
         server_in_db = await self.client.db.Servers.get_or_create(discord_id=inter.author.guild.id)
         author_user_in_db = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
@@ -120,16 +124,77 @@ class Economy(BaseCog):
             author_profile.money -= amount
             await author_profile.save()
             await inter.send(embed=disnake.Embed(title=locale["dead_title"], description=locale["dead_description"])
-                             .add_field(name=locale["summ_lose"], value=amount)
-                             .add_field(name=locale["balance"], value=author_profile.money)
+                             .add_field(name=locale["summ_lose"], value=f"{amount} <a:momiji_crystal:112645697"
+                                                                        f"5337730078>")
+                             .add_field(name=locale["balance"], value=f"{author_profile.money} <a:momiji_crystal:"
+                                                                      f"1126456975337730078>")
                              .set_thumbnail(url=inter.author.display_avatar))
         else:
-            author_profile.money += amount * (bullets+1) - amount
+            author_profile.money += amount * (bullets + 1) - amount
             await author_profile.save()
             await inter.send(embed=disnake.Embed(title=locale["win_title"], description=locale["win_description"])
-                             .add_field(name=locale["summ_win"], value=amount * (bullets+1) - amount)
-                             .add_field(name=locale["balance"], value=author_profile.money)
+                             .add_field(name=locale["summ_win"], value=f"{amount * (bullets + 1) - amount} <a:momiji_"
+                                                                       f"crystal:1126456975337730078>")
+                             .add_field(name=locale["balance"], value=f"{author_profile.money} <a:momiji_crystal:"
+                                                                      f"1126456975337730078>")
                              .set_thumbnail(url=inter.author.display_avatar))
+
+    @economy.sub_command(name=__("coinflip", key="COMMAND_NAME_COINFLIP"),
+                         description=__("flip a coin", key="COMMAND_DESCRIPTION_COINFLIP"))
+    async def coinflip(self, inter: AppCmdInter,
+                       side: str = commands.Param(name=__("side", key="side"), description=__("choose a side",
+                                                                                              key="side_desc"),
+                                                  choices=[__("head", key="heads"), __("tail", key="tail")]),
+                       amount: int = commands.Param(name=__("amount", key="COMMAND_PARAM_NAME_AMOUNT"),
+                                                    description=__("enter amount",
+                                                                   key="COMMAND_PARAM_DESCRIPTION_AMOUNT"),
+                                                    ge=50, le=1000000)):
+        locale = _(inter.locale, "coinflip")
+        server_in_db = await self.client.db.Servers.get_or_create(discord_id=inter.author.guild.id)
+        author_user_in_db = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
+        author_profile = await self.client.db.Profiles.get_or_none(user=author_user_in_db[0], server=server_in_db[0])
+        result = getrandbits(1)
+
+        if author_profile is None:
+            return await inter.send(locale['error_'], ephemeral=True)
+
+        if author_profile.money < amount:
+            raise CustomError(locale["error"])
+
+        await inter.send(embed=disnake.Embed(title=locale["wait_title"])
+                         .set_image(url="https://usagif.com/wp-content/"
+                                        "uploads/gifs/coin-flip-11.gif"))
+        await sleep(5)
+
+        if COIN_SIDES[result] == side:
+            author_profile.money += amount * 2
+            await author_profile.save()
+            await inter.edit_original_message(embed=disnake.Embed(title=locale["win_title"],
+                                                                  description=locale["win_description"])
+                                              .add_field(name=locale["summ_win"], value=f"{amount * 2 - amount} "
+                                                                                        f"<a:momiji_crystal:"
+                                                                                        f"1126456975337730078>")
+                                              .add_field(name=locale["balance"], value=f"{author_profile.money}<a:momij"
+                                                                                       f"i_crystal:112645697533773007"
+                                                                                       f"8>")
+                                              .set_thumbnail(url="https://cdn.discordapp.com/attachments/85281641389031"
+                                                             "4251/1200533089718382612/Cz9V8qDRyTE.jpg?ex=65c68691&is=6"
+                                                             "5b41191&hm=7d013964aba8ed2b82b070903d67741f72619493f8219c"
+                                                             "f559aa8bc633dd0c28&"))
+        else:
+            author_profile.money += amount
+            await author_profile.save()
+            await inter.edit_original_message(embed=disnake.Embed(title=locale["lose_title"],
+                                                                  description=locale["lose_description"])
+                                              .add_field(name=locale["summ_lose"], value=f"{amount} <a:momiji_crystal"
+                                                                                         f":1126456975337730078>")
+                                              .add_field(name=locale["balance"], value=f"{author_profile.money}<a:momij"
+                                                                                       f"i_crystal:112645697533773007"
+                                                                                       f"8>")
+                                              .set_thumbnail(url="https://cdn.discordapp.com/attachments/85281641389031"
+                                                             "4251/1200533089479311493/Eq_X5Bbm5Jc.jpg?ex=65c68691&is=6"
+                                                             "5b41191&hm=bb696bd5e7bcaa76eea8718893ab6f5f5c1345e8c386dd"
+                                                             "f3fbf8806828852952&"))
 
 
 def setup(client: commands.InteractionBot):

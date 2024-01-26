@@ -27,5 +27,18 @@
          "win_description": "Exhale, your head is safe and sound",
          "summ_win": "Win",
          "balance": "Your balance"
-    }
+    },
+
+    "coinflip": {
+         "wait_title": "Tossing a coin...",
+         "error": "Your balance is less than the amount you want to transfer.",
+         "error_": "You are not in the database",
+         "win_title": "Victory",
+         "win_description": "You win, are you a telepathic magician?",
+         "summ_win": "Win",
+         "lose_title": "Failure",
+         "lose_description": "Sorry, you couldn't guess the side",
+         "summ_lose": "Loss",
+         "balance": "Your balance"
+     }
 }
