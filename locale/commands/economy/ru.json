@@ -6,5 +6,11 @@
     "COMMAND_NAME_PAY": "перевести",
     "COMMAND_DESCRIPTION_PAY": "перевести деньги пользователю",
     "COMMAND_PARAM_NAME_AMOUNT": "количество",
-    "COMMAND_PARAM_DESCRIPTION_AMOUNT": "введите количество"
+    "COMMAND_PARAM_DESCRIPTION_AMOUNT": "введите количество",
+    "COMMAND_NAME_ROULETTE": "русская-рулетка",
+    "COMMAND_DESCRIPTION_ROULETTE": "поиграйся со смертью",
+    "bullets": "патроны",
+    "money": "ставка",
+    "bullets_desc": "ведите кол-во потронов",
+    "money_desc": "введите вашу ставку"
 }

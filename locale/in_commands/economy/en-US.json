@@ -15,5 +15,17 @@
         "error": "Your balance is less than the amount you want to transfer.",
         "error_": "You are not in the database",
         "error__": "The recipient is not in the database"
+    },
+
+    "roulette": {
+        "error": "Your balance is less than the amount you want to transfer.",
+         "error_": "You are not in the database",
+         "dead_title": "Death...",
+         "dead_description": "Sometimes interesting things come to mind...",
+         "summ_lose": "Loss",
+         "win_title": "Victory!",
+         "win_description": "Exhale, your head is safe and sound",
+         "summ_win": "Win",
+         "balance": "Your balance"
     }
 }

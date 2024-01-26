@@ -24,7 +24,6 @@ from core.models.roles import Roles
 _ = LocalizationStorage("server_settings")
 
 
-
 class OnReady(BaseCog):
 
     @commands.Cog.listener()
@@ -72,6 +71,20 @@ class OnReady(BaseCog):
             f"----------------------------------------------"
         )
         logging.info("Бот был запущен")
+
+    @commands.Cog.listener()
+    async def on_disconnect(self):
+        print(
+            f"\033[38;5;38m[DISCONNECT] \033[38;5;67m⌗ \033[38;5;105m{self.client.user}\033[0;0m is disconnected.\n"
+            f"----------------------------------------------"
+        )
+
+    @commands.Cog.listener()
+    async def on_connect(self):
+        print(
+            f"\033[38;5;38m[CONNECT] \033[38;5;67m⌗ \033[38;5;105m{self.client.user}\033[0;0m is connected.\n"
+            f"----------------------------------------------"
+        )
 
 
 def setup(client: commands.InteractionBot):

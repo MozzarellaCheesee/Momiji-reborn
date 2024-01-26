@@ -180,7 +180,7 @@ class Family(BaseCog):
     @BaseChecks.bot_check(err)
     @family.sub_command(
         name=__('marry', key="COMMAND_NAME_MARRY"),
-        description=__('marry command', key="COMMAND_DESCRIPTION_MARRY")
+        description=__('marry command (cost 5000)', key="COMMAND_DESCRIPTION_MARRY")
     )
     async def marry(self, inter: AppCmdInter,
                     user: disnake.User = commands.Param(
