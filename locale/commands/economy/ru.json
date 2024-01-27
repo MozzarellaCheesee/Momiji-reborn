@@ -11,6 +11,8 @@
     "COMMAND_DESCRIPTION_ROULETTE": "поиграйся со смертью",
     "COMMAND_NAME_COINFLIP": "монетка",
     "COMMAND_DESCRIPTION_COINFLIP": "подбрось монетку и испытай удачу",
+    "COMMAND_NAME_DICE": "кости",
+    "COMMAND_DESCRIPTION_DICE": "подкинуть кость",
     "bullets": "патроны",
     "money": "ставка",
     "bullets_desc": "ведите кол-во потронов",

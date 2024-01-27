@@ -202,9 +202,12 @@ class Economy(BaseCog):
                                                              "f3fbf8806828852952&"))
 
     @commands.cooldown(1, 20, commands.BucketType.user)
-    @economy.sub_command()
+    @economy.sub_command(name=__("dice", key="COMMAND_NAME_DICE"),
+                         description=__("throw the dice", key="COMMAND_DESCRIPTION_DICE"))
     async def dice(self, inter: AppCmdInter,
-                   bet: int = commands.Param()):
+                   bet: int = commands.Param(name=__("bet", key="COMMAND_PARAM_NAME_AMOUNT"),
+                                             description=__("enter amount", key="COMMAND_PARAM_DESCRIPTION_AMOUNT"),
+                                             ge=50, le=1000000)):
         locale = _(inter.locale, "dice")
         server_in_db = await self.client.db.Servers.get_or_create(discord_id=inter.author.guild.id)
         author_user_in_db = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
