@@ -27,12 +27,6 @@ class ReloadCogs(StandardSelect):
 class Developer(BaseCog):
 
     @commands.is_owner()
-    @commands.slash_command()
-    async def check(self, inter: AppCmdInter):
-        await inter.send(f"Команда: `{inter.application_command.qualified_name}`\nКоманда:"
-                         f"`{inter.application_command.name}` {open('sdsd.tot')}")
-
-    @commands.is_owner()
     @commands.slash_command(name="разблокировать",
                             description='ТОЛЬКО ВЛАДЕЛЕЦ БОТА! Разблокировать пользователя в системе')
     async def unblock(self, inter: AppCmdInter, user: disnake.User):

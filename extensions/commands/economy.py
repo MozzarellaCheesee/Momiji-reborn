@@ -10,11 +10,16 @@ from core.cog import BaseCog
 from core.checks import BaseChecks
 from core.i18n import LocalizationStorage
 from tools.exeption import CustomError
+from tools.ui.components import StandartView
+from tools.ui.dice_buttons import DiceButtons, BackButton, PlayButton
 
 _ = LocalizationStorage("economy")
 err = LocalizationStorage("errors#2")
 
 COIN_SIDES = ["head", "tail"]
+CUBE_SIDES = ["<:dice_1:1200716726791307335>", "<:dice_2:1200716728691343490>",
+              "<:dice_3:1200716731707039797>", "<:dice_4:1200716735091843142>",
+              "<:dice_5:1200716736987664485>", "<:dice_6:1200716739692994602>"]
 
 
 class Economy(BaseCog):
@@ -100,7 +105,7 @@ class Economy(BaseCog):
                                                          description=__("enter bullets count", key="bullets_desc"),
                                                          le=5,
                                                          ge=1),
-                           amount: int = commands.Param(name=__("stake", key="money"),
+                           amount: int = commands.Param(name=__("bet", key="money"),
                                                         description=__("enter stake", key="money_desc"),
                                                         ge=50, le=1000000)):
         locale = _(inter.locale, "roulette")
@@ -145,7 +150,7 @@ class Economy(BaseCog):
                        side: str = commands.Param(name=__("side", key="side"), description=__("choose a side",
                                                                                               key="side_desc"),
                                                   choices=[__("head", key="heads"), __("tail", key="tail")]),
-                       amount: int = commands.Param(name=__("amount", key="COMMAND_PARAM_NAME_AMOUNT"),
+                       amount: int = commands.Param(name=__("bet", key="COMMAND_PARAM_NAME_AMOUNT"),
                                                     description=__("enter amount",
                                                                    key="COMMAND_PARAM_DESCRIPTION_AMOUNT"),
                                                     ge=50, le=1000000)):
@@ -195,6 +200,44 @@ class Economy(BaseCog):
                                                              "4251/1200533089479311493/Eq_X5Bbm5Jc.jpg?ex=65c68691&is=6"
                                                              "5b41191&hm=bb696bd5e7bcaa76eea8718893ab6f5f5c1345e8c386dd"
                                                              "f3fbf8806828852952&"))
+
+    @commands.cooldown(1, 20, commands.BucketType.user)
+    @economy.sub_command()
+    async def dice(self, inter: AppCmdInter,
+                   bet: int = commands.Param()):
+        locale = _(inter.locale, "dice")
+        server_in_db = await self.client.db.Servers.get_or_create(discord_id=inter.author.guild.id)
+        author_user_in_db = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
+        author_profile = await self.client.db.Profiles.get_or_none(user=author_user_in_db[0], server=server_in_db[0])
+
+        if author_profile is None:
+            return await inter.send(locale['error_'], ephemeral=True)
+
+        if author_profile.money < bet:
+            raise CustomError(locale["error"])
+
+        Btn_view = StandartView(inter, self.client, timeout=20)
+        Btn_view.list_num = []
+        Btn_view.author_profile = author_profile
+
+        con = 0
+        for i in range(6):
+            if con < 3:
+                row = 1
+            else:
+                row = 2
+            Btn_view.add_item(DiceButtons(CUBE_SIDES[i], row=row, num=i+1, locale=locale))
+            con += 1
+        Btn_view.add_item(PlayButton(locale, bet))
+        Btn_view.add_item(BackButton(locale))
+
+        await inter.send(embed=disnake.Embed(title=locale["title"].format(member=inter.author.name),
+                                             description=locale["description"])
+                         .set_image(url="https://cdn.discordapp.com/attachments/"
+                                        "1123682099233300602/1200735127165218856"
+                                        "/inf.gif?ex=65c742ba&is=65b4cdba&hm=b37"
+                                        "30f0860f5ac1038bd11942805db6dd7b24bb681c55299c2a50932adae11ad&"),
+                         view=Btn_view)
 
 
 def setup(client: commands.InteractionBot):

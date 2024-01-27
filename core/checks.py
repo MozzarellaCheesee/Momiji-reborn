@@ -1,6 +1,7 @@
 import disnake
 from disnake.ext import commands
 from tools.exeption import CustomError
+from core.models.servers import Servers
 
 
 class BaseChecks:
@@ -63,5 +64,17 @@ class BaseChecks:
             if inter.filled_options["member" or "участник"].bot:
                 raise CustomError(locale['bot_error'])
             return True
+
+        return commands.check(predicate)
+
+    def vip_check(locale_path: object):
+        """
+        Проверка на наличие премиума у сервера
+        :return: True or False
+        """
+        async def predicate(inter: disnake.ApplicationCommandInteraction):
+            locale = locale_path(inter.locale, "errors")
+            server: tuple[Servers, bool] = await Servers.get_or_create(discord_id=inter.guild.id)
+            return server[0].vip
 
         return commands.check(predicate)

@@ -1,6 +1,7 @@
 import disnake
 from disnake.ext import commands
 
+
 class StandartView(disnake.ui.View):
 
     def __init__(self, inter, client: commands.InteractionBot, timeout: float = 45):
@@ -22,6 +23,7 @@ class StandartView(disnake.ui.View):
 
     async def interaction_check(self, interaction: disnake.MessageInteraction) -> bool:
         return interaction.user == self.inter.author
+
 
 class StandardButton(disnake.ui.Button):
     view: StandartView

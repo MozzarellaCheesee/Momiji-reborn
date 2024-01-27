@@ -40,5 +40,19 @@
          "lose_description": "Sorry, you couldn't guess the side",
          "summ_lose": "Loss",
          "balance": "Your balance"
+    },
+
+    "dice": {
+         "error": "Your balance is less than the amount you want to transfer.",
+         "error_": "You are not in the database",
+         "error_count": "You can only select a maximum of 3 dice",
+         "back_btn": "Back",
+         "play_btn": "Start",
+         "win": "You have won",
+         "lose": "You have lost",
+         "result": "The number drawn is {side}",
+         "throw": "Throw the dice...",
+         "title": "Roll the dice | {member}",
+         "description": "Select the **digits** you want to bet on\n\n> **1** digit - **x6** of the bet\n> **2** digits - **x3** of the bet bets\n> **3** numbers - **x2** of the bet\n"
      }
 }
