@@ -72,10 +72,11 @@ async def get_member_profile(member, client, to_prefetch: list[str | Prefetch] =
     user_in_db = await client.db.Users.get_or_create(discord_id=member.id)
     server_in_db = await client.db.Servers.get_or_create(discord_id=member.guild.id)
     if to_prefetch is None:
-        profile = await client.db.Profiles.get_or_none(user=user_in_db[0], server=server_in_db[0])
+        author_profile = await client.db.Profiles.get_or_none(user=user_in_db[0], server=server_in_db[0])
     else:
-        profile = await client.db.Profiles.get(user=user_in_db[0], server=server_in_db[0]).prefetch_related(to_prefetch)
-    return profile
+        author_profile = await client.db.Profiles.get(user=user_in_db[0], server=server_in_db[0]).prefetch_related(
+            to_prefetch)
+    return author_profile
 
 
 async def get_member_profile_for_marry(member, client):
@@ -88,8 +89,9 @@ async def get_member_profile_for_marry(member, client):
 
     user_in_db = await client.db.Users.get_or_create(discord_id=member.id)
     server_in_db = await client.db.Servers.get_or_create(discord_id=member.guild.id)
-    profile = await client.db.Profiles.get_or_none(user=user_in_db[0], server=server_in_db[0]).select_related("user", "family")
-    return profile
+    author_profile = await client.db.Profiles.get_or_none(user=user_in_db[0], server=server_in_db[0]).select_related(
+        "user", "family")
+    return author_profile
 
 
 async def account(locale: dict, client, inter, user):
@@ -138,28 +140,28 @@ async def account(locale: dict, client, inter, user):
 async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
     user_in_db = await client.db.Users.get_or_create(discord_id=user.id)
     server_in_db = await client.db.Servers.get_or_create(discord_id=inter.guild.id)
-    profile: Profiles = await client.db.Profiles.filter(user=user_in_db[0], server=server_in_db[0]) \
+    author_profile: Profiles = await client.db.Profiles.filter(user=user_in_db[0], server=server_in_db[0]) \
         .prefetch_related("partner", "tickets", "warns_profile").first()
 
-    if not profile:
+    if not author_profile:
         return await inter.send(locale["error"], ephemeral=True)
 
     await inter.response.defer()
 
-    if profile.partner is None:
+    if author_profile.partner is None:
         partner = locale["no_partner"]
     else:
-        partner = inter.guild.get_member(profile.partner.discord_id)
+        partner = inter.guild.get_member(author_profile.partner.discord_id)
 
     name = f'@{user.name}' if len(user.name) <= 15 else f'@{user.name}'[:15] + '...'
     card = Image.open('./assets/profile_server.png')
     draw = ImageDraw.Draw(card)
 
-    lvl = profile.level
-    message = profile.messages
-    open_tickets = len(profile.tickets)
-    money = profile.money
-    warns = len(profile.warns_profile)
+    lvl = author_profile.level
+    message = author_profile.messages
+    open_tickets = len(author_profile.tickets)
+    money = author_profile.money
+    warns = len(author_profile.warns_profile)
 
     avatar_in_png = user.display_avatar.with_static_format("png")
     avatar = circle(Image.open(BytesIO(await avatar_in_png.read())).convert("RGBA"), (213, 213))
@@ -168,8 +170,8 @@ async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
     name_font = ImageFont.truetype("assets/fonts/OpenSans_Condensed-SemiBold.ttf", size=25)
     font = ImageFont.truetype("assets/fonts/OpenSans_Condensed-SemiBold.ttf", size=15)
 
-    draw.text((110, 350), name, fill='white', font=name_font)
-    draw.text((730, 76.5), f"{partner}", fill='white', font=font, anchor='ma')
+    draw.text((200, 350), name, fill='white', font=name_font, anchor='ma')
+    draw.text((775, 76.5), f"{partner}", fill='white', font=font, anchor='ma')
     draw.text((775, 132.5), f"{lvl}", fill='white', font=font, anchor='ma')
     draw.text((775, 187.5), f"{message}", fill='white', font=font, anchor='ma')
     draw.text((775, 242.5), f"{open_tickets}", fill='white', font=font, anchor='ma')
@@ -188,22 +190,22 @@ async def love_profile(locale: dict, client: commands.InteractionBot, inter: dis
                        member: disnake.Member, buttons: disnake.ui.View):
     user_in_db = await client.db.Users.get_or_create(discord_id=member.id)
     server_in_db = await client.db.Servers.get_or_create(discord_id=inter.guild.id)
-    profile: Profiles = await client.db.Profiles.filter(
+    author_profile: Profiles = await client.db.Profiles.filter(
         user=user_in_db[0], server=server_in_db[0]
     ).prefetch_related("family",
                        "family__wife",
                        "family__husband").first()
 
-    if profile is None:
+    if author_profile is None:
         return await inter.send(locale['error_'].format(member=member.mention), ephemeral=True)
 
-    if profile.family is None:
+    if author_profile.family is None:
         return await inter.send(locale['error'].format(member=member.mention), ephemeral=True)
 
     await inter.response.defer()
 
-    husband: disnake.Member = await client.fetch_user(profile.family.husband)
-    wife: disnake.Member = await client.fetch_user(profile.family.wife)
+    husband: disnake.Member = await client.fetch_user(author_profile.family.husband)
+    wife: disnake.Member = await client.fetch_user(author_profile.family.wife)
 
     wife_name = f'{wife.name}' if len(wife.name) <= 15 else f'{wife.name}'[:15] + '...'
     husband_name = f'{husband.name}' if len(husband.name) <= 15 else f'{husband.name}'[:15] + '...'
@@ -213,8 +215,8 @@ async def love_profile(locale: dict, client: commands.InteractionBot, inter: dis
     husband_avatar = circle(
         Image.open(BytesIO(await husband.display_avatar.with_static_format("png").read())).convert("RGBA"), (230, 230))
 
-    date_of_create = profile.family.date_of_create.strftime("%d.%m.%Y")
-    renewal_date = profile.family.renewal_date.strftime("%d.%m.%Y")
+    date_of_create = author_profile.family.date_of_create.strftime("%d.%m.%Y")
+    renewal_date = author_profile.family.renewal_date.strftime("%d.%m.%Y")
 
     card = Image.open('./assets/profile_love.png')
     draw = ImageDraw.Draw(card)
@@ -227,7 +229,7 @@ async def love_profile(locale: dict, client: commands.InteractionBot, inter: dis
 
     draw.text((355, 453), wife_name, fill='white', font=name_font, anchor='ma')
     draw.text((649, 453), husband_name, fill='white', font=name_font, anchor='ma')
-    draw.text((505, 140), f"{profile.family.money}", fill='white', font=name_font, anchor='ma')
+    draw.text((505, 140), f"{author_profile.family.money}", fill='white', font=name_font, anchor='ma')
     draw.text((390, 60), locale["date_of_create"], fill='white', font=font, anchor='ma')
     draw.text((610, 60), locale["renewal_date"], fill='white', font=font, anchor='ma')
     draw.text((390, 85), f"{date_of_create}", fill='white', font=name_font, anchor='ma')

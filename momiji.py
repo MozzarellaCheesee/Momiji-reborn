@@ -14,7 +14,7 @@ async def main():
     load_locale(client)
     load_extensions(client)
     await init_database()
-    await client.start(config["MOMIJI_TOKEN"])
+    await client.start(config["TOKEN"])
     boticord_client.autopost().init_stats(await get_stats(client)).on_success(await on_success_posting()).start(config["MOMIJI_TOKEN"])
 
 
