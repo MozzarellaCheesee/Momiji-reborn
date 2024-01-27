@@ -1,5 +1,5 @@
 import disnake
-from disnake.errors import Forbidden
+from disnake.errors import Forbidden, NotFound
 from disnake.ext import commands
 
 from core.cog import BaseCog
@@ -55,6 +55,8 @@ class PrivateVoices(BaseCog):
         except AttributeError:
             ...
         except OperationalError:
+            ...
+        except NotFound:
             ...
         except Forbidden:
             try:
