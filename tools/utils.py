@@ -169,7 +169,7 @@ async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
     font = ImageFont.truetype("assets/fonts/OpenSans_Condensed-SemiBold.ttf", size=15)
 
     draw.text((110, 350), name, fill='white', font=name_font)
-    draw.text((730, 76.5), f"{partner}", fill='white', font=font)
+    draw.text((730, 76.5), f"{partner}", fill='white', font=font, anchor='ma')
     draw.text((775, 132.5), f"{lvl}", fill='white', font=font, anchor='ma')
     draw.text((775, 187.5), f"{message}", fill='white', font=font, anchor='ma')
     draw.text((775, 242.5), f"{open_tickets}", fill='white', font=font, anchor='ma')
