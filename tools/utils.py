@@ -4,6 +4,7 @@ from tortoise.queryset import Prefetch
 from PIL import ImageDraw, ImageFont, Image, ImageChops
 from io import BytesIO
 from core.models.profiles import Profiles
+from core.models.servers import Servers
 from core.models.users import Users
 
 
@@ -92,6 +93,18 @@ async def get_member_profile_for_marry(member, client):
     author_profile = await client.db.Profiles.get_or_none(user=user_in_db[0], server=server_in_db[0]).select_related(
         "user", "family")
     return author_profile
+
+
+async def get_or_create_profile(client: disnake.ext.commands.AutoShardedInteractionBot,
+                                server: tuple[Servers, bool], member: disnake.Member,
+                                to_relation=None) -> Profiles:
+    if to_relation is None:
+        to_relation = []
+    user: tuple[Users, bool] = await client.db.Users.get_or_create(discord_id=member.id)
+    profile_user: tuple[Profiles, bool] = await client.db.Profiles.get_or_create(user=user[0], server=server[0])
+    profile_user: Profiles = await client.db.Profiles.all().filter(user=user[0], server=server[0])\
+        .prefetch_related(*to_relation)
+    return profile_user[0]
 
 
 async def account(locale: dict, client, inter, user):

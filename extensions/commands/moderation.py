@@ -10,7 +10,7 @@ from core.models.profiles import Profiles
 from core.models.servers import Servers
 from core.models.users import Users
 from tools.exeption import CustomError
-from tools.utils import get_member_profile
+from tools.utils import get_member_profile, get_or_create_profile
 from tools.utils import divide_chunks
 from tools.ui.paginator import Paginator
 
@@ -300,26 +300,19 @@ class Moderation(BaseCog):
     ):
         locale = _(inter.locale, "warn")
         server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=member.guild.id)
-        moderate_user_in_db: tuple[Users, bool] = await self.client.db.Users.get_or_create(discord_id=member.id)
-        moderator_user_in_db: tuple[Users, bool] = await self.client.db.Users.get_or_create(discord_id=inter.author.id)
-        moderate_profile_in_db: tuple[Profiles, bool] = await self.client.db.Profiles.get_or_create(
-            user=moderate_user_in_db[0], server=server_in_db[0]
-        )
-        moderator_profile_in_db: tuple[Profiles, bool] = await self.client.db.Profiles.get_or_create(
-            user=moderator_user_in_db[0], server=server_in_db[0]
-        )
-        moderator_profile_in_db: Profiles = await moderator_profile_in_db[0].all().prefetch_related('server')
+        moderator: Profiles = await get_or_create_profile(self.client, server_in_db, inter.author)
+        member_in_db: Profiles = await get_or_create_profile(self.client, server_in_db, member)
         server_warns = await self.client.db.Warns.filter(
-            server=moderator_profile_in_db[1].server.id
+            server=server_in_db[0]
         ).order_by("-number").limit(1)
         if len(server_warns) < 1:
             number = 1
         else:
             number = server_warns[0].number + 1
 
-        await self.client.db.Warns.create(number=number, server=moderator_profile_in_db[1].server,
-                                          profile=moderate_profile_in_db[0], reason=reason,
-                                          moderator=moderator_profile_in_db[1])
+        await self.client.db.Warns.create(number=number, server=server_in_db[0],
+                                          profile=member_in_db, reason=reason,
+                                          moderator=moderator)
 
         if reason is None:
             reason = locale["not_reason"]
@@ -511,8 +504,9 @@ class Moderation(BaseCog):
             )
     ):
         locale = _(inter.locale, "user_warns")
-        profile_in_db = await get_member_profile(member, self.client)
-        warns = await self.client.db.Warns.filter(profile=profile_in_db).order_by("number").prefetch_related(
+        server_in_db: tuple[Servers, bool] = await self.client.db.Servers.get_or_create(discord_id=member.guild.id)
+        member_in_db: Profiles = await get_or_create_profile(self.client, server_in_db, member, ["user"])
+        warns = await self.client.db.Warns.filter(profile=member_in_db).order_by("number").prefetch_related(
             "moderator", "moderator__user")
         other_pages = list(divide_chunks(warns[5:], 5))
 
@@ -521,7 +515,7 @@ class Moderation(BaseCog):
 
         first_page = disnake.Embed(
             description=locale['description'],
-            title=locale[f'title']
+            title=locale['title']
         )
 
         for i, warns in enumerate(warns[:5], start=1):
@@ -530,7 +524,7 @@ class Moderation(BaseCog):
             else:
                 reason = warns.reason
             moderator_in_discord: disnake.Member = inter.guild.get_member(warns.moderator.user.discord_id)
-            first_page.add_field(name="№ " + i,
+            first_page.add_field(name=f"№ {i}",
                                  value=f"{locale['number']} - {warns.number}\n"
                                        f"**{locale['reason']}** - {reason}\n"
                                        f"**{locale['moderator']}** - {moderator_in_discord.mention}",
@@ -552,7 +546,7 @@ class Moderation(BaseCog):
                 else:
                     reason = warns.reason
                 moderator_in_discord: disnake.Member = inter.guild.get_member(warns.moderator.user.discord_id)
-                temp_page.add_field(name="№ " + i,
+                temp_page.add_field(name=f"№ {i}",
                                     value=f"{locale['number']} - {warns.number}\n"
                                           f"**{locale['reason']}** - {reason}\n"
                                           f"**{locale['moderator']}** - {moderator_in_discord.mention}",

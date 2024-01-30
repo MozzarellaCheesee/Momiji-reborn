@@ -14,8 +14,10 @@ class BaseChecks:
         """
 
         async def predicate(inter: disnake.ApplicationCommandInteraction):
-            locale = locale_path(inter.locale, "errors")
             try:
+                locale = locale_path(inter.locale, "errors")
+                if inter.guild.owner == inter.author:
+                    return True
                 member_cheсk = inter.author.top_role <= inter.filled_options[
                     "member" or "участник"
                 ].top_role or inter.me.top_role <= inter.filled_options[
@@ -26,7 +28,7 @@ class BaseChecks:
                 if member_cheсk:
                     raise CustomError(locale["top_role_error"])
                 return True
-            except:
+            except KeyError:
                 return True
 
         return commands.check(predicate)
@@ -60,10 +62,13 @@ class BaseChecks:
         """
 
         async def predicate(inter: disnake.ApplicationCommandInteraction):
-            locale = locale_path(inter.locale, "errors")
-            if inter.filled_options["member" or "участник"].bot:
-                raise CustomError(locale['bot_error'])
-            return True
+            try:
+                locale = locale_path(inter.locale, "errors")
+                if inter.filled_options["member" or "участник"].bot:
+                    raise CustomError(locale['bot_error'])
+                return True
+            except KeyError:
+                return True
 
         return commands.check(predicate)
 

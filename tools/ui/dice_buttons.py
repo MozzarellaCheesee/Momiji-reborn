@@ -3,7 +3,7 @@ import disnake
 from random import randint
 from asyncio import sleep
 
-from tools.ui.components import StandardButton
+from tools.ui.components import StandartButton
 
 sides = ["https://cdn.discordapp.com/attachments/1123682099233300602/1200735127643373619/1.gif?ex=65c742bb&is=65b4cdbb&"
          "hm=ff225ff624f582b833c75ab5423e5824ccd0afd292d2bdd0ea6a3fb4a26f1aea&",
@@ -21,7 +21,7 @@ sides = ["https://cdn.discordapp.com/attachments/1123682099233300602/12007351276
 multipy = {"1": 6, "2": 3, "3": 2}
 
 
-class PlayButton(StandardButton):
+class PlayButton(StandartButton):
 
     def __init__(self, locale: dict, bet: int):
         self.locale = locale
@@ -58,7 +58,7 @@ class PlayButton(StandardButton):
             )
 
 
-class BackButton(StandardButton):
+class BackButton(StandartButton):
 
     def __init__(self, locale: dict):
         super().__init__(label=locale["back_btn"], style=disnake.ButtonStyle.red, row=2,
@@ -68,7 +68,7 @@ class BackButton(StandardButton):
         await self.view.inter.delete_original_message()
 
 
-class DiceButtons(StandardButton):
+class DiceButtons(StandartButton):
 
     def __init__(self, emoji: str, row: int, num: int, locale: dict):
         self.num = num

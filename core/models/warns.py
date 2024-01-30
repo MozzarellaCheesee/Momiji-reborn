@@ -9,7 +9,7 @@ class Warns(Model):
     server: fields.ForeignKeyRelation["models.Servers"] = fields.ForeignKeyField("models.Servers", related_name="warns",
                                                                                  null=False, on_delete=fields.CASCADE)
     profile: fields.ForeignKeyRelation["models.Profiles"] = fields.ForeignKeyField("models.Profiles",
-                                                                                   related_name="warns_profile",
+                                                                                   related_name="warns",
                                                                                    null=False, on_delete=fields.CASCADE)
     moderator: fields.ForeignKeyRelation["models.Profiles"] = fields.ForeignKeyField("models.Profiles",
                                                                                      related_name="warns_moder",
