@@ -9,7 +9,7 @@ from core.models.profiles import Profiles
 from core.models.servers import Servers
 from tools.ui.components import StandartView
 from tools.utils import get_or_create_profile
-from tools.ui.admin_panel.buttons import RatingPanelButtons, StubButton, BanButton, KickButton
+from tools.ui.admin_panel.buttons import RatingPanelButtons, StubButton, BanButton, KickButton, MuteButtons
 
 _ = LocalizationStorage("administration")
 err = LocalizationStorage("errors#2")
@@ -51,12 +51,12 @@ class Administration(BaseCog):
                         name=f"{locale['author_name']}{member.display_name}")
         view = StandartView(inter, self.client, timeout=30)
         if member != inter.author:
-            view.add_item(StubButton(row=1, emoji="⚒️", style=disnake.ButtonStyle.grey, label="label_mod", locale=locale,
-                                     type_="mod_about"))
             view.add_item(BanButton(member=member, locale=locale, embed=embed))
             view.add_item(KickButton(member=member, locale=locale, embed=embed))
-        view.add_item(StubButton(row=2, emoji="🔝", style=disnake.ButtonStyle.grey, label="label_rate", locale=locale,
-                                 type_="rate_about"))
+            if member.current_timeout is None:
+                view.add_item(MuteButtons(member, locale, embed, "mute"))
+            else:
+                view.add_item(MuteButtons(member=member, locale=locale, embed=embed, type_="unmute"))
         for i in range(4):
             view.add_item(RatingPanelButtons(EMOJIS_RATING[i], RATING_TYPES[i], member, member_in_db, embed, locale))
         await inter.send(embed=embed, view=view)

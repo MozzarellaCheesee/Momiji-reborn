@@ -1,6 +1,6 @@
 {
     "panel": {
-        "description": "<:momiji_bunny:1129449787754823750>`Пользователь`: {member}\n<a:momiji_crystal:1126456975337730078>`Баланс`: {money}\n<:momiji_message:1127503836429438976> `Сообщения`: {messages}\n<:momiji_activity:1127504341482344489>`Уровень`: {level}\n<a:momiji_experience:1126492132086136892>`Опыт`: {experience}\n:exclamation:`Варны`: {warns}\n:ticket:`Тикеты`: [{tickets}/3]",
+        "description": "<:momiji_bunny:1129449787754823750>`Пользователь`: {member}\n<a:momiji_crystal:1126456975337730078>`Баланс`: {money}\n<:momiji_message:1127503836429438976>`Сообщения`: {messages}\n<:momiji_activity:1127504341482344489>`Уровень`: {level}\n<a:momiji_experience:1126492132086136892>`Опыт`: {experience}\n:exclamation:`Варны`: {warns}\n:ticket:`Тикеты`: [{tickets}/3]",
         "level": "Уровень",
         "money": "Кристаллы",
         "messages": "Сообщения",
@@ -36,6 +36,21 @@
         "ban_description": "Пользователь {member} был забанен на сервере",
         "error_ban": "Я не могу забанить этого участника так как его роль выше или равна моей",
         "kick_description": "Пользователь {member} был выгнан с сервера",
-        "error_kick": "Я не могу выгнать этого участника так как его роль выше или равна моей"
+        "error_kick": "Я не могу выгнать этого участника так как его роль выше или равна моей",
+        "mute": "Замутить",
+        "unmute": "Размутить",
+        "mute_emoji": "<:muted:1201924073962352680>",
+        "unmute_emoji": "<:unmuted:1201924072242692116>",
+        "seconds": "Секунды",
+        "minutes": "Минуты",
+        "hours": "Часы",
+        "days": "Дни",
+        "weeks": "Недели",
+        "unmute_title": "Размут",
+        "unmute_description": "Вы сняли мут с участника",
+        "mute_title": "Мут",
+        "mute_description_modal": "Вы замутили участника на {time}",
+        "mute_description": "Выберите тип времени для мута",
+        "mute_modal_ph": "Укажите количество"
     }
 }

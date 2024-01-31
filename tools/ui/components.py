@@ -36,7 +36,7 @@ class StandardSelect(disnake.ui.Select):
 
 class BackButton(StandartButton):
     def __init__(self, emb, children, locale):
-        super().__init__(label=locale['back'], row=4, style=disnake.ButtonStyle.red,
+        super().__init__(label=locale['back'], row=3, style=disnake.ButtonStyle.red,
                          emoji="<:back:1200744962334142626>")
         self.emb = emb
         self.children = children
