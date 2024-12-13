@@ -6,10 +6,12 @@ from core.cog import BaseCog
 
 from tools.exeption import CustomError
 from tools.ui.buttons import SupportButton
+from tools.utils import convert_seconds
 
 import traceback
 
 _ = LocalizationStorage('errors')
+
 
 
 class OnErrors(BaseCog):
@@ -25,7 +27,7 @@ class OnErrors(BaseCog):
             commands.BotMissingPermissions: locale['descriptions']['1'],
             commands.UserNotFound: locale['descriptions']['2'],
             commands.RoleNotFound: locale['descriptions']['3'],
-            50013: locale['descriptions']['4']
+            commands.CommandOnCooldown: locale['descriptions']['5'],
         }
 
         permissions = {
@@ -58,16 +60,17 @@ class OnErrors(BaseCog):
             await inter.send(embed=embed, ephemeral=True)
             return
 
+        if isinstance(error, commands.CommandOnCooldown):
+            embed.description = f"## {locale['field_name_3'].format(time_=convert_seconds(error.retry_after)[:7])}"
+            await inter.send(embed=embed, ephemeral=True)
+            return
+
         embed.description = descriptions_for_err.get(
             50013 if '50013' in str(error) else type(error),
-            f"{locale['description']}"
-            f"\n```py\n{str(error)}```"
+            f"{locale['description']}\n```py\n{str(error)}```"
         )
 
         await inter.send(embed=embed, ephemeral=True, view=SupportButton())
-
-        if isinstance(error, commands.CommandOnCooldown):
-            return
 
         await self.client.channels.on_error_channel.send(
             embed=disnake.Embed(

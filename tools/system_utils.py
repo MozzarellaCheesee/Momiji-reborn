@@ -13,7 +13,7 @@ logging.basicConfig(
 )
 
 
-def load_extensions(client: commands.InteractionBot):
+def load_extensions(client: commands.AutoShardedInteractionBot):
     logging.info("Начало загрузки команд")
     for command in commands_:
         try:
@@ -39,7 +39,7 @@ def load_extensions(client: commands.InteractionBot):
     logging.info("Ивенты были успешно загружены")
 
 
-def load_locale(client: commands.InteractionBot):
+def load_locale(client: commands.AutoShardedInteractionBot):
     logging.info(f"Начало загружки модуля локализации")
     for dir_ in localization_path.iterdir():
         if dir_.is_dir():
