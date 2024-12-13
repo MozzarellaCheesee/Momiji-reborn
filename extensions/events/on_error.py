@@ -26,7 +26,6 @@ class OnErrors(BaseCog):
             commands.BotMissingPermissions: locale['descriptions']['1'],
             commands.UserNotFound: locale['descriptions']['2'],
             commands.RoleNotFound: locale['descriptions']['3'],
-            commands.CommandOnCooldown: locale['descriptions']['5'],
         }
 
         permissions = {

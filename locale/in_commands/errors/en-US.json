@@ -23,6 +23,7 @@
         "title": "An error has occurred",
         "description": "An error has occurred",
         "field_name_1": "Missing permissions",
-        "field_name_2": "Error description"
+        "field_name_2": "Error description",
+        "field_name_3": "Command on culdown, try via: `{time_}`"
     }
 }

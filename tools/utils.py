@@ -159,7 +159,7 @@ async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
     user_in_db = await client.db.Users.get_or_create(discord_id=user.id)
     server_in_db = await client.db.Servers.get_or_create(discord_id=inter.guild.id)
     author_profile: Profiles = await client.db.Profiles.filter(user=user_in_db[0], server=server_in_db[0]) \
-        .prefetch_related("partner", "tickets", "warns_profile").first()
+        .prefetch_related("partner", "tickets", "warns").first()
 
     if not author_profile:
         return await inter.send(locale["error"], ephemeral=True)
@@ -179,7 +179,7 @@ async def profile(locale: dict, client, inter: disnake.AppCmdInter, user):
     message = author_profile.messages
     open_tickets = len(author_profile.tickets)
     money = author_profile.money
-    warns = len(author_profile.warns_profile)
+    warns = len(author_profile.warns)
 
     avatar_in_png = user.display_avatar.with_static_format("png")
     avatar = circle(Image.open(BytesIO(await avatar_in_png.read())).convert("RGBA"), (213, 213))
