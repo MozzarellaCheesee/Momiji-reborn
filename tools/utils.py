@@ -1,4 +1,5 @@
 import disnake
+import datetime
 from disnake.ext import commands
 from tortoise.queryset import Prefetch
 from PIL import ImageDraw, ImageFont, Image, ImageChops
@@ -6,6 +7,10 @@ from io import BytesIO
 from core.models.profiles import Profiles
 from core.models.servers import Servers
 from core.models.users import Users
+
+
+def convert_seconds(seconds):
+    return str(datetime.timedelta(seconds=seconds))
 
 
 def circle(pfp, size=(215, 215)):
@@ -267,3 +272,14 @@ async def get_or_create_role(client: commands.InteractionBot, server: any, _type
     defaults["server"] = _server[0]
     role = await client.db.Roles.get_or_create(defaults=defaults, role_type=_type, server_id=_server[0].id)
     return role, _server
+
+
+def lvl_check(exp: int, new_exp) -> int:
+    coef = exp // new_exp
+    lvls = 0
+    for i in range(0, coef):
+        if exp < new_exp + 50 * i:
+            break
+        exp -= new_exp + 50 * i
+        lvls += 1
+    return lvls, exp
