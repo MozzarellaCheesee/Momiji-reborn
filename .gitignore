@@ -5,3 +5,4 @@ LICENSE
 __pycache__
 /logs
 *.xml
+/.venv
